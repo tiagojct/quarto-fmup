@@ -1,165 +1,99 @@
 # quarto-fmup
 
-A Quarto extension that ships the **Faculty of Medicine of the University
-of Porto (FMUP)** institutional theme — yellow `#FFCD00` + black + Atkinson
-Hyperlegible Next typography — for HTML sites, books, reveal.js
-presentations, and Typst PDFs.
-
-The theme is licensed under the **MIT License** (permissive). The FMUP
-institutional identity (the yellow square mark, the FMUP wordmark) is the
-property of the Faculty and should only be used in materials produced
-by, for, or in collaboration with the Faculty.
+The Faculty of Medicine of the University of Porto (FMUP) visual identity
+for Quarto — yellow `#FFCD00` + black + Atkinson Hyperlegible Next, ready
+for **websites**, **books**, and **reveal.js presentations**.
 
 ## Install
+
+From the root of any Quarto project:
 
 ```sh
 quarto add tiagojct/quarto-fmup
 ```
 
-This places the extension under `_extensions/fmup/` in the current Quarto
-project. Commit the directory to version control.
-
-To install a specific version, append `@v1.0.0`:
-
-```sh
-quarto add tiagojct/quarto-fmup@v1.0.0
-```
+When prompted, type `y` to trust the extension. That's it. The
+fonts (Atkinson Hyperlegible Next + Geist Mono) are loaded from Google
+Fonts automatically — no system install needed.
 
 ## Use
 
-The extension contributes three formats: `fmup-html`, `fmup-revealjs`, and
-`fmup-typst`. Reference them in `_quarto.yml` (for sites and books) or in
-the YAML front matter of a single `.qmd` (for presentations).
+Three formats are contributed. Pick the one(s) you need.
 
-### Website
+### Website or book
 
 ```yaml
 # _quarto.yml
-project:
-  type: website
-
-website:
-  title: "Site"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-
 format:
   fmup-html: default
 ```
 
-### Book
-
-```yaml
-# _quarto.yml
-project:
-  type: book
-
-book:
-  title: "Livro"
-  author: "Autor"
-  chapters:
-    - index.qmd
-    - intro.qmd
-
-format:
-  fmup-html: default
-  fmup-typst: default
-```
-
-### Reveal.js presentation
+### Reveal.js slides
 
 ```yaml
 ---
 title: "Slides"
-subtitle: "FMUP"
 author: "Autor"
-date: today
 format:
   fmup-revealjs:
-    slide-number: c/t
+    footer: "FMUP · Faculdade de Medicina da Universidade do Porto"
 ---
 ```
 
-### Mixing in an existing project
-
-If you already have a custom theme, you can layer the FMUP SCSS without
-adopting the format wholesale:
+### Typst PDF
 
 ```yaml
 format:
-  html:
-    theme:
-      - cosmo
-      - _extensions/fmup/fmup.scss
+  fmup-typst: default
 ```
-
-## Fonts
-
-The theme loads **Atkinson Hyperlegible Next** (Braille Institute,
-high-legibility) and **Geist Mono** (Vercel) from Google Fonts via an
-`@import` in the SCSS. No build step required.
-
-For Typst output, install the fonts system-wide if you want them in the
-PDF; otherwise Typst falls back to its default serif.
-
-## What's included
-
-- `fmup.scss` — Bootstrap-based HTML theme (websites, books).
-- `fmup-revealjs.scss` — reveal.js slide theme.
-- Typst format defaults (A4, 11pt, Atkinson Hyperlegible Next, yellow
-  underlines on links).
-
-The HTML theme covers: navbar, sidebar, page TOC, callouts, code, tables,
-buttons, blockquotes, and footer. The reveal theme covers: title slide,
-section headings (with the yellow tile mark before each H2), code blocks,
-tables, blockquotes, footnotes, progress bar, and a `.center` class for
-chapter-divider slides.
-
-The custom landing components from the original `fmup-ia` project (the
-hero block, the three-card grid) are **not** included — those are
-project-specific. If you need them, copy them from
-`tiagojct/fmup-ia/theme.scss`.
 
 ## Examples
 
-The `example/` directory holds three minimal reference projects:
+Three minimal reference projects live in `example/`:
 
-- `example/site/` — Quarto website with two pages.
-- `example/book/` — Quarto book with three chapters.
-- `example/slides/` — reveal.js presentation with twelve slides covering
-  the visual primitives (title, agenda, headings, code, table, image,
-  blockquote, two-column, callout, divider, references, end).
+| Folder              | What                                             |
+|---------------------|--------------------------------------------------|
+| `example/site/`     | Quarto website (two pages, navbar, sidebar TOC)  |
+| `example/book/`     | Quarto book (three chapters, HTML + Typst PDF)   |
+| `example/slides/`   | Reveal.js deck (15 slides covering all primitives)|
 
-To preview any of them:
+Preview any of them with `quarto preview` from inside the folder.
+
+## Update
 
 ```sh
-cd example/site   # or book / slides
-quarto preview
+quarto update tiagojct/quarto-fmup
 ```
 
-## Versioning
+## Override
 
-The extension uses semver:
+The theme is a thin layer of SCSS. To tweak it for your project, layer
+your own `.scss` after the extension's in `_quarto.yml`:
 
-- **Major** — incompatible changes to the format names, the SCSS public
-  variables, or the Bootstrap variable mappings.
-- **Minor** — new format contributions, new SCSS variables exposed for
-  override, additive style rules.
-- **Patch** — palette tweaks, typography fixes, bug fixes that don't
-  change the visual baseline meaningfully.
+```yaml
+format:
+  fmup-html:
+    theme:
+      - default
+      - _extensions/fmup/fmup.scss   # the FMUP base
+      - mytheme.scss                 # your overrides
+```
+
+## License
+
+[MIT](LICENSE) for the SCSS, the Typst config, and the example projects.
+The FMUP institutional identity (yellow tile mark, FMUP wordmark, the
+Faculty's name) belongs to the Faculty and is not licensed to third
+parties through this repository. Use the visuals for materials produced
+by, for, or in collaboration with the Faculty; for unrelated work,
+change the palette.
 
 ## Credits
 
-Theme by **Tiago Jacinto**, Faculdade de Medicina da Universidade do Porto.
+Theme by **Tiago Jacinto**, Faculdade de Medicina da Universidade do
+Porto. Extracted from
+[`tiagojct/fmup-ia`](https://github.com/tiagojct/fmup-ia).
 
-Atkinson Hyperlegible Next © Braille Institute of America. Geist Mono ©
-Vercel. Both fonts are open-source and free to redistribute via Google
-Fonts.
-
-## Related
-
-- [`tiagojct/fmup-ia`](https://github.com/tiagojct/fmup-ia) — the
-  institutional GenAI framework book that this theme was originally
-  authored for.
+- [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont)
+  © Braille Institute (SIL Open Font License).
+- [Geist Mono](https://vercel.com/font) © Vercel (SIL Open Font License).
