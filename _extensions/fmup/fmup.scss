@@ -157,20 +157,10 @@ h1 { font-weight: 800; }
   }
 }
 
-// Wider book/site sidebar so chapter titles don't wrap awkwardly.
-#quarto-sidebar.sidebar,
-#quarto-sidebar {
-  --bs-sidebar-width: 320px;
-
-  @media (min-width: 992px) {
-    width: 320px;
-  }
-}
-
-body.nav-sidebar #quarto-content,
-body.quarto-margin-toc #quarto-content {
-  --bs-sidebar-width: 320px;
-}
+// Sidebar width: kept at Quarto's default. To widen it without breaking
+// the page grid, override Quarto's grid template columns on
+// `.page-columns` (book/site-specific) — not just the sidebar's own
+// width, which causes the content column to overlap.
 
 // ---- Sidebar (book/site left rail) ----
 
