@@ -146,36 +146,11 @@ $code-block-font-size:          0.7em;
   }
 }
 
-// ---- Permanent FMUP corner mark on every slide ----
-// CSS-only: a small yellow square with "FM/UP" wordmark in the bottom-left.
-// Suppress with `.no-mark` on a slide if needed, or globally by setting
-// `.reveal .slides > section::before { display: none; }` in your override.
-
-.reveal .slides > section::before {
-  content: "FM\AUP";
-  white-space: pre;
-  position: absolute;
-  bottom: 1.2em;
-  left: 1.2em;
-  width: 2.4em;
-  height: 2.4em;
-  background: $fmup-yellow;
-  color: $fmup-text;
-  font-weight: 900;
-  font-size: 0.4em;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  letter-spacing: 0.05em;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.reveal .slides > section.no-mark::before {
-  display: none;
-}
+// ---- FMUP mark inside the footer ----
+// The yellow FM/UP wordmark sits at the left edge of the slide footer.
+// It is rendered via a pseudo-element on `.reveal .footer` so it stays
+// pinned to the chrome rather than to slide content (avoids overlap with
+// long bullet lists or images).
 
 // ---- Links ----
 // Underline only on links inside slide content. Reveal UI elements (slide
@@ -374,14 +349,40 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Footer (YAML `footer: "..."`) ----
+// Layout: [FMUP yellow tile] [centred text] [room for slide-number].
+// The footer is positioned by reveal at the bottom of the viewport;
+// content centres horizontally regardless of mark/slide-number widths.
 
 .reveal .footer {
   color: $fmup-text-muted;
   font-size: 0.6em;
-  text-align: left;
-  padding: 0.4em 1em 0.4em 5em;  // leave room for the FMUP corner mark
+  text-align: center;
+  padding: 0.5em 5em 0.5em 5em;  // symmetric room for mark (left) and slide-number (right)
   border-top: 1px solid $fmup-border;
   background: $fmup-bg;
+  position: relative;
+}
+
+.reveal .footer::before {
+  content: "FM\AUP";
+  white-space: pre;
+  position: absolute;
+  left: 0.6em;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2em;
+  height: 2em;
+  background: $fmup-yellow;
+  color: $fmup-text;
+  font-weight: 900;
+  font-size: 0.85em;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+  pointer-events: none;
 }
 
 .reveal .footer a {
@@ -409,23 +410,29 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Section dividers (`{.center}` on a slide) ----
-// Centres the title both horizontally and vertically; hides the FMUP
-// corner mark and yellow underline so the divider is clean black-on-white.
-// Reveal.js doesn't vertically centre per-section by default — flex does
-// the work here.
+// Centres the title both horizontally and vertically. Reveal applies its
+// own absolute positioning and transform to slides; we override by
+// pinning the inner content with a transform-based centre that wins over
+// reveal's stretch layout.
 
 .reveal section.center {
   text-align: center;
+  top: 0 !important;
+  height: 100% !important;
   display: flex !important;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  justify-content: center !important;
+  align-items: center !important;
+
+  > * {
+    width: 100%;
+    max-width: 80%;
+  }
 
   h1, h2 {
     border-bottom: none;
     text-align: center;
-    margin: 0;
+    margin: 0 0 0.4em 0;
   }
 
   &::before {
