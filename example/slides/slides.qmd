@@ -8,6 +8,7 @@ date-format: "YYYY-MM-DD"
 format:
   fmup-revealjs:
     slide-number: c/t
+    footer: "FMUP · Faculdade de Medicina da Universidade do Porto"
     chalkboard: false
     incremental: false
 ---
@@ -149,14 +150,12 @@ ao slide. O cabeçalho fica centrado e sem o pequeno bloco amarelo.
 
 ## Referências
 
-Inclua a bibliografia no final do `.qmd` com `@bibkey` (Pandoc) ou
-listando manualmente.
-
-::: {.references}
 - Bringhurst, R. (2004). _The Elements of Typographic Style_.
 - Tufte, E. (2006). _Beautiful Evidence_.
 - Reynolds, G. (2019). _Presentation Zen_, 3.ª ed.
-:::
+
+A bibliografia inclui-se com `@bibkey` (Pandoc) ou listando manualmente
+como acima.
 
 ## Fim
 

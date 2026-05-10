@@ -17,8 +17,9 @@ $body-color:         $fmup-text !default;
 $link-color:         $fmup-text !default;
 
 // Typography: Atkinson Hyperlegible Next (Braille Institute) for body and
-// headings; Geist Mono for code. Loaded from Google Fonts via web-fonts import.
-$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+// headings; Geist Mono for code. Loaded via the include-in-header <link>
+// tag declared in _extension.yml; SCSS only sets the font-family stack.
+$font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
 $font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 $headings-font-family:   $font-family-sans-serif !default;
 $headings-font-weight:   700 !default;
@@ -41,21 +42,22 @@ $input-focus-box-shadow:     0 0 0 0.2rem rgba($fmup-yellow, 0.4) !default;
 
 /*-- scss:rules --*/
 
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300..900;1,300..900&family=Geist+Mono:wght@400;500&display=swap');
-
 // ---- Global ----
 
 body {
+  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Prose links: yellow underline + yellow background on hover. Scoped to
 // article/main content so it does not cascade into navbar, sidebar, page
 // TOC, footer, or repo-action links.
-main a,
-.content a,
-article a,
-.quarto-document-content a {
+main a:not(.citation):not(.no-underline),
+.content a:not(.citation):not(.no-underline),
+article a:not(.citation):not(.no-underline),
+.quarto-document-content a:not(.citation):not(.no-underline) {
   text-decoration: underline;
   text-decoration-color: $fmup-yellow;
   text-decoration-thickness: 2px;
@@ -65,6 +67,25 @@ article a,
     background: $fmup-yellow;
     color: $fmup-text;
     text-decoration-color: $fmup-text;
+  }
+}
+
+// Citation / cross-reference numbers (e.g. [1], [Anexo A], anchor icons
+// next to headings) — no yellow underline.
+main a.citation,
+main a.quarto-xref,
+main a.anchorjs-link,
+main .citation a,
+main sup a,
+main .footnote-ref a,
+main .header-anchor {
+  text-decoration: none;
+  background: transparent;
+
+  &:hover {
+    text-decoration: none;
+    background: transparent;
+    color: $fmup-text;
   }
 }
 
@@ -91,6 +112,7 @@ nav.toc-active a,
 // ---- Headings ----
 
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
   letter-spacing: -0.005em;
 }
 
@@ -101,14 +123,17 @@ h1 { font-weight: 800; }
 .navbar {
   background: $fmup-bg !important;
   border-bottom: 4px solid $fmup-yellow;
-  padding: 0.6rem 1rem;
+  padding: 0.5rem 1rem;
+  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: 0.9rem;
 
   .navbar-brand {
     font-weight: 800;
     color: $fmup-text !important;
+    font-size: 0.95rem;
 
     img {
-      max-height: 36px;
+      max-height: 32px;
       width: auto;
     }
   }
@@ -116,7 +141,8 @@ h1 { font-weight: 800; }
   .navbar-nav .nav-link {
     color: $fmup-text !important;
     font-weight: 600;
-    padding: 0.4rem 0.85rem;
+    font-size: 0.88rem;
+    padding: 0.35rem 0.75rem;
     text-decoration: none;
 
     &:hover, &.active {
@@ -131,10 +157,26 @@ h1 { font-weight: 800; }
   }
 }
 
+// Wider book/site sidebar so chapter titles don't wrap awkwardly.
+#quarto-sidebar.sidebar,
+#quarto-sidebar {
+  --bs-sidebar-width: 320px;
+
+  @media (min-width: 992px) {
+    width: 320px;
+  }
+}
+
+body.nav-sidebar #quarto-content,
+body.quarto-margin-toc #quarto-content {
+  --bs-sidebar-width: 320px;
+}
+
 // ---- Sidebar (book/site left rail) ----
 
 .sidebar {
   background: $fmup-surface;
+  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
 
   .sidebar-title {
     font-weight: 800;
@@ -149,6 +191,9 @@ h1 { font-weight: 800; }
   .sidebar-item-text {
     color: $fmup-text;
     text-decoration: none;
+    padding: 0.45rem 0.6rem;
+    line-height: 1.45;
+    display: block;
   }
 
   .sidebar-item.active > .sidebar-item-container .sidebar-item-text,
@@ -157,7 +202,7 @@ h1 { font-weight: 800; }
     color: $fmup-text;
     font-weight: 700;
     border-left: 3px solid $fmup-text;
-    padding-left: calc(0.5rem - 3px);
+    padding: 0.55rem 0.6rem 0.55rem calc(0.6rem - 3px);
   }
 }
 
@@ -322,19 +367,76 @@ table.table {
 }
 
 // ---- Quarto callouts ----
+// Reduced palette: monochrome by default (greys + the institutional
+// yellow on Note), with red kept for `important` (the only signal that
+// must pop). Default Quarto colours (blue, green, amber) are replaced
+// with greyscale to match the FMUP black/white/yellow aesthetic.
 
 .callout {
   border-radius: $border-radius;
+  border: 1px solid $fmup-border;
 
   &.callout-style-default {
     border-left-width: 4px;
   }
 
-  &.callout-note      { border-left-color: $fmup-yellow; }
-  &.callout-tip       { border-left-color: #146C43; }
-  &.callout-important { border-left-color: #B91C1C; }
-  &.callout-warning   { border-left-color: #B78300; }
-  &.callout-caution   { border-left-color: #B3531C; }
+  .callout-header,
+  .callout-title-container,
+  .callout-body {
+    color: $fmup-text;
+  }
+
+  .callout-icon::before,
+  .callout-icon-container .callout-icon {
+    color: $fmup-text !important;
+  }
+}
+
+// Note — institutional informational tone. Yellow accent on the left,
+// neutral white background.
+.callout.callout-note {
+  border-left-color: $fmup-yellow;
+  background: $fmup-bg;
+
+  .callout-header { background: rgba($fmup-yellow, 0.18); }
+}
+
+// Tip — practical suggestion. Dark grey accent.
+.callout.callout-tip {
+  border-left-color: $fmup-text;
+  background: $fmup-bg;
+
+  .callout-header { background: $fmup-surface; }
+}
+
+// Warning — caution. Mid-grey accent.
+.callout.callout-warning {
+  border-left-color: $fmup-border-strong;
+  background: $fmup-bg;
+
+  .callout-header { background: $fmup-surface; }
+}
+
+// Caution — proceed carefully. Same as warning, slightly darker grey.
+.callout.callout-caution {
+  border-left-color: $fmup-text-muted;
+  background: $fmup-bg;
+
+  .callout-header { background: $fmup-surface; }
+}
+
+// Important — non-negotiable. Red kept here intentionally: it is the only
+// universal "stop" signal that should still be coloured in this theme.
+.callout.callout-important {
+  border-left-color: #B91C1C;
+  background: $fmup-bg;
+
+  .callout-header { background: rgba(#B91C1C, 0.08); }
+
+  .callout-icon::before,
+  .callout-icon-container .callout-icon {
+    color: #B91C1C !important;
+  }
 }
 
 // ---- Blockquote ----
