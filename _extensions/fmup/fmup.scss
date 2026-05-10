@@ -357,76 +357,70 @@ table.table {
 }
 
 // ---- Quarto callouts ----
-// Reduced palette: monochrome by default (greys + the institutional
-// yellow on Note), with red kept for `important` (the only signal that
-// must pop). Default Quarto colours (blue, green, amber) are replaced
-// with greyscale to match the FMUP black/white/yellow aesthetic.
+// Quarto's core CSS sets per-callout-type border-left-color, header
+// background, and an SVG icon coloured to match. Those rules load AFTER
+// theme SCSS, so our overrides need `!important` to win — there is no
+// other reliable hook. The repalette: yellow on Note (institutional
+// informational accent), greyscale on Tip/Warning/Caution, red kept
+// only on Important (the one universal "stop" signal).
 
-.callout {
+div.callout.callout-style-default {
+  border: 1px solid $fmup-border !important;
+  border-left-width: 4px !important;
   border-radius: $border-radius;
-  border: 1px solid $fmup-border;
-
-  &.callout-style-default {
-    border-left-width: 4px;
-  }
-
-  .callout-header,
-  .callout-title-container,
-  .callout-body {
-    color: $fmup-text;
-  }
-
-  .callout-icon::before,
-  .callout-icon-container .callout-icon {
-    color: $fmup-text !important;
-  }
 }
 
-// Note — institutional informational tone. Yellow accent on the left,
-// neutral white background.
-.callout.callout-note {
-  border-left-color: $fmup-yellow;
-  background: $fmup-bg;
-
-  .callout-header { background: rgba($fmup-yellow, 0.18); }
+// Note
+div.callout.callout-note,
+div.callout-note.callout {
+  border-left-color: $fmup-yellow !important;
+}
+div.callout.callout-note .callout-header,
+div.callout-note.callout-style-default > .callout-header {
+  background-color: rgba($fmup-yellow, 0.15) !important;
+}
+div.callout-note .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%231A1A1A" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>') !important;
 }
 
-// Tip — practical suggestion. Dark grey accent.
-.callout.callout-tip {
-  border-left-color: $fmup-text;
-  background: $fmup-bg;
-
-  .callout-header { background: $fmup-surface; }
+// Tip — dark
+div.callout.callout-tip,
+div.callout-tip.callout {
+  border-left-color: $fmup-text !important;
+}
+div.callout.callout-tip .callout-header,
+div.callout-tip.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
 }
 
-// Warning — caution. Mid-grey accent.
-.callout.callout-warning {
-  border-left-color: $fmup-border-strong;
-  background: $fmup-bg;
-
-  .callout-header { background: $fmup-surface; }
+// Warning — mid grey
+div.callout.callout-warning,
+div.callout-warning.callout {
+  border-left-color: $fmup-border-strong !important;
+}
+div.callout.callout-warning .callout-header,
+div.callout-warning.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
 }
 
-// Caution — proceed carefully. Same as warning, slightly darker grey.
-.callout.callout-caution {
-  border-left-color: $fmup-text-muted;
-  background: $fmup-bg;
-
-  .callout-header { background: $fmup-surface; }
+// Caution — slightly darker grey
+div.callout.callout-caution,
+div.callout-caution.callout {
+  border-left-color: $fmup-text-muted !important;
+}
+div.callout.callout-caution .callout-header,
+div.callout-caution.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
 }
 
-// Important — non-negotiable. Red kept here intentionally: it is the only
-// universal "stop" signal that should still be coloured in this theme.
-.callout.callout-important {
-  border-left-color: #B91C1C;
-  background: $fmup-bg;
-
-  .callout-header { background: rgba(#B91C1C, 0.08); }
-
-  .callout-icon::before,
-  .callout-icon-container .callout-icon {
-    color: #B91C1C !important;
-  }
+// Important — kept red
+div.callout.callout-important,
+div.callout-important.callout {
+  border-left-color: #B91C1C !important;
+}
+div.callout.callout-important .callout-header,
+div.callout-important.callout-style-default > .callout-header {
+  background-color: rgba(#B91C1C, 0.08) !important;
 }
 
 // ---- Blockquote ----
