@@ -1,0 +1,336 @@
+/*-- scss:defaults --*/
+
+// FMUP institutional palette
+$fmup-yellow:      #FFCD00;
+$fmup-yellow-dark: #E6B800;
+$fmup-text:        #1A1A1A;
+$fmup-text-muted:  #5B6470;
+$fmup-bg:          #FFFFFF;
+$fmup-surface:     #F7F7F7;
+$fmup-border:      #E0E0E0;
+
+// Reveal.js theme variables
+$body-bg:                       $fmup-bg;
+$body-color:                    $fmup-text;
+$link-color:                    $fmup-text;
+$link-color-hover:              $fmup-text;
+$selection-bg:                  $fmup-yellow;
+$selection-color:               $fmup-text;
+
+// Typography
+$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+
+$mainFont:                      $font-family-sans-serif;
+$mainFontSize:                  36px;
+$mainColor:                     $fmup-text;
+
+$headingFont:                   $font-family-sans-serif;
+$headingColor:                  $fmup-text;
+$headingFontWeight:             800;
+$headingTextShadow:             none;
+$headingTextTransform:          none;
+$headingLetterSpacing:          -0.01em;
+
+$heading1Size:                  2.2em;
+$heading2Size:                  1.55em;
+$heading3Size:                  1.25em;
+$heading4Size:                  1.05em;
+
+$codeFont:                      $font-family-monospace;
+
+// Backgrounds
+$backgroundColor:               $fmup-bg;
+
+// Block / inline code
+$code-block-bg:                 $fmup-surface;
+$code-block-color:              $fmup-text;
+$code-block-font-size:          0.7em;
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300..900;1,300..900&family=Geist+Mono:wght@400;500&display=swap');
+
+.reveal {
+  font-feature-settings: "kern", "liga";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Slide content alignment: left-align by default (more readable for prose
+// slides than reveal's default centred text).
+.reveal .slides {
+  text-align: left;
+}
+
+.reveal .slides > section,
+.reveal .slides > section > section {
+  padding: 1em 1.5em;
+}
+
+// ---- Headings ----
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4 {
+  text-transform: none;
+  letter-spacing: -0.01em;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.reveal h1 {
+  border-bottom: 4px solid $fmup-yellow;
+  padding-bottom: 0.25em;
+  margin-bottom: 0.6em;
+  font-weight: 800;
+}
+
+.reveal h2 {
+  font-weight: 800;
+}
+
+.reveal h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.55em;
+  height: 0.18em;
+  background: $fmup-yellow;
+  margin-right: 0.4em;
+  vertical-align: 0.18em;
+}
+
+.reveal h3 {
+  font-weight: 700;
+  color: $fmup-text-muted;
+}
+
+// ---- Title slide ----
+
+#title-slide {
+  text-align: left;
+
+  .title {
+    color: $fmup-text;
+    font-weight: 800;
+    font-size: 2.2em;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.4em;
+  }
+
+  .subtitle {
+    color: $fmup-text-muted;
+    font-weight: 400;
+    font-size: 1.2em;
+    margin-bottom: 1.2em;
+  }
+
+  .quarto-title-author-name,
+  .author,
+  .quarto-title-author {
+    font-weight: 700;
+    color: $fmup-text;
+    font-size: 0.95em;
+  }
+
+  .institute,
+  .quarto-title-affiliation {
+    color: $fmup-text-muted;
+    font-size: 0.85em;
+  }
+
+  .date,
+  .quarto-title-meta {
+    color: $fmup-text-muted;
+    font-size: 0.85em;
+    margin-top: 0.4em;
+  }
+}
+
+// FMUP yellow accent block on title slide top-left.
+#title-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 90px;
+  height: 90px;
+  background: $fmup-yellow;
+  z-index: 0;
+}
+
+// ---- Links ----
+
+.reveal a {
+  color: $fmup-text;
+  text-decoration: underline;
+  text-decoration-color: $fmup-yellow;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 4px;
+  transition: background 120ms;
+}
+
+.reveal a:hover {
+  background: $fmup-yellow;
+  color: $fmup-text;
+  text-decoration-color: $fmup-text;
+}
+
+// ---- Blockquote ----
+
+.reveal blockquote {
+  border-left: 6px solid $fmup-yellow;
+  background: $fmup-surface;
+  padding: 0.6em 0.9em;
+  border-radius: 0 4px 4px 0;
+  font-style: normal;
+  color: $fmup-text;
+  width: auto;
+  box-shadow: none;
+  margin: 0.6em 0;
+}
+
+// ---- Code ----
+
+.reveal code,
+.reveal pre code {
+  font-family: $codeFont;
+  background: $fmup-surface;
+  color: $fmup-text;
+  border-radius: 4px;
+}
+
+.reveal pre {
+  background: $fmup-surface;
+  border: 1px solid $fmup-border;
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 0.6em 0.9em;
+  width: 100%;
+  font-size: 0.55em;
+}
+
+.reveal pre code {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reveal :not(pre) > code {
+  padding: 0.08em 0.3em;
+  font-size: 0.85em;
+}
+
+// ---- Tables ----
+
+.reveal table {
+  margin: 0.5em 0;
+  border-collapse: collapse;
+  font-size: 0.75em;
+}
+
+.reveal table thead th {
+  background: $fmup-text;
+  color: $fmup-yellow;
+  font-weight: 700;
+  padding: 0.4em 0.7em;
+  border: none;
+}
+
+.reveal table tbody td {
+  padding: 0.35em 0.7em;
+  border-bottom: 1px solid $fmup-border;
+}
+
+.reveal table tbody tr:nth-of-type(odd) {
+  background: lighten($fmup-surface, 1.5%);
+}
+
+// ---- Lists ----
+
+.reveal ul,
+.reveal ol {
+  display: block;
+  margin-left: 0.4em;
+}
+
+.reveal ul li,
+.reveal ol li {
+  margin: 0.25em 0;
+}
+
+.reveal ul li::marker {
+  color: $fmup-yellow-dark;
+}
+
+// ---- Highlights / em / strong ----
+
+.reveal strong {
+  font-weight: 800;
+  color: $fmup-text;
+}
+
+.reveal em {
+  font-style: italic;
+  color: $fmup-text;
+}
+
+// .highlight class for inline highlight via [text]{.highlight}
+.reveal .highlight {
+  background: $fmup-yellow;
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+}
+
+// ---- Progress bar ----
+
+.reveal .progress {
+  background: rgba($fmup-text, 0.1);
+  color: $fmup-yellow;
+  height: 5px;
+}
+
+.reveal .progress span {
+  background: $fmup-yellow;
+}
+
+// ---- Slide number ----
+
+.reveal .slide-number {
+  background: transparent;
+  color: $fmup-text-muted;
+  font-family: $font-family-monospace;
+  font-size: 0.75em;
+  font-weight: 500;
+  padding: 0.3em 0.6em;
+}
+
+// ---- Footnotes / asides ----
+
+.reveal aside.notes {
+  display: none;
+}
+
+.reveal .footnote {
+  font-size: 0.55em;
+  color: $fmup-text-muted;
+  position: absolute;
+  bottom: 0.6em;
+  left: 1.5em;
+  right: 1.5em;
+}
+
+// ---- Section dividers ----
+// Use {.center} class on a section to centre-align the slide content
+// (e.g. for chapter dividers).
+
+.reveal section.center {
+  text-align: center;
+
+  h1, h2 { border-bottom: none; }
+  h2::before { display: none; }
+}

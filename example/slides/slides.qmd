@@ -1,0 +1,165 @@
+---
+title: "Tema FMUP em apresentação"
+subtitle: "Demonstração das primitivas reveal.js"
+author: "Tiago Jacinto"
+institute: "Faculdade de Medicina da Universidade do Porto"
+date: today
+date-format: "YYYY-MM-DD"
+format:
+  fmup-revealjs:
+    slide-number: c/t
+    chalkboard: false
+    incremental: false
+---
+
+## Agenda
+
+- O tema em três princípios
+- Tipografia
+- Cabeçalhos
+- Código
+- Tabelas
+- Bloco de citação
+- Lista
+- Imagem
+- Duas colunas
+- Callouts
+- Divisor de secção
+- Referências e fim
+
+## Três princípios
+
+1. Legibilidade antes de estética.
+2. Cor como acento, não como decoração.
+3. Preto, branco e um único amarelo `#FFCD00`.
+
+## Tipografia
+
+Corpo em **Atkinson Hyperlegible Next**, código em **Geist Mono**.
+
+A escolha tipográfica é a única decisão estética que se faz **antes** de
+desenhar slides. Tudo o resto deriva.
+
+Veja [a página oficial da Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont)
+para detalhes sobre o desenho.
+
+## Cabeçalhos
+
+### H3 sub-cabeçalho
+
+Os H2 abrem cada slide e levam um pequeno bloco amarelo antes do título —
+serve de marca visual sem se impor.
+
+Os H3 são em cinzento e sem ornamento; usam-se como divisões internas
+quando uma secção precisa de estrutura adicional.
+
+## Código
+
+```python
+def declaracao(papel: str, ferramentas: list[str]) -> str:
+    """Devolve a declaração formatada para o papel indicado."""
+    if not ferramentas:
+        raise ValueError("Indique pelo menos uma ferramenta.")
+    enum = ", ".join(ferramentas[:-1]) + " e " + ferramentas[-1]
+    return f"O(a) {papel} declara o uso de {enum}."
+
+print(declaracao("estudante", ["ChatGPT", "Claude", "DeepL"]))
+```
+
+A fonte é **Geist Mono** a 0.55em — tamanho confortável para slides em
+sala de aula sem sacrificar muitas linhas.
+
+## Tabelas
+
+| Componente | Tamanho | Cor de fundo |
+|------------|---------|--------------|
+| Cabeçalho  | 1.2em   | `#1A1A1A` (preto) |
+| Linhas ímpares | 1em | `#F9F9F9` (cinzento) |
+| Linhas pares | 1em   | `#FFFFFF` (branco) |
+| Borda      | 1px     | `#E0E0E0` |
+
+## Citação
+
+> A primeira regra de uma boa apresentação é não perder o leitor. O
+> número de elementos por slide é uma decisão de carga cognitiva, não
+> de estética.
+
+## Lista numerada
+
+1. Introduzir o problema.
+2. Mostrar dados.
+3. Propor uma resposta.
+4. Antecipar a objecção mais forte.
+5. Fechar.
+
+## Imagem
+
+![Foto demonstrativa (placeholder)](https://placehold.co/1280x500/FFCD00/1A1A1A?text=FMUP){fig-align="center"}
+
+Uma legenda discreta em cinzento, abaixo. As figuras ocupam toda a
+largura por defeito; centra-se com `{fig-align="center"}`.
+
+## Duas colunas
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Coluna esquerda
+
+Texto da primeira coluna. Use a sintaxe Pandoc:
+
+```
+:::: {.columns}
+::: {.column width="50%"}
+...conteúdo...
+:::
+::: {.column width="50%"}
+...conteúdo...
+:::
+::::
+```
+:::
+
+::: {.column width="50%"}
+### Coluna direita
+
+Funciona bem para comparações lado-a-lado: antes / depois, código /
+saída, hipótese / evidência.
+
+A largura total não é forçosamente 100% — pode reservar espaço lateral
+ajustando `width`.
+:::
+
+::::
+
+## Callouts
+
+::: {.callout-note}
+Os callouts do Quarto funcionam tal-qual em reveal.js.
+:::
+
+::: {.callout-warning}
+Use-os com moderação — três callouts por slide já é demasiado.
+:::
+
+# Divisor de secção {.center}
+
+Para um slide de divisão (capítulo, secção), aplique a classe `.center`
+ao slide. O cabeçalho fica centrado e sem o pequeno bloco amarelo.
+
+## Referências
+
+Inclua a bibliografia no final do `.qmd` com `@bibkey` (Pandoc) ou
+listando manualmente.
+
+::: {.references}
+- Bringhurst, R. (2004). _The Elements of Typographic Style_.
+- Tufte, E. (2006). _Beautiful Evidence_.
+- Reynolds, G. (2019). _Presentation Zen_, 3.ª ed.
+:::
+
+## Fim
+
+Obrigado.
+
+[github.com/tiagojct/quarto-fmup](https://github.com/tiagojct/quarto-fmup)

@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Site exemplo · FMUP"
+  description: "Demonstração do tema quarto-fmup numa configuração de website."
+  navbar:
+    background: white
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Início
+      - href: sobre.qmd
+        text: Sobre
+  page-footer:
+    left: "MIT License · Tema FMUP"
+    right: "Construído com [Quarto](https://quarto.org) + [quarto-fmup](https://github.com/tiagojct/quarto-fmup)"
+
+format:
+  fmup-html: default

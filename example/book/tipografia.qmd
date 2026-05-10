@@ -1,0 +1,69 @@
+# Tipografia
+
+## Atkinson Hyperlegible Next
+
+A família tipográfica principal foi desenhada pelo Braille Institute para
+maximizar a legibilidade junto de leitores com baixa visão. As suas
+formas distintivas — o `g` aberto, o `Q` com cauda longa, os algarismos
+com proporções diferenciadas — são igualmente úteis em texto académico
+denso.
+
+Pesos disponíveis: 300 (Light), 400 (Regular), 500 (Medium), 600
+(SemiBold), 700 (Bold), 800 (ExtraBold), 900 (Black). Todos com a
+variante itálica.
+
+## Geist Mono
+
+Para código, identificadores técnicos, números de página e chamadas
+auxiliares, o tema usa **Geist Mono** (Vercel). É uma fonte
+monoespaçada com altura-x generosa e formas geométricas que lê bem em
+tamanhos pequenos.
+
+```typescript
+function fibonacci(n: number): number {
+  if (n < 2) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10));  // 55
+```
+
+## Hierarquia de cabeçalhos
+
+| Nível | Tamanho | Peso |
+|-------|---------|------|
+| H1    | 1.6em   | 800  |
+| H2    | 1.3em   | 700  |
+| H3    | 1.1em   | 700  |
+| Corpo | 1.0em   | 400  |
+
+A escala é deliberadamente pequena — três níveis chegam para a maioria
+dos textos académicos.
+
+## Numerais e citações
+
+Os numerais usam tabular figures no corpo do texto e proportional
+figures em listas e bibliografia. Os _smart quotes_ são preservados
+quando o ficheiro fonte os contém; caso contrário, o tema não força
+substituições.
+
+> "A boa tipografia é invisível: lê-se o texto, não a forma."
+>
+> --- adaptado de Robert Bringhurst
+
+## Espaçamento
+
+A altura de linha base é 1.6, generosa o suficiente para texto longo
+e suficientemente apertada para não desperdiçar páginas em PDF. As
+margens A4 do Typst (`2.5cm` em todos os lados) seguem a recomendação
+clássica para texto corrido.
+
+## Itálico vs sublinhado
+
+A regra do tema:
+
+- **Itálico** para títulos de obras, _loanwords_ não traduzidos, e ênfase
+  semântica.
+- **Sublinhado amarelo** apenas para ligações.
+
+O sublinhado nunca é usado para ênfase em texto corrido.

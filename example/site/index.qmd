@@ -1,0 +1,68 @@
+---
+title: "Tema FMUP em acção"
+subtitle: "Demonstração das primitivas de um website"
+toc: true
+---
+
+Este site mostra o tema **quarto-fmup** aplicado a uma configuração de
+website com duas páginas. Use-o como ponto de partida para projectos da
+Faculdade.
+
+## Texto e ligações
+
+O corpo do texto é em [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont),
+uma família tipográfica desenhada pelo Braille Institute para máxima
+legibilidade. O acento amarelo aparece como sublinhado das ligações e
+preenche-as no _hover_.
+
+Veja a [página Sobre](sobre.qmd) para mais detalhes.
+
+## Lista
+
+- Item simples.
+- Item com [ligação interna](sobre.qmd).
+- Item com `código inline` e _itálico_.
+
+## Citação
+
+> A tipografia ao serviço da legibilidade não é uma decoração: é uma
+> condição prévia da leitura.
+
+## Tabela
+
+| Componente | Função | Estado |
+|------------|--------|--------|
+| Navbar     | Navegação principal | Activo |
+| Sidebar    | Lista de capítulos | n/a |
+| TOC        | Índice da página | Activo |
+| Footer     | Créditos | Activo |
+
+## Bloco de código
+
+```python
+def fibonacci(n: int) -> int:
+    if n < 2:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print(fibonacci(10))
+```
+
+## Callouts
+
+::: {.callout-note}
+Nota institucional. O acento amarelo identifica o nível neutro.
+:::
+
+::: {.callout-tip}
+## Dica
+Verde para uma sugestão prática.
+:::
+
+::: {.callout-warning}
+Amarelo escuro para um aviso.
+:::
+
+::: {.callout-important}
+Vermelho para uma proibição ou requisito não-negociável.
+:::

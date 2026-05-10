@@ -1,0 +1,18 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Livro exemplo · FMUP"
+  subtitle: "Demonstração do tema quarto-fmup em formato livro"
+  author: "Tiago Jacinto"
+  date: today
+  date-format: "YYYY-MM-DD"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - tipografia.qmd
+
+format:
+  fmup-html: default
+  fmup-typst: default

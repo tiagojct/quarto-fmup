@@ -1,0 +1,44 @@
+---
+title: "Sobre o tema"
+toc: true
+---
+
+## Paleta
+
+A paleta institucional FMUP combina três cores apenas:
+
+- **Amarelo `#FFCD00`** — acento. Aparece no sublinhado das ligações, na
+  borda inferior da navbar, na barra de progresso, nos cabeçalhos de
+  tabela e como _hover state_ de elementos clicáveis.
+- **Preto `#1A1A1A`** — texto e estrutura.
+- **Branco `#FFFFFF`** — fundo.
+
+Os tons cinzentos secundários (`#F7F7F7`, `#E0E0E0`, `#5B6470`) são
+derivados, usados para superfícies, fronteiras e texto auxiliar.
+
+## Tipografia
+
+| Família | Uso |
+|---------|-----|
+| Atkinson Hyperlegible Next | Corpo, títulos, navegação |
+| Geist Mono | Código, _slide numbers_ |
+
+Ambas são _open-source_ e carregadas a partir do Google Fonts via
+`@import` no SCSS — não há passo de _build_ adicional.
+
+## Como instalar
+
+```sh
+quarto add tiagojct/quarto-fmup
+```
+
+## Formatos disponíveis
+
+O extensão expõe três formatos:
+
+```yaml
+format:
+  fmup-html: default      # websites e livros
+  fmup-revealjs: default  # apresentações
+  fmup-typst: default     # PDF (livros, relatórios)
+```

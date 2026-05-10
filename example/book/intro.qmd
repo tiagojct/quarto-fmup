@@ -1,0 +1,31 @@
+# Introdução
+
+O tema **quarto-fmup** foi extraído do projecto
+[`tiagojct/fmup-ia`](https://github.com/tiagojct/fmup-ia) — um livro
+Quarto sobre o uso institucional de inteligência artificial generativa
+na Faculdade de Medicina da Universidade do Porto. O acabamento
+demonstrou-se útil para outros formatos institucionais e foi por isso
+empacotado como extensão Quarto independente.
+
+## Princípios visuais
+
+O tema parte de três princípios:
+
+1. **Legibilidade primeiro.** A escolha de Atkinson Hyperlegible Next,
+   uma família tipográfica desenhada pelo Braille Institute para máxima
+   legibilidade, vem antes de qualquer outra decisão estética.
+2. **Cor como acento, não como decoração.** O amarelo institucional
+   `#FFCD00` aparece apenas em sítios funcionais — sublinhar uma
+   ligação, marcar uma _hover state_, identificar uma navbar. Nunca
+   como fundo de bloco extenso.
+3. **Composição em preto e branco com acentos.** A paleta tem três
+   cores apenas; tudo o resto é cinzento derivado.
+
+## Estrutura do livro
+
+O Quarto resolve a sidebar à esquerda automaticamente a partir da lista
+de capítulos definida em `_quarto.yml`. Os capítulos numerados aparecem
+com numeração; capítulos marcados `{.unnumbered}` (como o preâmbulo)
+não.
+
+A página actual é o capítulo 1.

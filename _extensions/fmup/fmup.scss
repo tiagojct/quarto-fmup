@@ -1,0 +1,360 @@
+/*-- scss:defaults --*/
+
+// FMUP institutional palette
+$fmup-yellow:        #FFCD00 !default;  // accent only
+$fmup-yellow-dark:   #E6B800 !default;
+$fmup-text:          #1A1A1A !default;
+$fmup-text-muted:    #5B6470 !default;
+$fmup-bg:            #FFFFFF !default;
+$fmup-surface:       #F7F7F7 !default;
+$fmup-border:        #E0E0E0 !default;
+$fmup-border-strong: #B3BBC4 !default;
+
+// Bootstrap mappings
+$primary:            $fmup-yellow !default;
+$body-bg:            $fmup-bg !default;
+$body-color:         $fmup-text !default;
+$link-color:         $fmup-text !default;
+
+// Typography: Atkinson Hyperlegible Next (Braille Institute) for body and
+// headings; Geist Mono for code. Loaded from Google Fonts via web-fonts import.
+$font-family-sans-serif: "Atkinson Hyperlegible Next", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+$headings-font-family:   $font-family-sans-serif !default;
+$headings-font-weight:   700 !default;
+$headings-color:         $fmup-text !default;
+
+$font-size-base:    1rem !default;
+$line-height-base:  1.6 !default;
+
+$border-radius:     6px !default;
+$border-radius-sm:  4px !default;
+
+// Surfaces
+$gray-100: $fmup-surface !default;
+$gray-200: $fmup-border !default;
+$gray-600: $fmup-text-muted !default;
+
+// Inputs / focus
+$input-focus-border-color:   $fmup-text !default;
+$input-focus-box-shadow:     0 0 0 0.2rem rgba($fmup-yellow, 0.4) !default;
+
+/*-- scss:rules --*/
+
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300..900;1,300..900&family=Geist+Mono:wght@400;500&display=swap');
+
+// ---- Global ----
+
+body {
+  font-feature-settings: "kern", "liga";
+}
+
+// Prose links: yellow underline + yellow background on hover. Scoped to
+// article/main content so it does not cascade into navbar, sidebar, page
+// TOC, footer, or repo-action links.
+main a,
+.content a,
+article a,
+.quarto-document-content a {
+  text-decoration: underline;
+  text-decoration-color: $fmup-yellow;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+
+  &:hover {
+    background: $fmup-yellow;
+    color: $fmup-text;
+    text-decoration-color: $fmup-text;
+  }
+}
+
+// Navigation contexts: no yellow background, no underline-on-rest.
+.navbar a,
+.sidebar a,
+.toc-actions a,
+nav.toc-active a,
+#TOC a,
+.quarto-secondary-nav a,
+.nav-footer a {
+  text-decoration: none;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid $fmup-yellow;
+  outline-offset: 2px;
+}
+
+// ---- Headings ----
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.005em;
+}
+
+h1 { font-weight: 800; }
+
+// ---- Navbar ----
+
+.navbar {
+  background: $fmup-bg !important;
+  border-bottom: 4px solid $fmup-yellow;
+  padding: 0.6rem 1rem;
+
+  .navbar-brand {
+    font-weight: 800;
+    color: $fmup-text !important;
+
+    img {
+      max-height: 36px;
+      width: auto;
+    }
+  }
+
+  .navbar-nav .nav-link {
+    color: $fmup-text !important;
+    font-weight: 600;
+    padding: 0.4rem 0.85rem;
+    text-decoration: none;
+
+    &:hover, &.active {
+      background: $fmup-yellow;
+      color: $fmup-text !important;
+    }
+  }
+
+  .navbar-toggler {
+    border-color: $fmup-text;
+    color: $fmup-text;
+  }
+}
+
+// ---- Sidebar (book/site left rail) ----
+
+.sidebar {
+  background: $fmup-surface;
+
+  .sidebar-title {
+    font-weight: 800;
+    color: $fmup-text;
+  }
+
+  .sidebar-section .sidebar-section-item {
+    font-weight: 700;
+    color: $fmup-text;
+  }
+
+  .sidebar-item-text {
+    color: $fmup-text;
+    text-decoration: none;
+  }
+
+  .sidebar-item.active > .sidebar-item-container .sidebar-item-text,
+  .sidebar-link.active {
+    background: $fmup-yellow;
+    color: $fmup-text;
+    font-weight: 700;
+    border-left: 3px solid $fmup-text;
+    padding-left: calc(0.5rem - 3px);
+  }
+}
+
+// ---- Page TOC ("Nesta página") + repo actions ----
+
+#quarto-margin-sidebar {
+  padding: 1rem 1rem 1rem 1.25rem;
+}
+
+#TOC,
+nav.toc-active,
+.quarto-secondary-nav-toc,
+#quarto-margin-sidebar #toc-title + ul {
+  border-left: 0 !important;
+}
+
+#TOC > #toc-title,
+#quarto-margin-sidebar #toc-title {
+  font-weight: 700;
+  color: $fmup-text;
+  margin-bottom: 0.65rem;
+  padding-left: 0;
+}
+
+.sidebar.margin-sidebar nav#TOC ul,
+nav#TOC ul,
+nav.toc-active ul {
+  border-left: 0;
+  padding-left: 0.5rem;
+  margin: 0;
+  list-style: none;
+}
+
+nav#TOC ul li,
+nav.toc-active ul li {
+  margin: 0.15rem 0;
+}
+
+nav#TOC ul li a,
+nav.toc-active ul li a,
+.sidebar.margin-sidebar nav#TOC ul li a {
+  border-left: 0 !important;
+  padding: 0.2rem 0 0.2rem 0.4rem;
+  color: $fmup-text-muted;
+  text-decoration: none;
+  font-size: 0.9rem;
+  display: block;
+  line-height: 1.45;
+
+  &:hover {
+    color: $fmup-text;
+    background: transparent;
+    text-decoration: underline;
+    text-decoration-color: $fmup-yellow;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+}
+
+nav#TOC ul li a.active,
+nav.toc-active ul li a.active,
+.sidebar.margin-sidebar nav#TOC ul li a.active {
+  color: $fmup-text;
+  font-weight: 700;
+  background: transparent;
+  border-left: 0 !important;
+}
+
+.toc-actions {
+  border-top: 1px solid $fmup-border;
+  margin-top: 1.1rem;
+  padding: 0.85rem 0 0 0.5rem;
+  list-style: none;
+
+  li {
+    margin: 0.3rem 0;
+  }
+
+  a {
+    color: $fmup-text-muted;
+    font-size: 0.85rem;
+    text-decoration: none;
+    background: transparent;
+    padding: 0.15rem 0;
+    line-height: 1.45;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+
+    &:hover {
+      color: $fmup-text;
+      background: transparent;
+      text-decoration: underline;
+      text-decoration-color: $fmup-yellow;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+  }
+}
+
+// ---- Buttons (Bootstrap overrides) ----
+
+.btn-primary {
+  background-color: $fmup-yellow !important;
+  border-color: $fmup-text !important;
+  color: $fmup-text !important;
+  font-weight: 700;
+
+  &:hover, &:focus, &:active {
+    background-color: $fmup-text !important;
+    border-color: $fmup-text !important;
+    color: $fmup-yellow !important;
+  }
+}
+
+.btn-secondary {
+  background-color: $fmup-bg !important;
+  border-color: $fmup-text !important;
+  color: $fmup-text !important;
+  font-weight: 700;
+
+  &:hover {
+    background-color: $fmup-yellow !important;
+    color: $fmup-text !important;
+  }
+}
+
+// ---- Code ----
+
+code, pre, kbd, samp {
+  font-family: $font-family-monospace;
+  font-size: 0.92em;
+}
+
+pre {
+  background: $fmup-surface !important;
+  border: 1px solid $fmup-border;
+  border-radius: $border-radius;
+  padding: 0.85rem 1rem;
+}
+
+code:not(pre code) {
+  background: $fmup-surface;
+  padding: 0.1em 0.35em;
+  border-radius: $border-radius-sm;
+  color: $fmup-text;
+}
+
+// ---- Tables ----
+
+table.table {
+  thead th {
+    background: $fmup-text;
+    color: $fmup-yellow;
+    border-bottom: none;
+    font-weight: 700;
+  }
+
+  tbody tr:nth-of-type(odd) {
+    background: lighten($fmup-surface, 1.5%);
+  }
+}
+
+// ---- Quarto callouts ----
+
+.callout {
+  border-radius: $border-radius;
+
+  &.callout-style-default {
+    border-left-width: 4px;
+  }
+
+  &.callout-note      { border-left-color: $fmup-yellow; }
+  &.callout-tip       { border-left-color: #146C43; }
+  &.callout-important { border-left-color: #B91C1C; }
+  &.callout-warning   { border-left-color: #B78300; }
+  &.callout-caution   { border-left-color: #B3531C; }
+}
+
+// ---- Blockquote ----
+
+blockquote {
+  border-left: 4px solid $fmup-yellow;
+  background: $fmup-surface;
+  padding: 0.85rem 1rem;
+  border-radius: 0 $border-radius $border-radius 0;
+  color: $fmup-text;
+  font-style: normal;
+}
+
+// ---- Footer ----
+
+.nav-footer {
+  background: $fmup-surface;
+  border-top: 1px solid $fmup-border;
+  font-size: 0.88rem;
+  color: $fmup-text-muted;
+
+  a { color: $fmup-text; }
+}
