@@ -281,6 +281,10 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Slide number ----
+// Aligned vertically with the footer text. Quarto's plugin defaults
+// place slide-number at bottom: 10px and the footer at bottom: 18px,
+// so they sit on different lines. Lifting the slide-number to match
+// the footer's text baseline puts them on the same horizontal row.
 
 .reveal .slide-number {
   background: transparent;
@@ -289,6 +293,8 @@ $code-block-font-size:          0.7em;
   font-size: 0.7em;
   font-weight: 500;
   padding: 0.3em 0.6em;
+  bottom: 18px !important;
+  right: 12px !important;
 }
 
 .reveal .slide-number a {
