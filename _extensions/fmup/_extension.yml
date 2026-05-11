@@ -1,6 +1,6 @@
 title: FMUP
 author: Tiago Jacinto
-version: 1.0.12
+version: 1.0.13
 quarto-required: ">=1.4.0"
 contributes:
   formats:
@@ -39,6 +39,11 @@ contributes:
       background-transition: none
       progress: true
       controls: false
+      # Vertically centre slide content. Reveal's built-in centring,
+      # not CSS — overriding display/position/height on slides via the
+      # theme would break reveal's own layout. Users who want
+      # top-anchored slides can set `center: false` in their YAML.
+      center: true
       menu: false
       hash: true
       hash-one-based-index: true
