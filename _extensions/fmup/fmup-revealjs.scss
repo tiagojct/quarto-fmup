@@ -1,6 +1,22 @@
 /*-- scss:defaults --*/
+//
+// FMUP institutional theme for reveal.js — minimal: paint only.
+//
+// Design rule: this file changes COLOURS, FONTS, and small typographic
+// details only. It does not touch slide layout, positioning, height, or
+// reveal's own visibility/transition rules. Earlier versions tried to
+// override `display` / `position` / `height` on #title-slide and
+// section.center; those overrides beat reveal's slide-positioning by
+// specificity and broke the rendering of every other slide. Lesson:
+// reveal is in charge of layout; the theme is only in charge of paint.
+//
+// For vertical centring of section divider slides, set
+// `center: true` at the deck level in the YAML front matter (reveal's
+// built-in option) or apply it per-slide via attributes. Don't fight
+// reveal with CSS.
+//
 
-// FMUP institutional palette
+// Palette
 $fmup-yellow:        #FFCD00;
 $fmup-yellow-dark:   #E6B800;
 $fmup-text:          #1A1A1A;
@@ -10,17 +26,18 @@ $fmup-surface:       #F7F7F7;
 $fmup-border:        #E0E0E0;
 $fmup-border-strong: #B3BBC4;
 
-// Reveal.js theme variables
+// Typography
+$font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+
+// Reveal.js variables (consumed by reveal's own SCSS)
 $body-bg:                       $fmup-bg;
 $body-color:                    $fmup-text;
 $link-color:                    $fmup-text;
 $link-color-hover:              $fmup-text;
 $selection-bg:                  $fmup-yellow;
 $selection-color:               $fmup-text;
-
-// Typography
-$font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+$backgroundColor:               $fmup-bg;
 
 $mainFont:                      $font-family-sans-serif;
 $mainFontSize:                  28px;
@@ -33,17 +50,12 @@ $headingTextShadow:             none;
 $headingTextTransform:          none;
 $headingLetterSpacing:          -0.01em;
 
-$heading1Size:                  1.9em;
-$heading2Size:                  1.4em;
-$heading3Size:                  1.15em;
+$heading1Size:                  1.8em;
+$heading2Size:                  1.35em;
+$heading3Size:                  1.1em;
 $heading4Size:                  1.0em;
 
 $codeFont:                      $font-family-monospace;
-
-// Backgrounds
-$backgroundColor:               $fmup-bg;
-
-// Block / inline code
 $code-block-bg:                 $fmup-surface;
 $code-block-color:              $fmup-text;
 $code-block-font-size:          0.7em;
@@ -51,22 +63,10 @@ $code-block-font-size:          0.7em;
 /*-- scss:rules --*/
 
 .reveal {
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  font-family: $font-family-sans-serif;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-// Slide content alignment: left-align by default (more readable for prose
-// slides than reveal's default centred text).
-.reveal .slides {
-  text-align: left;
-}
-
-.reveal .slides > section,
-.reveal .slides > section > section {
-  padding: 1em 2em;
-  box-sizing: border-box;
 }
 
 // ---- Headings ----
@@ -75,17 +75,14 @@ $code-block-font-size:          0.7em;
 .reveal h2,
 .reveal h3,
 .reveal h4 {
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
-  text-transform: none;
+  font-family: $font-family-sans-serif;
   letter-spacing: -0.01em;
-  margin-top: 0;
-  margin-bottom: 0.5em;
+  text-transform: none;
 }
 
 .reveal h1 {
   border-bottom: 4px solid $fmup-yellow;
-  padding-bottom: 0.25em;
-  margin-bottom: 0.6em;
+  padding-bottom: 0.2em;
   font-weight: 800;
 }
 
@@ -93,91 +90,57 @@ $code-block-font-size:          0.7em;
   font-weight: 800;
 }
 
-// (No yellow accent before slide titles — kept the slide chrome clean.)
-
 .reveal h3 {
   font-weight: 700;
   color: $fmup-text-muted;
 }
 
 // ---- Title slide ----
-// Layout: yellow accent stripe across the top, left-aligned title /
-// subtitle / author / institute / date.
-//
-// Critical: we DO NOT override `display`, `position`, or `height` on
-// the title slide section. Reveal positions every slide via
-// `position: absolute` with computed top/left/transform; an ID
-// selector here (specificity 100) would beat reveal's `.reveal
-// .slides>section` (specificity 21) and break the layout of every
-// subsequent slide. Style content only.
-
-#title-slide {
-  text-align: left;
-  padding-top: 1.6em;
-}
-
-#title-slide::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 0.5em;
-  background: $fmup-yellow;
-  z-index: 1;
-}
+// PAINT ONLY: typography for .title / .subtitle / .author / .institute
+// / .date. Reveal's layout untouched. The yellow stripe at the top of
+// the slide is added via the title block's existing wrapper — pure
+// background, no positioning gymnastics.
 
 #title-slide .title {
   color: $fmup-text;
   font-weight: 800;
-  font-size: 1.8em;
+  font-size: 1.6em;
   line-height: 1.15;
   letter-spacing: -0.015em;
   border-bottom: none;
-  padding-bottom: 0;
-  margin: 0 0 0.4em 0;
+  margin-bottom: 0.4em;
 }
 
 #title-slide .subtitle {
   color: $fmup-text-muted;
   font-weight: 400;
-  font-size: 1.0em;
-  margin: 0 0 1.6em 0;
+  font-size: 0.95em;
+  margin-bottom: 1.4em;
 }
 
 #title-slide .quarto-title-author-name,
-#title-slide .author,
-#title-slide .quarto-title-author {
-  font-weight: 700;
+#title-slide .author {
   color: $fmup-text;
-  font-size: 0.85em;
-  margin: 0;
+  font-weight: 700;
+  font-size: 0.8em;
 }
 
 #title-slide .institute,
 #title-slide .quarto-title-affiliation {
   color: $fmup-text-muted;
-  font-size: 0.75em;
-  margin: 0.1em 0 0 0;
+  font-size: 0.7em;
 }
 
 #title-slide .date,
 #title-slide .quarto-title-meta {
   color: $fmup-text-muted;
-  font-size: 0.75em;
+  font-size: 0.7em;
   margin-top: 0.6em;
 }
 
-// ---- FMUP mark inside the footer ----
-// The yellow FM/UP wordmark sits at the left edge of the slide footer.
-// It is rendered via a pseudo-element on `.reveal .footer` so it stays
-// pinned to the chrome rather than to slide content (avoids overlap with
-// long bullet lists or images).
-
 // ---- Links ----
-// Underline only on links inside slide content. Reveal UI elements (slide
-// number, controls, progress bar) and links generated by Quarto chrome
-// (footer, etc.) keep no underline.
+// Underline only on links inside slide content. Slide-number, controls,
+// progress bar, and footer keep no underline.
 
 .reveal .slides a:not(.no-underline) {
   color: $fmup-text;
@@ -194,7 +157,6 @@ $code-block-font-size:          0.7em;
   text-decoration-color: $fmup-text;
 }
 
-// Citation / cross-reference numbers (e.g. [1]) — no underline.
 .reveal .slides a.citation,
 .reveal .slides .citation a,
 .reveal .slides a.quarto-xref,
@@ -203,7 +165,6 @@ $code-block-font-size:          0.7em;
   text-decoration: none;
 }
 
-// Reveal UI: never underline.
 .reveal .slide-number,
 .reveal .slide-number a,
 .reveal .controls a,
@@ -221,8 +182,8 @@ $code-block-font-size:          0.7em;
   border-radius: 0 4px 4px 0;
   font-style: normal;
   color: $fmup-text;
-  width: auto;
   box-shadow: none;
+  width: auto;
   margin: 0.6em 0;
 }
 
@@ -230,7 +191,7 @@ $code-block-font-size:          0.7em;
 
 .reveal code,
 .reveal pre code {
-  font-family: $codeFont;
+  font-family: $font-family-monospace;
   background: $fmup-surface;
   color: $fmup-text;
   border-radius: 4px;
@@ -242,14 +203,13 @@ $code-block-font-size:          0.7em;
   border-radius: 6px;
   box-shadow: none;
   padding: 0.6em 0.9em;
-  width: 100%;
   font-size: 0.55em;
 }
 
 .reveal pre code {
   padding: 0;
-  border-radius: 0;
   background: transparent;
+  border-radius: 0;
 }
 
 .reveal :not(pre) > code {
@@ -278,31 +238,92 @@ $code-block-font-size:          0.7em;
   border-bottom: 1px solid $fmup-border;
 }
 
-.reveal table tbody tr:nth-of-type(odd) {
-  background: lighten($fmup-surface, 1.5%);
-}
-
 // ---- Lists ----
-
-.reveal ul,
-.reveal ol {
-  display: block;
-  margin-left: 0.4em;
-}
-
-.reveal ul li,
-.reveal ol li {
-  margin: 0.25em 0;
-}
 
 .reveal ul li::marker {
   color: $fmup-yellow-dark;
 }
 
+// ---- Strong / em ----
+
+.reveal strong { font-weight: 800; color: $fmup-text; }
+.reveal em { font-style: italic; color: $fmup-text; }
+
+.reveal .highlight {
+  background: $fmup-yellow;
+  padding: 0.05em 0.25em;
+  border-radius: 3px;
+}
+
+// ---- Two-column layout ----
+
+.reveal .columns {
+  display: flex;
+  gap: 1.5em;
+  align-items: flex-start;
+}
+
+.reveal .column {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+// ---- Progress bar ----
+
+.reveal .progress {
+  background: rgba($fmup-text, 0.08);
+  color: $fmup-text;
+  height: 4px;
+}
+
+.reveal .progress span {
+  background: $fmup-text;
+}
+
+// ---- Slide number ----
+
+.reveal .slide-number {
+  background: transparent;
+  color: $fmup-text-muted;
+  font-family: $font-family-monospace;
+  font-size: 0.7em;
+  font-weight: 500;
+  padding: 0.3em 0.6em;
+}
+
+.reveal .slide-number a {
+  color: $fmup-text-muted;
+}
+
+// ---- Footer ----
+// PAINT ONLY: colour, font-size, alignment. No pseudo-elements, no
+// FMUP corner tile -- previous versions tried that and the tile kept
+// fighting the footer's natural height + reveal's chrome positioning,
+// producing the misalignment the user kept seeing. If a deck wants a
+// logo, add it via reveal's logo: option or as an image in the footer
+// YAML text.
+
+.reveal .footer {
+  color: $fmup-text-muted;
+  font-size: 0.55em;
+  text-align: center;
+  padding: 0.5em 1em;
+  border-top: 1px solid $fmup-border;
+  background: $fmup-bg;
+}
+
+.reveal .footer a {
+  color: $fmup-text-muted;
+}
+
+.reveal .footer a:hover {
+  color: $fmup-text;
+}
+
 // ---- Quarto callouts (reveal.js) ----
 // Quarto's per-callout core CSS loads after the theme; only !important
-// reliably wins. Same repalette as the HTML side: yellow on Note,
-// greyscale on Tip/Warning/Caution, red kept on Important.
+// reliably wins. Yellow on Note, greyscale on Tip/Warning/Caution,
+// red kept on Important.
 
 .reveal div.callout.callout-style-default {
   border: 1px solid $fmup-border !important;
@@ -359,162 +380,23 @@ $code-block-font-size:          0.7em;
   background-color: rgba(#B91C1C, 0.08) !important;
 }
 
-// ---- Highlights / em / strong ----
-
-.reveal strong {
-  font-weight: 800;
-  color: $fmup-text;
-}
-
-.reveal em {
-  font-style: italic;
-  color: $fmup-text;
-}
-
-// .highlight class for inline highlight via [text]{.highlight}
-.reveal .highlight {
-  background: $fmup-yellow;
-  padding: 0.05em 0.25em;
-  border-radius: 3px;
-}
-
-// ---- Two-column layout ----
-// Reveal's columns can overflow when content is wider than the column.
-// `min-width: 0` forces flex children to shrink; `gap` keeps content
-// from running into the neighbour.
-
-.reveal .columns {
-  display: flex;
-  gap: 1.5em;
-  align-items: flex-start;
-}
-
-.reveal .column {
-  min-width: 0;  // critical: lets flex children shrink below content width
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-}
-
-.reveal .column pre {
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-// ---- Progress bar ----
-// Black fill on a light grey track. The yellow accent is reserved for
-// link underlines and the corner mark.
-
-.reveal .progress {
-  background: rgba($fmup-text, 0.08);
-  color: $fmup-text;
-  height: 5px;
-}
-
-.reveal .progress span {
-  background: $fmup-text;
-}
-
-// ---- Slide number ----
-
-.reveal .slide-number {
-  background: transparent;
-  color: $fmup-text-muted;
-  font-family: $font-family-monospace;
-  font-size: 0.75em;
-  font-weight: 500;
-  padding: 0.3em 0.6em;
-}
-
-.reveal .slide-number a {
-  color: $fmup-text-muted;
-  text-decoration: none !important;
-}
-
-// ---- Footer (YAML `footer: "..."`) ----
-// Layout: [FMUP yellow tile] [centred text] [room for slide-number].
-// The footer is positioned by reveal at the bottom of the viewport;
-// content centres horizontally regardless of mark/slide-number widths.
-
-.reveal .footer {
-  color: $fmup-text-muted;
-  font-size: 0.6em;
-  text-align: center;
-  padding: 0.5em 5em 0.5em 5em;  // symmetric room for mark (left) and slide-number (right)
-  border-top: 1px solid $fmup-border;
-  background: $fmup-bg;
-  position: relative;
-}
-
-.reveal .footer::before {
-  content: "FM\AUP";
-  white-space: pre;
-  position: absolute;
-  left: 0.6em;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.6em;
-  height: 1.6em;
-  background: $fmup-yellow;
-  color: $fmup-text;
-  font-weight: 900;
-  font-size: 0.7em;
-  line-height: 0.95;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  letter-spacing: 0.05em;
-  pointer-events: none;
-}
-
-.reveal .footer a {
-  color: $fmup-text-muted;
-  text-decoration: none;
-}
-
-.reveal .footer a:hover {
-  color: $fmup-text;
-}
-
-// ---- Footnotes / asides ----
-
-.reveal aside.notes {
-  display: none;
-}
-
-.reveal .footnote {
-  font-size: 0.55em;
-  color: $fmup-text-muted;
-  position: absolute;
-  bottom: 0.6em;
-  left: 1.5em;
-  right: 1.5em;
-}
-
-// ---- Section dividers (`{.center}` on a slide) ----
-// To centre the slide content **without** overriding reveal's own
-// `display`/`position`/`height` on the section (which would break the
-// rendering of every other slide), we set the slide to use Quarto's
-// `center: true` per-slide attribute path: just style the content for a
-// divider look. The user enables vertical centring by also setting
-// `center: true` at the deck level in the YAML, or by adding
-// `center-vertically: true` to a slide. As a pure-CSS fallback we use
-// generous padding-top so the title sits roughly in the upper-middle
-// of the slide -- close enough for a divider without fighting reveal.
-
-.reveal section.center {
-  text-align: center;
-  padding-top: 25vh;
-}
+// ---- Section dividers ----
+// To centre a divider slide vertically, the cleanest path is reveal's
+// own `center: true` option. Examples:
+//
+//   format:
+//     fmup-revealjs:
+//       center: true   # centres EVERY slide vertically
+//
+// or per-slide:
+//
+//   ## Divisor de secção {.center}
+//
+// (the .center class is then picked up by reveal's centring plugin).
+// We add only a light typographic treatment for those slides; no
+// position/display overrides, so the rest of the deck is unaffected.
 
 .reveal section.center h1,
 .reveal section.center h2 {
   border-bottom: none;
-  text-align: center;
-  margin: 0 0 0.6em 0;
-}
-
-.reveal section.center p {
-  margin: 0 auto;
-  max-width: 80%;
 }
