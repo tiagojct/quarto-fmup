@@ -101,70 +101,71 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Title slide ----
-// Layout: yellow accent stripe across the top, then left-aligned title /
-// subtitle / spacer / author / institute / date. The persistent FMUP
-// mark in the footer chrome carries the institutional identity, so no
-// extra corner tile here.
+// Layout: yellow accent stripe across the top, left-aligned title /
+// subtitle / author / institute / date.
+//
+// Critical: we DO NOT override `display`, `position`, or `height` on
+// the title slide section. Reveal positions every slide via
+// `position: absolute` with computed top/left/transform; an ID
+// selector here (specificity 100) would beat reveal's `.reveal
+// .slides>section` (specificity 21) and break the layout of every
+// subsequent slide. Style content only.
 
 #title-slide {
   text-align: left;
-  padding: 3.5em 2em 1em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  position: relative;
+  padding-top: 1.6em;
+}
 
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 0.5em;
-    background: $fmup-yellow;
-  }
+#title-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.5em;
+  background: $fmup-yellow;
+  z-index: 1;
+}
 
-  .title {
-    color: $fmup-text;
-    font-weight: 800;
-    font-size: 1.8em;
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-    border-bottom: none;
-    padding-bottom: 0;
-    margin: 0 0 0.4em 0;
-  }
+#title-slide .title {
+  color: $fmup-text;
+  font-weight: 800;
+  font-size: 1.8em;
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0 0 0.4em 0;
+}
 
-  .subtitle {
-    color: $fmup-text-muted;
-    font-weight: 400;
-    font-size: 1.0em;
-    margin: 0 0 2em 0;
-  }
+#title-slide .subtitle {
+  color: $fmup-text-muted;
+  font-weight: 400;
+  font-size: 1.0em;
+  margin: 0 0 1.6em 0;
+}
 
-  .quarto-title-author-name,
-  .author,
-  .quarto-title-author {
-    font-weight: 700;
-    color: $fmup-text;
-    font-size: 0.85em;
-    margin: 0;
-  }
+#title-slide .quarto-title-author-name,
+#title-slide .author,
+#title-slide .quarto-title-author {
+  font-weight: 700;
+  color: $fmup-text;
+  font-size: 0.85em;
+  margin: 0;
+}
 
-  .institute,
-  .quarto-title-affiliation {
-    color: $fmup-text-muted;
-    font-size: 0.75em;
-    margin: 0.1em 0 0 0;
-  }
+#title-slide .institute,
+#title-slide .quarto-title-affiliation {
+  color: $fmup-text-muted;
+  font-size: 0.75em;
+  margin: 0.1em 0 0 0;
+}
 
-  .date,
-  .quarto-title-meta {
-    color: $fmup-text-muted;
-    font-size: 0.75em;
-    margin-top: 0.8em;
-  }
+#title-slide .date,
+#title-slide .quarto-title-meta {
+  color: $fmup-text-muted;
+  font-size: 0.75em;
+  margin-top: 0.6em;
 }
 
 // ---- FMUP mark inside the footer ----
@@ -451,13 +452,13 @@ $code-block-font-size:          0.7em;
   left: 0.6em;
   top: 50%;
   transform: translateY(-50%);
-  width: 2em;
-  height: 2em;
+  width: 1.6em;
+  height: 1.6em;
   background: $fmup-yellow;
   color: $fmup-text;
   font-weight: 900;
-  font-size: 0.85em;
-  line-height: 1;
+  font-size: 0.7em;
+  line-height: 0.95;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -491,42 +492,29 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Section dividers (`{.center}` on a slide) ----
-// Reveal applies its own positioning and scaling to slides; flex on the
-// section is unreliable because reveal already uses absolute positioning
-// and inline styles for stretch fitting. We wrap content in an absolute
-// inner box pinned to slide centre with translate, which beats reveal's
-// own positioning without fighting it.
+// To centre the slide content **without** overriding reveal's own
+// `display`/`position`/`height` on the section (which would break the
+// rendering of every other slide), we set the slide to use Quarto's
+// `center: true` per-slide attribute path: just style the content for a
+// divider look. The user enables vertical centring by also setting
+// `center: true` at the deck level in the YAML, or by adding
+// `center-vertically: true` to a slide. As a pure-CSS fallback we use
+// generous padding-top so the title sits roughly in the upper-middle
+// of the slide -- close enough for a divider without fighting reveal.
 
-.reveal .slides section.center,
-.reveal .slides > section > section.center {
-  text-align: center !important;
+.reveal section.center {
+  text-align: center;
+  padding-top: 25vh;
+}
 
-  > * {
-    position: relative;
-    z-index: 2;
-  }
+.reveal section.center h1,
+.reveal section.center h2 {
+  border-bottom: none;
+  text-align: center;
+  margin: 0 0 0.6em 0;
+}
 
-  // Pin first child group to vertical centre via flex on the section.
-  // height: inherit forces section to take the full slide height even
-  // when reveal hasn't auto-stretched.
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-  height: 100% !important;
-  min-height: 600px;
-  top: 0 !important;
-  padding: 0 8% !important;
-
-  h1, h2 {
-    border-bottom: none !important;
-    text-align: center !important;
-    margin: 0 0 0.5em 0 !important;
-    width: 100%;
-  }
-
-  p {
-    margin: 0;
-    width: 100%;
-  }
+.reveal section.center p {
+  margin: 0 auto;
+  max-width: 80%;
 }
