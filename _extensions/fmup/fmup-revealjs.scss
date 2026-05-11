@@ -324,12 +324,6 @@ $code-block-font-size:          0.7em;
 // the inner <p> with !important, so the deal closes via inheritance
 // regardless of whether the runtime forces display back to block.
 
-.reveal .footer,
-.reveal .footer p,
-.reveal .footer > * {
-  text-align: center !important;
-}
-
 .reveal .footer {
   color: $fmup-text-muted;
   font-size: 0.55em;
@@ -337,12 +331,18 @@ $code-block-font-size:          0.7em;
   border-top: 1px solid $fmup-border;
   background: $fmup-bg;
   box-sizing: border-box;
-  left: 0;
-  right: 0;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  text-align: center !important;
 }
 
+.reveal .footer p,
 .reveal .footer > * {
-  margin: 0;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  text-align: center !important;
 }
 
 .reveal .footer a {
