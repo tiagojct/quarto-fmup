@@ -375,8 +375,8 @@ div.callout.callout-note,
 div.callout-note.callout {
   border-left-color: $fmup-yellow !important;
 }
-div.callout.callout-note .callout-header,
-div.callout-note.callout-style-default > .callout-header {
+div.callout.callout-note .callout-title,
+div.callout-note .callout-title {
   background-color: rgba($fmup-yellow, 0.15) !important;
 }
 div.callout-note .callout-icon::before {
@@ -388,8 +388,8 @@ div.callout.callout-tip,
 div.callout-tip.callout {
   border-left-color: $fmup-text !important;
 }
-div.callout.callout-tip .callout-header,
-div.callout-tip.callout-style-default > .callout-header {
+div.callout.callout-tip .callout-title,
+div.callout-tip .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -398,8 +398,8 @@ div.callout.callout-warning,
 div.callout-warning.callout {
   border-left-color: $fmup-border-strong !important;
 }
-div.callout.callout-warning .callout-header,
-div.callout-warning.callout-style-default > .callout-header {
+div.callout.callout-warning .callout-title,
+div.callout-warning .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -408,8 +408,8 @@ div.callout.callout-caution,
 div.callout-caution.callout {
   border-left-color: $fmup-text-muted !important;
 }
-div.callout.callout-caution .callout-header,
-div.callout-caution.callout-style-default > .callout-header {
+div.callout.callout-caution .callout-title,
+div.callout-caution .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -418,8 +418,8 @@ div.callout.callout-important,
 div.callout-important.callout {
   border-left-color: #B91C1C !important;
 }
-div.callout.callout-important .callout-header,
-div.callout-important.callout-style-default > .callout-header {
+div.callout.callout-important .callout-title,
+div.callout-important .callout-title {
   background-color: rgba(#B91C1C, 0.08) !important;
 }
 

@@ -291,7 +291,7 @@ $code-block-font-size:          0.7em;
   background: transparent;
   color: $fmup-text-muted;
   font-family: $font-family-monospace;
-  font-size: 0.55em;
+  font-size: 0.4em;
   font-weight: 500;
   padding: 0.5em 0.6em;
   bottom: 18px !important;
@@ -326,7 +326,7 @@ $code-block-font-size:          0.7em;
 
 .reveal .footer {
   color: $fmup-text-muted;
-  font-size: 0.55em;
+  font-size: 0.4em;
   padding: 0.5em 0;
   border-top: 1px solid $fmup-border;
   background: $fmup-bg;
@@ -369,8 +369,8 @@ $code-block-font-size:          0.7em;
 .reveal div.callout-note.callout {
   border-left-color: $fmup-yellow !important;
 }
-.reveal div.callout.callout-note .callout-header,
-.reveal div.callout-note.callout-style-default > .callout-header {
+.reveal div.callout.callout-note .callout-title,
+.reveal div.callout-note .callout-title {
   background-color: rgba($fmup-yellow, 0.15) !important;
 }
 .reveal div.callout-note .callout-icon::before {
@@ -381,8 +381,8 @@ $code-block-font-size:          0.7em;
 .reveal div.callout-tip.callout {
   border-left-color: $fmup-text !important;
 }
-.reveal div.callout.callout-tip .callout-header,
-.reveal div.callout-tip.callout-style-default > .callout-header {
+.reveal div.callout.callout-tip .callout-title,
+.reveal div.callout-tip .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -390,8 +390,8 @@ $code-block-font-size:          0.7em;
 .reveal div.callout-warning.callout {
   border-left-color: $fmup-border-strong !important;
 }
-.reveal div.callout.callout-warning .callout-header,
-.reveal div.callout-warning.callout-style-default > .callout-header {
+.reveal div.callout.callout-warning .callout-title,
+.reveal div.callout-warning .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -399,8 +399,8 @@ $code-block-font-size:          0.7em;
 .reveal div.callout-caution.callout {
   border-left-color: $fmup-text-muted !important;
 }
-.reveal div.callout.callout-caution .callout-header,
-.reveal div.callout-caution.callout-style-default > .callout-header {
+.reveal div.callout.callout-caution .callout-title,
+.reveal div.callout-caution .callout-title {
   background-color: $fmup-surface !important;
 }
 
@@ -408,8 +408,8 @@ $code-block-font-size:          0.7em;
 .reveal div.callout-important.callout {
   border-left-color: #B91C1C !important;
 }
-.reveal div.callout.callout-important .callout-header,
-.reveal div.callout-important.callout-style-default > .callout-header {
+.reveal div.callout.callout-important .callout-title,
+.reveal div.callout-important .callout-title {
   background-color: rgba(#B91C1C, 0.08) !important;
 }
 
