@@ -1,13 +1,14 @@
 /*-- scss:defaults --*/
 
 // FMUP institutional palette
-$fmup-yellow:      #FFCD00;
-$fmup-yellow-dark: #E6B800;
-$fmup-text:        #1A1A1A;
-$fmup-text-muted:  #5B6470;
-$fmup-bg:          #FFFFFF;
-$fmup-surface:     #F7F7F7;
-$fmup-border:      #E0E0E0;
+$fmup-yellow:        #FFCD00;
+$fmup-yellow-dark:   #E6B800;
+$fmup-text:          #1A1A1A;
+$fmup-text-muted:    #5B6470;
+$fmup-bg:            #FFFFFF;
+$fmup-surface:       #F7F7F7;
+$fmup-border:        #E0E0E0;
+$fmup-border-strong: #B3BBC4;
 
 // Reveal.js theme variables
 $body-bg:                       $fmup-bg;
@@ -22,7 +23,7 @@ $font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", 
 $font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 
 $mainFont:                      $font-family-sans-serif;
-$mainFontSize:                  36px;
+$mainFontSize:                  28px;
 $mainColor:                     $fmup-text;
 
 $headingFont:                   $font-family-sans-serif;
@@ -32,10 +33,10 @@ $headingTextShadow:             none;
 $headingTextTransform:          none;
 $headingLetterSpacing:          -0.01em;
 
-$heading1Size:                  2.2em;
-$heading2Size:                  1.55em;
-$heading3Size:                  1.25em;
-$heading4Size:                  1.05em;
+$heading1Size:                  1.9em;
+$heading2Size:                  1.4em;
+$heading3Size:                  1.15em;
+$heading4Size:                  1.0em;
 
 $codeFont:                      $font-family-monospace;
 
@@ -100,28 +101,46 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Title slide ----
+// Layout: yellow accent stripe across the top, then left-aligned title /
+// subtitle / spacer / author / institute / date. The persistent FMUP
+// mark in the footer chrome carries the institutional identity, so no
+// extra corner tile here.
 
 #title-slide {
   text-align: left;
-  padding: 1em 2em;
+  padding: 3.5em 2em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    background: $fmup-yellow;
+  }
 
   .title {
     color: $fmup-text;
     font-weight: 800;
-    font-size: 2.2em;
+    font-size: 1.8em;
     line-height: 1.15;
     letter-spacing: -0.015em;
     border-bottom: none;
     padding-bottom: 0;
-    margin-bottom: 0.4em;
-    margin-top: 0.6em;
+    margin: 0 0 0.4em 0;
   }
 
   .subtitle {
     color: $fmup-text-muted;
     font-weight: 400;
-    font-size: 1.2em;
-    margin-bottom: 1.2em;
+    font-size: 1.0em;
+    margin: 0 0 2em 0;
   }
 
   .quarto-title-author-name,
@@ -129,20 +148,22 @@ $code-block-font-size:          0.7em;
   .quarto-title-author {
     font-weight: 700;
     color: $fmup-text;
-    font-size: 0.95em;
+    font-size: 0.85em;
+    margin: 0;
   }
 
   .institute,
   .quarto-title-affiliation {
     color: $fmup-text-muted;
-    font-size: 0.85em;
+    font-size: 0.75em;
+    margin: 0.1em 0 0 0;
   }
 
   .date,
   .quarto-title-meta {
     color: $fmup-text-muted;
-    font-size: 0.85em;
-    margin-top: 0.4em;
+    font-size: 0.75em;
+    margin-top: 0.8em;
   }
 }
 
@@ -275,6 +296,66 @@ $code-block-font-size:          0.7em;
 
 .reveal ul li::marker {
   color: $fmup-yellow-dark;
+}
+
+// ---- Quarto callouts (reveal.js) ----
+// Quarto's per-callout core CSS loads after the theme; only !important
+// reliably wins. Same repalette as the HTML side: yellow on Note,
+// greyscale on Tip/Warning/Caution, red kept on Important.
+
+.reveal div.callout.callout-style-default {
+  border: 1px solid $fmup-border !important;
+  border-left-width: 4px !important;
+  border-radius: 6px;
+  font-size: 0.7em;
+}
+
+.reveal div.callout.callout-note,
+.reveal div.callout-note.callout {
+  border-left-color: $fmup-yellow !important;
+}
+.reveal div.callout.callout-note .callout-header,
+.reveal div.callout-note.callout-style-default > .callout-header {
+  background-color: rgba($fmup-yellow, 0.15) !important;
+}
+.reveal div.callout-note .callout-icon::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%231A1A1A" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>') !important;
+}
+
+.reveal div.callout.callout-tip,
+.reveal div.callout-tip.callout {
+  border-left-color: $fmup-text !important;
+}
+.reveal div.callout.callout-tip .callout-header,
+.reveal div.callout-tip.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
+}
+
+.reveal div.callout.callout-warning,
+.reveal div.callout-warning.callout {
+  border-left-color: $fmup-border-strong !important;
+}
+.reveal div.callout.callout-warning .callout-header,
+.reveal div.callout-warning.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
+}
+
+.reveal div.callout.callout-caution,
+.reveal div.callout-caution.callout {
+  border-left-color: $fmup-text-muted !important;
+}
+.reveal div.callout.callout-caution .callout-header,
+.reveal div.callout-caution.callout-style-default > .callout-header {
+  background-color: $fmup-surface !important;
+}
+
+.reveal div.callout.callout-important,
+.reveal div.callout-important.callout {
+  border-left-color: #B91C1C !important;
+}
+.reveal div.callout.callout-important .callout-header,
+.reveal div.callout-important.callout-style-default > .callout-header {
+  background-color: rgba(#B91C1C, 0.08) !important;
 }
 
 // ---- Highlights / em / strong ----
@@ -410,32 +491,42 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Section dividers (`{.center}` on a slide) ----
-// Centres the title both horizontally and vertically. Reveal applies its
-// own absolute positioning and transform to slides; we override by
-// pinning the inner content with a transform-based centre that wins over
-// reveal's stretch layout.
+// Reveal applies its own positioning and scaling to slides; flex on the
+// section is unreliable because reveal already uses absolute positioning
+// and inline styles for stretch fitting. We wrap content in an absolute
+// inner box pinned to slide centre with translate, which beats reveal's
+// own positioning without fighting it.
 
-.reveal section.center {
-  text-align: center;
-  top: 0 !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column;
-  justify-content: center !important;
-  align-items: center !important;
+.reveal .slides section.center,
+.reveal .slides > section > section.center {
+  text-align: center !important;
 
   > * {
-    width: 100%;
-    max-width: 80%;
+    position: relative;
+    z-index: 2;
   }
+
+  // Pin first child group to vertical centre via flex on the section.
+  // height: inherit forces section to take the full slide height even
+  // when reveal hasn't auto-stretched.
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 100% !important;
+  min-height: 600px;
+  top: 0 !important;
+  padding: 0 8% !important;
 
   h1, h2 {
-    border-bottom: none;
-    text-align: center;
-    margin: 0 0 0.4em 0;
+    border-bottom: none !important;
+    text-align: center !important;
+    margin: 0 0 0.5em 0 !important;
+    width: 100%;
   }
 
-  &::before {
-    display: none;
+  p {
+    margin: 0;
+    width: 100%;
   }
 }
