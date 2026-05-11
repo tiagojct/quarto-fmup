@@ -309,6 +309,25 @@ $code-block-font-size:          0.7em;
 // logo, add it via reveal's logo: option or as an image in the footer
 // YAML text.
 
+// Quarto's support.js runs at deck-ready time and inline-styles the
+// footer's `display` to "block" (when no per-slide footer override is
+// present). Inline styles beat stylesheet rules without !important, so
+// any `display: flex` declared here is silently overridden once the
+// page hydrates -- the SCSS-compiled value is correct in the .css file,
+// but the live DOM has `style="display: block;"`. With display reverted
+// to block, my flex centring no longer applies and the inner <p> sits
+// at its block-default text-align (left).
+//
+// Belt-and-braces fix: pin text-align to center on the .footer AND on
+// the inner <p> with !important, so the deal closes via inheritance
+// regardless of whether the runtime forces display back to block.
+
+.reveal .footer,
+.reveal .footer p,
+.reveal .footer > * {
+  text-align: center !important;
+}
+
 .reveal .footer {
   color: $fmup-text-muted;
   font-size: 0.55em;
@@ -318,16 +337,10 @@ $code-block-font-size:          0.7em;
   box-sizing: border-box;
   left: 0;
   right: 0;
-  // Flex centring beats any inherited text-align that the inner <p>
-  // might pick up from reveal's slide-content defaults.
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
 }
 
 .reveal .footer > * {
   margin: 0;
-  text-align: center;
 }
 
 .reveal .footer a {
