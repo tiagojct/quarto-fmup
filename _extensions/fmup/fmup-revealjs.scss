@@ -306,13 +306,22 @@ $code-block-font-size:          0.7em;
 .reveal .footer {
   color: $fmup-text-muted;
   font-size: 0.55em;
-  text-align: center;
   padding: 0.5em 0;
   border-top: 1px solid $fmup-border;
   background: $fmup-bg;
   box-sizing: border-box;
   left: 0;
   right: 0;
+  // Flex centring beats any inherited text-align that the inner <p>
+  // might pick up from reveal's slide-content defaults.
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.reveal .footer > * {
+  margin: 0;
+  text-align: center;
 }
 
 .reveal .footer a {
