@@ -307,9 +307,12 @@ $code-block-font-size:          0.7em;
   color: $fmup-text-muted;
   font-size: 0.55em;
   text-align: center;
-  padding: 0.5em 1em;
+  padding: 0.5em 0;
   border-top: 1px solid $fmup-border;
   background: $fmup-bg;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
 }
 
 .reveal .footer a {
