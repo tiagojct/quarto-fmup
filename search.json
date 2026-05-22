@@ -136,7 +136,7 @@
     "href": "formats/html.html",
     "title": "Formato HTML (fmup-html)",
     "section": "",
-    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (substituído por seta ↗ em CSS)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
     "crumbs": [
       "Início",
       "Formatos",
@@ -148,7 +148,7 @@
     "href": "formats/html.html#defaults",
     "title": "Formato HTML (fmup-html)",
     "section": "",
-    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (substituído por seta ↗ em CSS)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
     "crumbs": [
       "Início",
       "Formatos",
@@ -600,6 +600,18 @@
     ]
   },
   {
+    "objectID": "design-scars.html#d.-.gitignore-.ext-engole-assets-do-extension.",
+    "href": "design-scars.html#d.-.gitignore-.ext-engole-assets-do-extension.",
+    "title": "Design scars",
+    "section": "7d. .gitignore *.<ext> engole assets do extension.",
+    "text": "7d. .gitignore *.&lt;ext&gt; engole assets do extension.\nProblema: o .gitignore da raiz tem *.html (para artefactos de build do Quarto). Quando se adicionou fmup-fonts.html em _extensions/fmup/, o git add -A incluiu o ficheiro - ou pensava que tinha incluído. Na realidade o glob *.html apanhava-o em silêncio e o ficheiro nunca chegou ao commit. A versão v1.2.0 foi publicada sem o ficheiro: utilizadores que fizeram quarto add tiagojct/quarto-fmup ficaram com um _extension.yml a referenciar include-in-header: [fmup-fonts.html] mas sem o ficheiro em disco. Resultado: o reveal caía para fonte de sistema.\nSolução: negar o caminho explicitamente no .gitignore:\n*.html\n!_extensions/fmup/fmup-fonts.html\nPadrão genérico: para qualquer asset shipped pelo extension cujo extension casa com um glob de build (*.html, *.pdf, etc.), adicionar negação explícita.\nNão fazer: confiar que git add -A mostra a lista completa. Sempre verificar com git status E git check-ignore -v caminho/suspeito antes de tagar uma release. Ou usar git ls-files para confirmar o conteúdo do tag.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
     "objectID": "design-scars.html#b.-tema-de-syntax-highlighting-precisa-de-variante-dark.",
     "href": "design-scars.html#b.-tema-de-syntax-highlighting-precisa-de-variante-dark.",
     "title": "Design scars",
@@ -676,7 +688,7 @@
     "href": "accessibility.html",
     "title": "Acessibilidade",
     "section": "",
-    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.\n\n\nSeta ↗ em links externos\nIndica destino externo a quem não tenha tooltips visíveis.",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
     "crumbs": [
       "Início",
       "Avançado",
@@ -688,7 +700,7 @@
     "href": "accessibility.html#decisões-do-tema",
     "title": "Acessibilidade",
     "section": "",
-    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.\n\n\nSeta ↗ em links externos\nIndica destino externo a quem não tenha tooltips visíveis.",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
     "crumbs": [
       "Início",
       "Avançado",

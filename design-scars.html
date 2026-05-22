@@ -79,9 +79,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-9fccd4bd0cde1f5f43ce69c46b4575c4.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-69b164a1b8dd441d486d638c5e280daf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-175490040834c2def12eada0f512124c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-69b164a1b8dd441d486d638c5e280daf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a3a3f0035a0420b818c026a7d38e3a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-e1a0041e8adb64bf332c030e26728be2.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-a3a3f0035a0420b818c026a7d38e3a8c.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -483,6 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#templates-não-interpolam-em-include-in-header" id="toc-templates-não-interpolam-em-include-in-header" class="nav-link" data-scroll-target="#templates-não-interpolam-em-include-in-header">9. Templates não interpolam em <code>include-in-header</code></a></li>
   <li><a href="#b.-comments-in-.css-files-are-not-valid-browsers-bail." id="toc-b.-comments-in-.css-files-are-not-valid-browsers-bail." class="nav-link" data-scroll-target="#b.-comments-in-.css-files-are-not-valid-browsers-bail.">7b. <code>//</code> comments in <code>.css</code> files are NOT valid; browsers bail.</a></li>
   <li><a href="#c.-reveal-css-declara-link-mas-não-copia-ficheiro." id="toc-c.-reveal-css-declara-link-mas-não-copia-ficheiro." class="nav-link" data-scroll-target="#c.-reveal-css-declara-link-mas-não-copia-ficheiro.">7c. Reveal <code>css:</code> declara link mas não copia ficheiro.</a></li>
+  <li><a href="#d.-.gitignore-.ext-engole-assets-do-extension." id="toc-d.-.gitignore-.ext-engole-assets-do-extension." class="nav-link" data-scroll-target="#d.-.gitignore-.ext-engole-assets-do-extension.">7d. <code>.gitignore</code> <code>*.&lt;ext&gt;</code> engole assets do extension.</a></li>
   <li><a href="#b.-tema-de-syntax-highlighting-precisa-de-variante-dark." id="toc-b.-tema-de-syntax-highlighting-precisa-de-variante-dark." class="nav-link" data-scroll-target="#b.-tema-de-syntax-highlighting-precisa-de-variante-dark.">10b. Tema de syntax-highlighting precisa de variante dark.</a></li>
   <li><a href="#tipografia-variável-e-typst" id="toc-tipografia-variável-e-typst" class="nav-link" data-scroll-target="#tipografia-variável-e-typst">10. Tipografia variável e Typst</a></li>
   </ul>
@@ -595,13 +596,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>Solução:</strong> para revealjs, usar <code>include-in-header: [fmup-fonts.html]</code> (ficheiro com <code>&lt;style&gt;...&lt;/style&gt;</code> a embrulhar o mesmo CSS). O resultado é um único <code>slides.html</code> auto-contido: serve para email, USB stick, GitHub Pages, ou file://.</p>
 <p><strong>Não fazer:</strong> assumir que <code>css:</code> faz o mesmo nas duas contribuições de formato.</p>
 </section>
+<section id="d.-.gitignore-.ext-engole-assets-do-extension." class="level2">
+<h2 class="anchored" data-anchor-id="d.-.gitignore-.ext-engole-assets-do-extension.">7d. <code>.gitignore</code> <code>*.&lt;ext&gt;</code> engole assets do extension.</h2>
+<p><strong>Problema:</strong> o <code>.gitignore</code> da raiz tem <code>*.html</code> (para artefactos de build do Quarto). Quando se adicionou <code>fmup-fonts.html</code> em <code>_extensions/fmup/</code>, o <code>git add -A</code> incluiu o ficheiro - ou pensava que tinha incluído. Na realidade o glob <code>*.html</code> apanhava-o em silêncio e o ficheiro nunca chegou ao commit. A versão v1.2.0 foi publicada sem o ficheiro: utilizadores que fizeram <code>quarto add tiagojct/quarto-fmup</code> ficaram com um <code>_extension.yml</code> a referenciar <code>include-in-header: [fmup-fonts.html]</code> mas sem o ficheiro em disco. Resultado: o reveal caía para fonte de sistema.</p>
+<p><strong>Solução:</strong> negar o caminho explicitamente no <code>.gitignore</code>:</p>
+<pre class="gitignore"><code>*.html
+!_extensions/fmup/fmup-fonts.html</code></pre>
+<p>Padrão genérico: para qualquer asset shipped pelo extension cujo extension casa com um glob de build (<code>*.html</code>, <code>*.pdf</code>, etc.), adicionar negação explícita.</p>
+<p><strong>Não fazer:</strong> confiar que <code>git add -A</code> mostra a lista completa. Sempre verificar com <code>git status</code> E <code>git check-ignore -v caminho/suspeito</code> antes de tagar uma release. Ou usar <code>git ls-files</code> para confirmar o conteúdo do tag.</p>
+</section>
 <section id="b.-tema-de-syntax-highlighting-precisa-de-variante-dark." class="level2">
 <h2 class="anchored" data-anchor-id="b.-tema-de-syntax-highlighting-precisa-de-variante-dark.">10b. Tema de syntax-highlighting precisa de variante dark.</h2>
 <p><strong>Problema:</strong> os <code>.theme</code> do Pandoc são JSON estático e não reagem ao <code>data-bs-theme</code> no <code>&lt;html&gt;</code>. Carregar o mesmo <code>fmup-highlight.theme</code> em ambos os modos deixa código quase ilegível em dark: texto a <code>#1A1A1A</code> (quase-preto) sobre fundo dark de superfície.</p>
 <p><strong>Solução:</strong> ship de dois ficheiros, <code>fmup-highlight.theme</code> (light) e <code>fmup-highlight-dark.theme</code> (dark, com <code>#F2F2F2</code>/<code>#A0A8B0</code>/ <code>#FFCD00</code>/<code>#F87171</code>), e declaração no <code>_extension.yml</code>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">highlight-style</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">light</span><span class="kw">:</span><span class="at"> fmup-highlight.theme</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dark</span><span class="kw">:</span><span class="at">  fmup-highlight-dark.theme</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">highlight-style</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">light</span><span class="kw">:</span><span class="at"> fmup-highlight.theme</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dark</span><span class="kw">:</span><span class="at">  fmup-highlight-dark.theme</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Não fazer:</strong> assumir que um único <code>.theme</code> chega aos dois modos. Não chega.</p>
 </section>
 <section id="tipografia-variável-e-typst" class="level2">
