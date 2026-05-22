@@ -44,7 +44,9 @@ test.describe('slides', () => {
   });
 
   test('callouts-slide', async ({ page }) => {
-    await page.goto(url('example/slides/slides.html#/10'));
+    // pathToFileURL percent-encodes `#`; append the reveal hash AFTER
+    // building the file URL so reveal interprets it as a slide index.
+    await page.goto(url('example/slides/slides.html') + '#/10');
     await page.waitForFunction(() => (window as any).Reveal && (window as any).Reveal.isReady && (window as any).Reveal.isReady());
     await expect(page).toHaveScreenshot('slides-callouts.png');
   });
