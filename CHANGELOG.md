@@ -5,7 +5,23 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.2.0
+## [Unreleased] - 1.2.1
+
+### Fixed
+
+- **`fmup-fonts.html` was missing from the v1.2.0 release tarball.**
+  Root `.gitignore` had a broad `*.html` rule (intended for Quarto
+  build artefacts) which silently swallowed the file. Downstream
+  installs via `quarto add / update` got an `_extension.yml` that
+  references `include-in-header: [fmup-fonts.html]` for the
+  `fmup-revealjs` format but no such file on disk, so reveal decks
+  fell back to system fonts. `.gitignore` now negates the path
+  (`!_extensions/fmup/fmup-fonts.html`); the file is shipped with
+  this release. Affected users: anyone who ran
+  `quarto add tiagojct/quarto-fmup@v1.2.0` for reveal output - run
+  `quarto update tiagojct/quarto-fmup` to pull the fix.
+
+## [1.2.0] - 2026-05-22
 
 ### Added
 

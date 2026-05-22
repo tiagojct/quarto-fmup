@@ -7,6 +7,11 @@ _freeze/
 *.html
 *.pdf
 
+# Theme assets shipped with the extension. Negated explicitly because
+# the broad `*.html` glob above otherwise swallows them. Discovered the
+# hard way: v1.2.0 went out missing fmup-fonts.html because of this.
+!_extensions/fmup/fmup-fonts.html
+
 # OS junk
 .DS_Store
 Thumbs.db
