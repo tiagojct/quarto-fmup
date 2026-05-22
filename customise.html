@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:description" content="Tokens de design, partials, paleta e tipografia.">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="pt-PT">
-<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Personalizar – quarto-fmup">
 <meta name="twitter:description" content="Tokens de design, partials, paleta e tipografia.">
 
@@ -474,6 +474,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#substituir-um-partial" id="toc-substituir-um-partial" class="nav-link" data-scroll-target="#substituir-um-partial">Substituir um partial</a></li>
   <li><a href="#tipografia" id="toc-tipografia" class="nav-link" data-scroll-target="#tipografia">Tipografia</a></li>
   <li><a href="#paleta-dark" id="toc-paleta-dark" class="nav-link" data-scroll-target="#paleta-dark">Paleta dark</a></li>
+  <li><a href="#imagem-open-graph" id="toc-imagem-open-graph" class="nav-link" data-scroll-target="#imagem-open-graph">Imagem Open Graph</a></li>
+  <li><a href="#slides-em-dark-mode" id="toc-slides-em-dark-mode" class="nav-link" data-scroll-target="#slides-em-dark-mode">Slides em dark mode</a></li>
   <li><a href="#adicionar-logo" id="toc-adicionar-logo" class="nav-link" data-scroll-target="#adicionar-logo">Adicionar logo</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/tiagojct/quarto-fmup/edit/main/customise.qmd" class="toc-action"><i class="bi bi-github"></i>Editar essa página</a></li><li><a href="https://github.com/tiagojct/quarto-fmup/issues/new" class="toc-action"><i class="bi empty"></i>Criar uma issue</a></li></ul></div></nav>
@@ -586,11 +588,38 @@ Nota
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">$fmup-bg</span>: <span class="cn">#000000</span><span class="op">;</span>       <span class="co">// preto puro em vez de #0E0E0E</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="va">$fmup-text</span>: <span class="cn">#FFFFFF</span><span class="op">;</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
+<section id="imagem-open-graph" class="level2">
+<h2 class="anchored" data-anchor-id="imagem-open-graph">Imagem Open Graph</h2>
+<p>A meta <code>og:image</code> permite que ligações partilhadas mostrem uma <em>preview</em> gráfica em Slack / Twitter / Facebook / Discord. Definir uma vez no front matter do projecto:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmup</span><span class="kw">:</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">og-image</span><span class="kw">:</span><span class="at"> assets/og.png</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O <code>fmup.lua</code> injecta <code>og:image</code> e <code>twitter:image</code> automaticamente em todas as páginas. Sem <code>og-image</code>, o Twitter Card cai para <code>summary</code> (formato pequeno sem imagem) em vez do <code>summary_large_image</code>.</p>
+<p>Recomendações para a imagem:</p>
+<ul>
+<li><strong>Dimensões</strong>: 1200 × 630 px (rácio 1.91:1).</li>
+<li><strong>Formato</strong>: PNG ou JPG. SVG é aceite pela meta mas alguns <em>crawlers</em> (Discord) ignoram.</li>
+<li><strong>Peso</strong>: &lt; 1 MB. Twitter rejeita acima de 5 MB.</li>
+<li><strong>Texto</strong>: legível à dimensão final (~600 × 315 px na <em>preview</em>).</li>
+<li><strong>Cor</strong>: usar o amarelo <code>#FFCD00</code> no top stripe ou wordmark, mas não como fundo do <em>card</em> inteiro (cansa).</li>
+</ul>
+<p>O Quarto preserva o canal nativo <code>website.open-graph.image</code>, que o <code>fmup.lua</code> lê se <code>fmup.og-image</code> não estiver definido.</p>
+</section>
+<section id="slides-em-dark-mode" class="level2">
+<h2 class="anchored" data-anchor-id="slides-em-dark-mode">Slides em dark mode</h2>
+<p>O reveal.js do Quarto não suporta toggle <code>theme: { light, dark }</code> como o HTML. Para uma apresentação inteiramente em dark, sobrepor a lista <code>theme:</code> para trocar <code>fmup-variables.scss</code> por <code>fmup-variables-dark.scss</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fmup-revealjs</span><span class="kw">:</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> default</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _extensions/fmup/fmup-revealjs.scss</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> _extensions/fmup/fmup-variables-dark.scss</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O resto do contrato do tema (footer, callouts, tabelas, slide-number) mantém-se intacto - apenas a paleta inverte. Útil para auditórios com projecção pouco brilhante ou para decks “modo cinema”.</p>
+</section>
 <section id="adicionar-logo" class="level2">
 <h2 class="anchored" data-anchor-id="adicionar-logo">Adicionar logo</h2>
 <p>Ver <a href="./formats/html.html#logo-institucional">Formato HTML / Logo</a>. Em resumo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmup</span><span class="kw">:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> assets/fmup-wordmark.svg</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fmup</span><span class="kw">:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">logo</span><span class="kw">:</span><span class="at"> assets/fmup-wordmark.svg</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
