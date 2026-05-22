@@ -1,0 +1,258 @@
+/* quarto syntax highlight colors */
+:root {
+  --quarto-hl-al-color: #F87171;
+  --quarto-hl-an-color: #A0A8B0;
+  --quarto-hl-at-color: #F2F2F2;
+  --quarto-hl-bn-color: #A0A8B0;
+  --quarto-hl-bu-color: #F2F2F2;
+  --quarto-hl-ch-color: #A0A8B0;
+  --quarto-hl-co-color: #A0A8B0;
+  --quarto-hl-cv-color: #A0A8B0;
+  --quarto-hl-cn-color: #A0A8B0;
+  --quarto-hl-cf-color: #F2F2F2;
+  --quarto-hl-dt-color: #F2F2F2;
+  --quarto-hl-dv-color: #A0A8B0;
+  --quarto-hl-do-color: #A0A8B0;
+  --quarto-hl-er-color: #F87171;
+  --quarto-hl-ex-color: #F2F2F2;
+  --quarto-hl-fl-color: #A0A8B0;
+  --quarto-hl-fu-color: #F2F2F2;
+  --quarto-hl-im-color: #F2F2F2;
+  --quarto-hl-in-color: #A0A8B0;
+  --quarto-hl-kw-color: #FFCD00;
+  --quarto-hl-op-color: #A0A8B0;
+  --quarto-hl-ot-color: #F2F2F2;
+  --quarto-hl-pp-color: #F2F2F2;
+  --quarto-hl-re-color: #A0A8B0;
+  --quarto-hl-sc-color: #A0A8B0;
+  --quarto-hl-ss-color: #A0A8B0;
+  --quarto-hl-st-color: #A0A8B0;
+  --quarto-hl-va-color: #F2F2F2;
+  --quarto-hl-vs-color: #A0A8B0;
+  --quarto-hl-wa-color: #F87171;
+}
+
+/* other quarto variables */
+:root {
+  --quarto-font-monospace: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+
+/* syntax highlight based on Pandoc's rules */
+pre > code.sourceCode > span {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+code.sourceCode > span {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+div.sourceCode,
+div.sourceCode pre.sourceCode {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* Normal */
+code span {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* Alert */
+code span.al {
+  color: #F87171;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* Annotation */
+code span.an {
+  color: #A0A8B0;
+  font-style: italic;
+}
+
+/* Attribute */
+code span.at {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* BaseN */
+code span.bn {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* BuiltIn */
+code span.bu {
+  color: #F2F2F2;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* ControlFlow */
+code span.cf {
+  color: #F2F2F2;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* Char */
+code span.ch {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Constant */
+code span.cn {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Comment */
+code span.co {
+  color: #A0A8B0;
+  font-style: italic;
+}
+
+/* CommentVar */
+code span.cv {
+  color: #A0A8B0;
+  font-style: italic;
+}
+
+/* Documentation */
+code span.do {
+  color: #A0A8B0;
+  font-style: italic;
+}
+
+/* DataType */
+code span.dt {
+  color: #F2F2F2;
+  font-style: italic;
+}
+
+/* DecVal */
+code span.dv {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Error */
+code span.er {
+  color: #F87171;
+  font-weight: bold;
+  font-style: inherit;
+  text-decoration: underline;
+}
+
+/* Extension */
+code span.ex {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* Float */
+code span.fl {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Function */
+code span.fu {
+  color: #F2F2F2;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* Import */
+code span.im {
+  color: #F2F2F2;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* Information */
+code span.in {
+  color: #A0A8B0;
+  font-style: italic;
+}
+
+/* Keyword */
+code span.kw {
+  color: #FFCD00;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* Operator */
+code span.op {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Other */
+code span.ot {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* Preprocessor */
+code span.pp {
+  color: #F2F2F2;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* RegionMarker */
+code span.re {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* SpecialChar */
+code span.sc {
+  color: #A0A8B0;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+/* SpecialString */
+code span.ss {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* String */
+code span.st {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Variable */
+code span.va {
+  color: #F2F2F2;
+  font-style: inherit;
+}
+
+/* VerbatimString */
+code span.vs {
+  color: #A0A8B0;
+  font-style: inherit;
+}
+
+/* Warning */
+code span.wa {
+  color: #F87171;
+  font-weight: bold;
+  font-style: inherit;
+}
+
+.prevent-inlining {
+  content: "</";
+}
+
+/*# sourceMappingURL=d5bee2ae17e06f894f8e48c35ec0556a.css.map */

@@ -1,0 +1,722 @@
+[
+  {
+    "objectID": "dataviz.html",
+    "href": "dataviz.html",
+    "title": "Paleta para gráficos",
+    "section": "",
+    "text": "#\nToken\nHEX (light)\nHEX (dark)\n\n\n\n\n1\n$fmup-chart-1\n#1A1A1A\n#F2F2F2\n\n\n2\n$fmup-chart-2\n#FFCD00\n#FFCD00\n\n\n3\n$fmup-chart-3\n#0072B2\n#56B4E9\n\n\n4\n$fmup-chart-4\n#D55E00\n#E58A4D\n\n\n5\n$fmup-chart-5\n#56B4E9\n#87CEEB\n\n\n6\n$fmup-chart-6\n#CC79A7\n#E091B7\n\n\n\nCritérios:\n\nDaltonismo-seguras (derivadas da paleta Okabe-Ito).\nSem verde - num contexto de Faculdade de Medicina, verde lê-se como “semáforo OK” e enviesa interpretação.\nSlots 1 e 2 são near-black + amarelo FMUP. Gráficos com 1 ou 2 séries devem usar estes; ficam visualmente alinhados com a marca.\nSlots 3-6 entram por ordem para preservar legibilidade quando os primeiros se esgotam.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Paleta para gráficos"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#a-paleta",
+    "href": "dataviz.html#a-paleta",
+    "title": "Paleta para gráficos",
+    "section": "",
+    "text": "#\nToken\nHEX (light)\nHEX (dark)\n\n\n\n\n1\n$fmup-chart-1\n#1A1A1A\n#F2F2F2\n\n\n2\n$fmup-chart-2\n#FFCD00\n#FFCD00\n\n\n3\n$fmup-chart-3\n#0072B2\n#56B4E9\n\n\n4\n$fmup-chart-4\n#D55E00\n#E58A4D\n\n\n5\n$fmup-chart-5\n#56B4E9\n#87CEEB\n\n\n6\n$fmup-chart-6\n#CC79A7\n#E091B7\n\n\n\nCritérios:\n\nDaltonismo-seguras (derivadas da paleta Okabe-Ito).\nSem verde - num contexto de Faculdade de Medicina, verde lê-se como “semáforo OK” e enviesa interpretação.\nSlots 1 e 2 são near-black + amarelo FMUP. Gráficos com 1 ou 2 séries devem usar estes; ficam visualmente alinhados com a marca.\nSlots 3-6 entram por ordem para preservar legibilidade quando os primeiros se esgotam.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Paleta para gráficos"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#exemplos",
+    "href": "dataviz.html#exemplos",
+    "title": "Paleta para gráficos",
+    "section": "Exemplos",
+    "text": "Exemplos\n\nR / ggplot2\nfmup_chart &lt;- c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n                \"#D55E00\", \"#56B4E9\", \"#CC79A7\")\n\nlibrary(ggplot2)\nggplot(mtcars, aes(mpg, hp, colour = factor(cyl))) +\n  geom_point(size = 3) +\n  scale_colour_manual(values = fmup_chart) +\n  theme_minimal(base_family = \"Atkinson Hyperlegible Next\") +\n  theme(panel.grid.minor = element_blank())\nPara um wrapper reutilizável:\nscale_colour_fmup &lt;- function(...) {\n  ggplot2::scale_colour_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\nscale_fill_fmup &lt;- function(...) {\n  ggplot2::scale_fill_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\n\nPython / matplotlib\nimport matplotlib as mpl\n\nFMUP_CHART = [\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n              \"#D55E00\", \"#56B4E9\", \"#CC79A7\"]\n\nmpl.rcParams.update({\n    \"axes.prop_cycle\": mpl.cycler(color=FMUP_CHART),\n    \"font.family\": \"Atkinson Hyperlegible Next\",\n    \"axes.edgecolor\": \"#1A1A1A\",\n    \"axes.labelcolor\": \"#1A1A1A\",\n    \"axes.spines.top\": False,\n    \"axes.spines.right\": False,\n    \"grid.color\": \"#E0E0E0\",\n    \"grid.linestyle\": \"--\",\n})\nE depois:\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx = np.linspace(0, 10, 100)\nfor i in range(4):\n    plt.plot(x, np.sin(x + i), label=f\"série {i+1}\")\nplt.legend()\nplt.show()\n\n\nObservable / runtime (JS)\nA paleta também é exposta como custom properties em :root:\nconst css = getComputedStyle(document.documentElement);\nconst FMUP_CHART = [1,2,3,4,5,6].map(\n  i =&gt; css.getPropertyValue(`--fmup-chart-${i}`).trim()\n);\nÚtil em widgets que usam D3, Plotly, ou Observable Inputs - a paleta adapta-se automaticamente ao light/dark toggle do Quarto.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Paleta para gráficos"
+    ]
+  },
+  {
+    "objectID": "dataviz.html#notas",
+    "href": "dataviz.html#notas",
+    "title": "Paleta para gráficos",
+    "section": "Notas",
+    "text": "Notas\n\nPara mapas, escalas sequenciais ou divergentes precisam de outra paleta (esta é só categórica). Sugestão: viridis para sequencial, RdBu para divergente - ambas daltonismo-seguras.\nPara tipo de marcador além da cor, alternar shape em ggplot e marker em matplotlib. Cor sozinha não basta para WCAG 1.4.1.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Paleta para gráficos"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html",
+    "href": "formats/revealjs.html",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "",
+    "text": "Opção\nValor\n\n\n\n\nslide-number\nc/t (atual / total)\n\n\nslide-level\n2 (H2 = novo slide)\n\n\ntransition\nnone\n\n\nwidth × height\n1280 × 720\n\n\ncenter\ntrue (centra cada slide verticalmente)\n\n\ncontrols\nfalse\n\n\nmenu\nfalse\n\n\nhash / history\nambas true\n\n\nmin-scale / max-scale\n0.2 / 2.0\n\n\n\nmainfont e monofont correspondem aos do HTML. A fonte do corpo dos slides é 28px, o que é mais pequeno do que o default do reveal (40px) - opção deliberada para acomodar mais conteúdo por slide em contexto académico. Para auditórios grandes, sobrepor:\nformat:\n  fmup-revealjs:\n    revealjs-plugins: []\n---\n````{=html}\n&lt;style&gt;.reveal { font-size: 36px; }&lt;/style&gt;\n\n## Footer\n\nRecomendado declarar uma vez:\n\n```yaml\nformat:\n  fmup-revealjs:\n    footer: \"FMUP · Faculdade de Medicina da Universidade do Porto\"\nO footer fica centrado horizontalmente. Centrar via text-align: center no SCSS precisa de !important porque o support.js do Quarto força display: block no &lt;p&gt; dentro do footer em tempo de hidratação - se algum CSS personalizado pretende mudar isto, ler Design scars.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#defaults",
+    "href": "formats/revealjs.html#defaults",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "",
+    "text": "Opção\nValor\n\n\n\n\nslide-number\nc/t (atual / total)\n\n\nslide-level\n2 (H2 = novo slide)\n\n\ntransition\nnone\n\n\nwidth × height\n1280 × 720\n\n\ncenter\ntrue (centra cada slide verticalmente)\n\n\ncontrols\nfalse\n\n\nmenu\nfalse\n\n\nhash / history\nambas true\n\n\nmin-scale / max-scale\n0.2 / 2.0\n\n\n\nmainfont e monofont correspondem aos do HTML. A fonte do corpo dos slides é 28px, o que é mais pequeno do que o default do reveal (40px) - opção deliberada para acomodar mais conteúdo por slide em contexto académico. Para auditórios grandes, sobrepor:\nformat:\n  fmup-revealjs:\n    revealjs-plugins: []\n---\n````{=html}\n&lt;style&gt;.reveal { font-size: 36px; }&lt;/style&gt;\n\n## Footer\n\nRecomendado declarar uma vez:\n\n```yaml\nformat:\n  fmup-revealjs:\n    footer: \"FMUP · Faculdade de Medicina da Universidade do Porto\"\nO footer fica centrado horizontalmente. Centrar via text-align: center no SCSS precisa de !important porque o support.js do Quarto força display: block no &lt;p&gt; dentro do footer em tempo de hidratação - se algum CSS personalizado pretende mudar isto, ler Design scars.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#logo",
+    "href": "formats/revealjs.html#logo",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "Logo",
+    "text": "Logo\nMesmo mecanismo do HTML: declarar fmup.logo no front matter e o fmup.lua propaga para o logo: de topo, que o reveal mostra como imagem fixa em todos os slides.\nfmup:\n  logo: assets/fmup-wordmark.svg",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#callouts",
+    "href": "formats/revealjs.html#callouts",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "Callouts",
+    "text": "Callouts\nfmup-revealjs aplica a mesma repaleta de callouts do HTML:\n\nnote - amarelo (acento institucional).\ntip, warning, caution - escala de cinzentos.\nimportant - vermelho #B91C1C (o único vermelho reservado).",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#divisores-de-secção",
+    "href": "formats/revealjs.html#divisores-de-secção",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "Divisores de secção",
+    "text": "Divisores de secção\nPara criar um slide divisor centrado verticalmente:\n## Parte 2 {.center}\nA classe .center é interpretada pelo plugin de centragem do reveal. Não tentar centrar via CSS no tema - dá conflito com o posicionamento que o reveal aplica nativamente.\n\n\n\n\n\n\nAviso\n\n\n\nNão sobrepor display, position ou height em #title-slide ou section.center. Esses overrides batem com a especificidade do posicionamento do reveal e quebram a renderização dos outros slides. O tema só pinta - o layout pertence ao reveal.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#slide-number",
+    "href": "formats/revealjs.html#slide-number",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "Slide-number",
+    "text": "Slide-number\nO número do slide partilha tipografia (Geist Mono, 0.4em), padding e offset com o texto do footer, para que ambos fiquem alinhados na mesma linha base.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/revealjs.html#atalhos-úteis",
+    "href": "formats/revealjs.html#atalhos-úteis",
+    "title": "Formato Reveal.js (fmup-revealjs)",
+    "section": "Atalhos úteis",
+    "text": "Atalhos úteis\n\n? - mostra atalhos do reveal.\ns - abre o painel de notas do orador.\nf - ecrã inteiro.\no - vista geral (todos os slides em grelha).\nb ou . - blackout.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Reveal.js (`fmup-revealjs`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html",
+    "href": "formats/html.html",
+    "title": "Formato HTML (fmup-html)",
+    "section": "",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (substituído por seta ↗ em CSS)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#defaults",
+    "href": "formats/html.html#defaults",
+    "title": "Formato HTML (fmup-html)",
+    "section": "",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (substituído por seta ↗ em CSS)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#dark-mode",
+    "href": "formats/html.html#dark-mode",
+    "title": "Formato HTML (fmup-html)",
+    "section": "Dark mode",
+    "text": "Dark mode\nfmup-html declara variantes light: e dark:. O Quarto coloca um toggle no navbar (quando há website.navbar.tools ou via website.tools-collapse: true) e troca via data-bs-theme no &lt;html&gt;.\nPara forçar uma variante:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss   # só light\nA paleta dark inverte o fundo para #0E0E0E, mantém o amarelo #FFCD00 como acento (passa WCAG AAA contra near-black) e clareia o vermelho do callout-important para #F87171 (mantém ≥4.5:1 contra a superfície escura).",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#logo-institucional",
+    "href": "formats/html.html#logo-institucional",
+    "title": "Formato HTML (fmup-html)",
+    "section": "Logo institucional",
+    "text": "Logo institucional\nDefinir uma vez no front matter do projeto:\nfmup:\n  logo: assets/fmup-wordmark.svg\nA Lua filter fmup.lua copia esse valor para website.navbar.logo (websites) ou book.navbar.logo (livros), e também para o logo: de topo (usado pelo reveal).\n\n\n\n\n\n\nDica\n\n\n\nSe já se declarou website.navbar.logo à mão, esse valor tem precedência. A filtragem é não-destrutiva.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#open-graph-e-twitter-card",
+    "href": "formats/html.html#open-graph-e-twitter-card",
+    "title": "Formato HTML (fmup-html)",
+    "section": "Open Graph e Twitter Card",
+    "text": "Open Graph e Twitter Card\nO fmup.lua injeta automaticamente meta-tags og:title, og:description, og:locale, og:type=article, article:author, twitter:card=summary_large_image, twitter:title e twitter:description a partir do front matter de cada página.\nPara imagem social, manter o canal padrão Quarto:\nwebsite:\n  open-graph:\n    image: assets/og.png",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#sobrepor-a-paleta",
+    "href": "formats/html.html#sobrepor-a-paleta",
+    "title": "Formato HTML (fmup-html)",
+    "section": "Sobrepor a paleta",
+    "text": "Sobrepor a paleta\nA paleta vive em _extensions/fmup/fmup-variables.scss e tokeniza-se toda com !default. Para mudar uma cor sem editar o ficheiro do tema, adicionar um SCSS próprio APÓS o tema na lista:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss\nE em mytokens.scss:\n/*-- scss:defaults --*/\n$fmup-yellow: #E5B800;   // amarelo mais quente",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "formats/html.html#acessibilidade",
+    "href": "formats/html.html#acessibilidade",
+    "title": "Formato HTML (fmup-html)",
+    "section": "Acessibilidade",
+    "text": "Acessibilidade\n\nFoco visível: contorno 2px solid #1A1A1A + box-shadow amarelo (cumpre WCAG 1.4.11; amarelo puro contra branco fica em 1.4:1 e falha).\nLinks no corpo: font-weight: 500 + sublinhado amarelo 2.5px — segunda dimensão de distinção além da cor.\nprefers-reduced-motion: anula smooth-scroll (e o Bootstrap 5 trata o resto via $enable-reduced-motion).\nTipografia: Atkinson Hyperlegible Next foi desenhada pelo Braille Institute para utilizadores com visão reduzida.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato HTML (`fmup-html`)"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "quarto-fmup",
+    "section": "",
+    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Atkinson Hyperlegible Next como tipografia base.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-é",
+    "href": "index.html#o-que-é",
+    "title": "quarto-fmup",
+    "section": "",
+    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Atkinson Hyperlegible Next como tipografia base.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#instalação-rápida",
+    "href": "index.html#instalação-rápida",
+    "title": "quarto-fmup",
+    "section": "Instalação rápida",
+    "text": "Instalação rápida\nquarto add tiagojct/quarto-fmup\nA partir daqui, declarar o formato em _quarto.yml ou no front matter:\nformat:\n  fmup-html: default\nPara os outros formatos e a configuração detalhada, ver Instalação.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-esta-documentação-cobre",
+    "href": "index.html#o-que-esta-documentação-cobre",
+    "title": "quarto-fmup",
+    "section": "O que esta documentação cobre",
+    "text": "O que esta documentação cobre\n\n\n\nPágina\nConteúdo\n\n\n\n\nInstalação\nquarto add, alternativas, atualizações\n\n\nFormato HTML\nOpções, dark mode, logo, navbar\n\n\nFormato Reveal.js\nSlides, footer, logo, atalhos\n\n\nFormato Typst\nPDF, fontes, limitações conhecidas\n\n\nPersonalizar\nSubstituir tokens, partials, paleta\n\n\nAcessibilidade\nWCAG, contrastes, motion-safe\n\n\nDesign scars\nBugs cicatrizados que o SCSS resolve\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEste próprio site é gerado com quarto-fmup. Cada página é uma demonstração do tema aplicado a si próprio (dogfooding).",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "Instalação",
+    "section": "",
+    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: a fonte Atkinson Hyperlegible Next instalada no sistema (ver Formato Typst para o motivo).",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#pré-requisitos",
+    "href": "install.html#pré-requisitos",
+    "title": "Instalação",
+    "section": "",
+    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: a fonte Atkinson Hyperlegible Next instalada no sistema (ver Formato Typst para o motivo).",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#adicionar-ao-projeto",
+    "href": "install.html#adicionar-ao-projeto",
+    "title": "Instalação",
+    "section": "Adicionar ao projeto",
+    "text": "Adicionar ao projeto\nA partir da raiz de qualquer projeto Quarto:\nquarto add tiagojct/quarto-fmup\nResponder y quando perguntar se confia na extensão. O Quarto descarrega _extensions/fmup/ para dentro do projeto e nada mais é preciso instalar — as fontes estão embutidas no próprio tema.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#declarar-o-formato",
+    "href": "install.html#declarar-o-formato",
+    "title": "Instalação",
+    "section": "Declarar o formato",
+    "text": "Declarar o formato\n\nWebsite ou livro\n# _quarto.yml\nformat:\n  fmup-html: default\n\n\nApresentação reveal.js\n---\ntitle: \"Slides\"\nauthor: \"Autor\"\nformat:\n  fmup-revealjs:\n    footer: \"FMUP · Faculdade de Medicina da Universidade do Porto\"\n---\n\n\nPDF via Typst\nformat:\n  fmup-typst: default",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#atualizar",
+    "href": "install.html#atualizar",
+    "title": "Instalação",
+    "section": "Atualizar",
+    "text": "Atualizar\nquarto update tiagojct/quarto-fmup\nO update segue a tag mais recente no GitHub. Para fixar uma versão:\nquarto add tiagojct/quarto-fmup@v1.1.0",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#remover",
+    "href": "install.html#remover",
+    "title": "Instalação",
+    "section": "Remover",
+    "text": "Remover\nquarto remove tiagojct/quarto-fmup\nApaga _extensions/fmup/. O formato passa a falhar com “Format not found” na próxima renderização — alterar _quarto.yml para outro formato antes ou depois.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "customise.html",
+    "href": "customise.html",
+    "title": "Personalizar",
+    "section": "",
+    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#tokens-de-design",
+    "href": "customise.html#tokens-de-design",
+    "title": "Personalizar",
+    "section": "",
+    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#substituir-um-partial",
+    "href": "customise.html#substituir-um-partial",
+    "title": "Personalizar",
+    "section": "Substituir um partial",
+    "text": "Substituir um partial\nO bloco mais provável de personalizar são os callouts. Vive em partials/_callouts.scss.\nPara mudar o tom da callout-note:\n/*-- scss:rules --*/\ndiv.callout.callout-note .callout-title,\ndiv.callout-note .callout-title {\n  background-color: rgba($fmup-yellow, 0.25) !important;  // mais saturado\n}\n!important é obrigatório - a CSS core do Quarto carrega DEPOIS do tema e ganharia em especificidade sem ele.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#tipografia",
+    "href": "customise.html#tipografia",
+    "title": "Personalizar",
+    "section": "Tipografia",
+    "text": "Tipografia\nPara trocar a fonte de corpo:\n/*-- scss:defaults --*/\n$fmup-font-sans: \"IBM Plex Sans\", system-ui, sans-serif;\nSe a nova fonte não estiver no payload fmup-fonts.css (que só inclui Atkinson Hyperlegible Next e Geist Mono), ligar via include-in-header do utilizador:\nformat:\n  fmup-html:\n    include-in-header:\n      - text: |\n          &lt;link rel=\"stylesheet\" href=\"https://...\"&gt;",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#paleta-dark",
+    "href": "customise.html#paleta-dark",
+    "title": "Personalizar",
+    "section": "Paleta dark",
+    "text": "Paleta dark\nMesmo padrão, em fmup-variables-dark.scss. Para customizar só o dark mode:\ntheme:\n  dark:\n    - default\n    - fmup.scss\n    - fmup-variables-dark.scss\n    - mydark.scss\n/*-- scss:defaults --*/\n$fmup-bg: #000000;       // preto puro em vez de #0E0E0E\n$fmup-text: #FFFFFF;",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#adicionar-logo",
+    "href": "customise.html#adicionar-logo",
+    "title": "Personalizar",
+    "section": "Adicionar logo",
+    "text": "Adicionar logo\nVer Formato HTML / Logo. Em resumo:\nfmup:\n  logo: assets/fmup-wordmark.svg",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "design-scars.html",
+    "href": "design-scars.html",
+    "title": "Design scars",
+    "section": "",
+    "text": "Esta página existe para que quem editar _extensions/fmup/*.scss não tropece duas vezes nas mesmas pedras. Cada scar descreve um problema real, a solução em vigor, e o que NÃO fazer.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#reveal-manda-no-layout.-o-tema-só-pinta.",
+    "href": "design-scars.html#reveal-manda-no-layout.-o-tema-só-pinta.",
+    "title": "Design scars",
+    "section": "1. Reveal manda no layout. O tema só pinta.",
+    "text": "1. Reveal manda no layout. O tema só pinta.\nProblema: versões antigas do tema sobrepunham display, position, e height em #title-slide e section.center para centrar verticalmente. O resultado: outros slides deixavam de renderizar porque o reveal.js perdeu o controlo do posicionamento.\nSolução: fmup-revealjs.scss muda APENAS cor, tipografia e pequenos detalhes tipográficos. Centragem vertical usa o center: true nativo do reveal, declarado no _extension.yml. Por slide, {.center}.\nNão fazer: #title-slide { display: ...; position: ...; }, section.center { height: ...; }. Nem mesmo com !important.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#callouts-important-é-obrigatório.",
+    "href": "design-scars.html#callouts-important-é-obrigatório.",
+    "title": "Design scars",
+    "section": "2. Callouts: !important é obrigatório.",
+    "text": "2. Callouts: !important é obrigatório.\nProblema: Quarto core CSS define border-left-color, .callout-title { background-color }, e ícones SVG por tipo-de-callout. Esse CSS carrega DEPOIS dos temas. Sem !important, as regras do tema perdem em especificidade.\nSolução: partials/_callouts.scss e partials/_callouts-revealjs.scss usam !important em todas as regras de cor de callout. Lendo isolado parece exagero, mas é o único hook fiável (issue Quarto ainda em aberto na 1.9.x).\nNão fazer: tirar os !important. Não usar selectors mais específicos esperando ganhar em vez disso - o Quarto também escala specificidade nas suas regras.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#b.-callout-header-e-callout-title-são-elementos-diferentes.",
+    "href": "design-scars.html#b.-callout-header-e-callout-title-são-elementos-diferentes.",
+    "title": "Design scars",
+    "section": "2b. Callout-HEADER e callout-TITLE são elementos diferentes.",
+    "text": "2b. Callout-HEADER e callout-TITLE são elementos diferentes.\nProblema: o Quarto core CSS pinta o fundo do callout na .callout-header (a barra inteira do cabeçalho), não na .callout-title (o &lt;div&gt; interno do texto). Versões anteriores sobrescreviam só .callout-title, o que parecia funcionar em light mode (porque a .callout-title por baixo aparentava colorir tudo) mas em dark mode os defaults do Bootstrap aparecem visivelmente: note a azul, tip a verde.\nSolução: os partials de callouts agora cobrem AMBOS .callout-header e .callout-title na mesma regra, com !important em ambos. Manter os dois mesmo quando aparentar redundância.\nNão fazer: abreviar a lista de selectors para só um dos dois. Já quebrou uma vez.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#c.-cabeçalho-da-tabela-literais-não-tokens-que-invertem.",
+    "href": "design-scars.html#c.-cabeçalho-da-tabela-literais-não-tokens-que-invertem.",
+    "title": "Design scars",
+    "section": "2c. Cabeçalho da tabela: literais, não tokens que invertem.",
+    "text": "2c. Cabeçalho da tabela: literais, não tokens que invertem.\nProblema: table.table thead th { background: $fmup-text; color: $fmup-yellow; } parece elegante, mas em dark mode $fmup-text é #F2F2F2 (quase-branco) e $fmup-yellow mantém-se #FFCD00. Resultado: amarelo sobre quase-branco = 1.4:1, falha WCAG.\nSolução: pinar background: #1A1A1A; color: #FFCD00; em literal, porque o “preto + amarelo” no cabeçalho da tabela é uma assinatura institucional que deve manter-se igual em ambos os modos.\nNão fazer: usar tokens que invertem para componentes cuja identidade depende de não inverter.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#footer-do-reveal-display-block-é-inline-style.",
+    "href": "design-scars.html#footer-do-reveal-display-block-é-inline-style.",
+    "title": "Design scars",
+    "section": "3. Footer do reveal: display: block é inline-style.",
+    "text": "3. Footer do reveal: display: block é inline-style.\nProblema: o support.js do Quarto, em tempo de hidratação do deck, escreve style=\"display: block\" no .reveal .footer quando não há override per-slide. Isso bate em qualquer .reveal .footer { display: flex; } declarado em CSS (inline-style &gt; stylesheet sem !important). O footer fica alinhado à esquerda em vez de centrado.\nSolução: text-align: center !important em .reveal .footer E em .reveal .footer p (cintos e suspensórios). Não tentar centrar via display: flex - perde sempre para o inline-style.\nNão fazer: .reveal .footer { display: flex; justify-content: center; }. Não funciona; em produção, alinha à esquerda.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#slide-number-alinhada-com-o-footer",
+    "href": "design-scars.html#slide-number-alinhada-com-o-footer",
+    "title": "Design scars",
+    "section": "4. Slide-number alinhada com o footer",
+    "text": "4. Slide-number alinhada com o footer\nProblema: .reveal .slide-number e .reveal .footer ficavam em linhas diferentes - a baseline tipográfica desviava 2-3 pixels.\nSolução: ambos partilham font-size: 0.4em, padding: 0.5em 0.6em e bottom: 18px. Mudando um, tem que mudar o outro.\nNão fazer: alterar font-size ou padding do slide-number sem ajustar o footer.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#largura-da-sidebar",
+    "href": "design-scars.html#largura-da-sidebar",
+    "title": "Design scars",
+    "section": "5. Largura da sidebar",
+    "text": "5. Largura da sidebar\nProblema: alargar .sidebar { width: 360px; } faz a coluna principal sobrepor-se à sidebar (Quarto usa grid; mexer só na sidebar não actualiza a coluna).\nSolução: override de .page-columns { grid-template-columns: ... } no projecto-cliente, não no tema.\nNão fazer: .sidebar { width: 360px; } em isolado.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#estilos-de-prosa-fora-do-prose",
+    "href": "design-scars.html#estilos-de-prosa-fora-do-prose",
+    "title": "Design scars",
+    "section": "6. Estilos de prosa fora do prose",
+    "text": "6. Estilos de prosa fora do prose\nProblema: o sublinhado amarelo + hover amarelo dos links de prosa fugia para a navbar, sidebar, footer, page TOC, e repo actions.\nSolução: prefixar todos os selectors com main / .content / article / .quarto-document-content e excluir .citation, .no-underline, .header-anchor, .anchorjs-link, e referências de notas-de-rodapé.\nNão fazer: declarar a { text-decoration: ... } global.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#quarto-css-vars-analyser-não-engole-base64-fonts",
+    "href": "design-scars.html#quarto-css-vars-analyser-não-engole-base64-fonts",
+    "title": "Design scars",
+    "section": "7. Quarto css-vars analyser não engole base64 fonts",
+    "text": "7. Quarto css-vars analyser não engole base64 fonts\nProblema: quando fmup-fonts.scss (com URIs data:font/woff2;base64,... inline) entrava na theme stack, o analisador interno SCSSParsingError: Expecting punctuation: \")\" falhava na fase pós-compilação que extrai variáveis SCSS para CSS custom properties. A CSS compilada continuava correcta - mas o stderr ficava com duas traces longas por render.\nSolução: ship das fontes como fmup-fonts.css (ficheiro CSS puro) e ligação via css:, não via theme:. Bypass do analisador SCSS.\nNão fazer: voltar a pôr @font-face com data URIs num ficheiro listado em theme:.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#dentro-de-string-de-attribute-selector",
+    "href": "design-scars.html#dentro-de-string-de-attribute-selector",
+    "title": "Design scars",
+    "section": "8. // dentro de string de attribute selector",
+    "text": "8. // dentro de string de attribute selector\nProblema: o mesmo analisador trata // como início de comentário, MESMO dentro de uma string de attribute selector. [href*=\"//localhost\"] fazia o parser pensar que o resto do ficheiro era comentário e abortar.\nSolução: usar [href*=\"localhost\"] sem barras.\nNão fazer: valores de attribute selector com // literais.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#templates-não-interpolam-em-include-in-header",
+    "href": "design-scars.html#templates-não-interpolam-em-include-in-header",
+    "title": "Design scars",
+    "section": "9. Templates não interpolam em include-in-header",
+    "text": "9. Templates não interpolam em include-in-header\nProblema: ficheiros listados em include-in-header são incluídos como TEXTO BRUTO. Variáveis $title$, $author$, etc. ficam literais no HTML.\nSolução: Open Graph + Twitter Card são emitidos por fmup.lua via quarto.doc.include_text('in-header', ...), com os valores extraídos de meta.title / meta.description etc. e escapados a HTML.\nNão fazer: voltar a usar partials HTML com sintaxe $if(title)$...$endif$ - nunca correm.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#b.-comments-in-.css-files-are-not-valid-browsers-bail.",
+    "href": "design-scars.html#b.-comments-in-.css-files-are-not-valid-browsers-bail.",
+    "title": "Design scars",
+    "section": "7b. // comments in .css files are NOT valid; browsers bail.",
+    "text": "7b. // comments in .css files are NOT valid; browsers bail.\nProblema: quando fmup-fonts.scss foi renomeado para fmup-fonts.css (para escapar ao analisador SCSS - ver scar #7), o header de comentários ficou em sintaxe SCSS (// ...). O parser CSS dos browsers não reconhece // como comentário; ao encontrar isto no topo do ficheiro, abandona silenciosamente o resto. Resultado: as declarações @font-face nunca chegavam ao registo do browser e a fonte caía para o stack de fallback (system-ui). Em slides reveal, o sintoma era especialmente visível porque a Atkinson Hyperlegible Next nunca apareceu.\nSolução: todos os comentários em .css em sintaxe /* ... */. Mesmo o comentário em multi-linha tem que abrir e fechar formalmente.\nNão fazer: copiar/colar comentários SCSS para um ficheiro .css. Se o ficheiro acabar em .css, abrir cada comentário com /* e fechar com */.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#c.-reveal-css-declara-link-mas-não-copia-ficheiro.",
+    "href": "design-scars.html#c.-reveal-css-declara-link-mas-não-copia-ficheiro.",
+    "title": "Design scars",
+    "section": "7c. Reveal css: declara link mas não copia ficheiro.",
+    "text": "7c. Reveal css: declara link mas não copia ficheiro.\nProblema: o css: na contribuição de formato html copia o ficheiro para _site/site_libs/quarto-contrib/... e o &lt;link rel=\"stylesheet\"&gt; resolve. Para revealjs, o css: apenas insere o &lt;link&gt; - o ficheiro NÃO é copiado para o output. No source tree o caminho funciona pelo symlink _extensions -&gt; ../../_extensions, mas qualquer deck partilhado ou servido fora do projecto vê um 404.\nSolução: para revealjs, usar include-in-header: [fmup-fonts.html] (ficheiro com &lt;style&gt;...&lt;/style&gt; a embrulhar o mesmo CSS). O resultado é um único slides.html auto-contido: serve para email, USB stick, GitHub Pages, ou file://.\nNão fazer: assumir que css: faz o mesmo nas duas contribuições de formato.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#b.-tema-de-syntax-highlighting-precisa-de-variante-dark.",
+    "href": "design-scars.html#b.-tema-de-syntax-highlighting-precisa-de-variante-dark.",
+    "title": "Design scars",
+    "section": "10b. Tema de syntax-highlighting precisa de variante dark.",
+    "text": "10b. Tema de syntax-highlighting precisa de variante dark.\nProblema: os .theme do Pandoc são JSON estático e não reagem ao data-bs-theme no &lt;html&gt;. Carregar o mesmo fmup-highlight.theme em ambos os modos deixa código quase ilegível em dark: texto a #1A1A1A (quase-preto) sobre fundo dark de superfície.\nSolução: ship de dois ficheiros, fmup-highlight.theme (light) e fmup-highlight-dark.theme (dark, com #F2F2F2/#A0A8B0/ #FFCD00/#F87171), e declaração no _extension.yml:\nhighlight-style:\n  light: fmup-highlight.theme\n  dark:  fmup-highlight-dark.theme\nNão fazer: assumir que um único .theme chega aos dois modos. Não chega.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "design-scars.html#tipografia-variável-e-typst",
+    "href": "design-scars.html#tipografia-variável-e-typst",
+    "title": "Design scars",
+    "section": "10. Tipografia variável e Typst",
+    "text": "10. Tipografia variável e Typst\nProblema: Typst (≤ 0.14.x) não suporta fontes variáveis. As woff2 que o tema embute para HTML são variable axis; o Typst avisa em cada render e cai para fallback.\nSolução: documentar (ver Formato Typst). Pedir ao utilizador para instalar versões static no sistema, ou trocar mainfont no front matter Typst.\nNão fazer: ignorar os warnings. São reais.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Design scars"
+    ]
+  },
+  {
+    "objectID": "formats/typst.html",
+    "href": "formats/typst.html",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "",
+    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
+    ]
+  },
+  {
+    "objectID": "formats/typst.html#defaults",
+    "href": "formats/typst.html#defaults",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "",
+    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
+    ]
+  },
+  {
+    "objectID": "formats/typst.html#limitações-conhecidas",
+    "href": "formats/typst.html#limitações-conhecidas",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "Limitações conhecidas",
+    "text": "Limitações conhecidas\n\n1. Fontes variáveis\nwarning: variable fonts are not currently supported and may render incorrectly\n    = hint: try installing a static version of \"atkinson hyperlegible next\" instead\nO Typst (até 0.14.x) não suporta fontes variáveis. As fontes que o tema embute para HTML/reveal são variáveis - boas para a web, más para o Typst. Soluções:\n\nInstalar a versão static no sistema que executa o quarto render. O Braille Institute distribui ficheiros TTF por peso individual (AtkinsonHyperlegibleNext-Regular.ttf, -Bold.ttf, etc.). O Typst encontra-as via fontconfig / system fonts.\nSobrepor a fonte para Typst:\nformat:\n  fmup-typst:\n    mainfont: \"Source Serif Pro\"\nEsperar pela versão Typst que suportará variáveis (issue typst/typst#185).\n\n\n\n2. Callouts não estilizados\nO template Typst do Quarto gera #callout(...) com a estética default do Quarto. O fmup-typst.typ ainda não sobrescreve essa função - PR bem-vindo. Workaround: usar #admonition() próprio em documentos onde callouts apareçam frequentemente.\n\n\n3. Logo institucional\nSem hook standard. Adicionar manualmente no início do documento:\n#image(\"assets/fmup-wordmark.svg\", width: 4cm)\nou via include-in-header próprio.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
+    ]
+  },
+  {
+    "objectID": "formats/typst.html#render",
+    "href": "formats/typst.html#render",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "Render",
+    "text": "Render\nquarto render documento.qmd --to fmup-typst\nGera documento.pdf no mesmo diretório.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
+    ]
+  },
+  {
+    "objectID": "accessibility.html",
+    "href": "accessibility.html",
+    "title": "Acessibilidade",
+    "section": "",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.\n\n\nSeta ↗ em links externos\nIndica destino externo a quem não tenha tooltips visíveis.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#decisões-do-tema",
+    "href": "accessibility.html#decisões-do-tema",
+    "title": "Acessibilidade",
+    "section": "",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.\n\n\nSeta ↗ em links externos\nIndica destino externo a quem não tenha tooltips visíveis.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#contrastes-light",
+    "href": "accessibility.html#contrastes-light",
+    "title": "Acessibilidade",
+    "section": "Contrastes (light)",
+    "text": "Contrastes (light)\n\n\n\n\n\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#1A1A1A em #FFFFFF\n~16:1\nAAA\n\n\n#1A1A1A em #FFCD00\n~12.6:1\nAAA\n\n\n#5B6470 em #FFFFFF\n~5.0:1\nAA\n\n\n#FFCD00 em #FFFFFF\n~1.4:1\nfalha - nunca usar amarelo como cor de texto sobre branco",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#contrastes-dark",
+    "href": "accessibility.html#contrastes-dark",
+    "title": "Acessibilidade",
+    "section": "Contrastes (dark)",
+    "text": "Contrastes (dark)\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#F2F2F2 em #0E0E0E\n~17:1\nAAA\n\n\n#FFCD00 em #0E0E0E\n~14:1\nAAA\n\n\n#A0A8B0 em #0E0E0E\n~7:1\nAAA\n\n\n#F87171 em #1A1A1A\n~5:1\nAA (texto), AAA (componentes UI)",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#checklist-para-conteúdo",
+    "href": "accessibility.html#checklist-para-conteúdo",
+    "title": "Acessibilidade",
+    "section": "Checklist para conteúdo",
+    "text": "Checklist para conteúdo\nCoisas que o tema NÃO pode fazer por quem escreve:\n\nCada imagem tem alt significativo (não decorativa: descreve; decorativa: alt=\"\").\nCabeçalhos seguem hierarquia sem saltos (H2 antes de H3, não H4 logo a seguir a H2).\nLinks têm texto que faz sentido fora de contexto (evitar “clica aqui”).\nTabelas têm &lt;caption&gt; ou parágrafo descritivo se forem complexas.\nVídeos têm transcrição ou legendas.\nCores no conteúdo (gráficos, diagramas) não são o único veículo de informação.\nPDF gerado via Typst: verificar tags de acessibilidade no leitor (Typst gera PDFs com estrutura semântica básica).\nlang: declarado em _quarto.yml (não confiar no default pandoc).",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#recursos",
+    "href": "accessibility.html#recursos",
+    "title": "Acessibilidade",
+    "section": "Recursos",
+    "text": "Recursos\n\nWCAG 2.2\nWebAIM contrast checker\nAtkinson Hyperlegible Next - Braille Institute",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  }
+]
