@@ -54,6 +54,34 @@ em ambos. Manter os dois mesmo quando aparentar redundância.
 **Não fazer:** abreviar a lista de selectors para só um dos dois. Já
 quebrou uma vez.
 
+## 2d. Texto sobre fundos institucionais usa tokens "ink-on-X", não `$fmup-text`.
+
+**Problema:** `$fmup-yellow` (#FFCD00) é igual nos modos light e dark.
+Mas `$fmup-text` flipa de #1A1A1A → #F2F2F2 entre modos. Botões
+`.btn-primary` (fundo amarelo) declaravam `color: $fmup-text` - em
+dark mode o texto ficava near-white sobre amarelo, contraste ~1.4:1,
+ilegível. Mesmo problema em qualquer elemento com fundo "anchor
+colour" constante e cor de texto derivada do palette flipper.
+
+**Solução:** introduzir tokens "ink-on-anchor" que NÃO flipam:
+
+```scss
+$fmup-ink-on-yellow:  #1A1A1A !default;
+$fmup-ink-on-danger:  #FFFFFF !default;
+```
+
+Usar `color: $fmup-ink-on-yellow` em vez de `color: $fmup-text` em:
+
+- `.btn-primary`, `.btn-secondary:hover`
+- Links em hover (background: $fmup-yellow)
+- Sidebar item activo (background: $fmup-yellow)
+- Navbar nav-link hover/active (background: $fmup-yellow)
+- `.reveal .highlight`, `.reveal .slides a:hover`
+
+**Não fazer:** usar `$fmup-text` como cor de texto em qualquer
+elemento cujo fundo seja `$fmup-yellow` ou `$fmup-danger`. Regra
+genérica: anchor-colour-bg → ink-on-anchor-color.
+
 ## 2c. Cabeçalho da tabela: literais, não tokens que invertem.
 
 **Problema:** `table.table thead th { background: $fmup-text; color:

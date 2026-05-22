@@ -1,6 +1,6 @@
 title: FMUP
 author: Tiago Jacinto
-version: 1.2.2
+version: 1.2.3
 quarto-required: ">=1.4.0"
 contributes:
   formats:
@@ -98,6 +98,12 @@ contributes:
       mainfont: "Atkinson Hyperlegible Next"
       sansfont: "Atkinson Hyperlegible Next"
       monofont: "Geist Mono"
+      # Quarto's Typst template uses `codefont` (not `monofont`) to
+      # populate `show raw: set text(font: codefont)`. Without this
+      # explicit key, raw / code blocks fall through to Typst's
+      # hardcoded DejaVu Sans Mono fallback, even though monofont is
+      # set. See Quarto typst-show.typ. Both kept for forward compat.
+      codefont: "Geist Mono"
       fontsize: 11pt
       margin:
         x: 2.5cm
@@ -112,6 +118,6 @@ contributes:
       # BoldItalic + Geist Mono Regular / Medium directly, no warnings
       # and PDFs render with the institutional typography end-to-end.
       font-paths:
-        - _extensions/fmup/fonts
+        - fonts
       include-in-header:
         - fmup-typst.typ

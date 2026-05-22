@@ -22,6 +22,14 @@ $fmup-border-strong:  #B3BBC4 !default;
 // used solely for callout-important (the universal "stop" signal).
 $fmup-danger:         #B91C1C !default;
 
+// "Ink-on-anchor" tokens: text colour to use ON the institutional
+// anchor backgrounds. These do NOT flip between light/dark mode
+// because the anchor colours themselves do not flip. $fmup-text
+// would invert to near-white in dark mode and become unreadable on
+// the still-yellow background. See design scar #2d.
+$fmup-ink-on-yellow:  #1A1A1A !default;
+$fmup-ink-on-danger:  #FFFFFF !default;
+
 // ---- Typography ----
 $fmup-font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
 $fmup-font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;

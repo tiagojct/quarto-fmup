@@ -140,8 +140,8 @@ $code-block-font-size:          0.7em;
 
 .reveal .slides a:not(.no-underline):hover {
   background: $fmup-yellow;
-  color: $fmup-text;
-  text-decoration-color: $fmup-text;
+  color: $fmup-ink-on-yellow;
+  text-decoration-color: $fmup-ink-on-yellow;
 }
 
 .reveal .slides a.citation,
@@ -240,6 +240,7 @@ $code-block-font-size:          0.7em;
 
 .reveal .highlight {
   background: $fmup-yellow;
+  color: $fmup-ink-on-yellow;
   padding: 0.05em 0.25em;
   border-radius: 3px;
 }

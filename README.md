@@ -24,12 +24,16 @@ quarto add tiagojct/quarto-fmup
 ```
 
 When prompted, type `y` to trust the extension. That's it. The
-fonts (Atkinson Hyperlegible Next + Geist Mono) are loaded from Google
-Fonts automatically — no system install needed.
+fonts (Atkinson Hyperlegible Next + Geist Mono) ship embedded
+inside the extension — no Google Fonts request, no system install
+needed.
 
 ## Use
 
-Three formats are contributed. Pick the one(s) you need.
+Three formats are contributed. Each has a `fmup-` prefix and **you
+must use the prefixed name** — bare `format: html` / `format: typst`
+will NOT pick up the extension's defaults (theme, fonts, callout
+styling, Lua filter, OG meta).
 
 ### Website or book
 
@@ -58,6 +62,11 @@ format:
   fmup-typst: default
 ```
 
+> The Typst format uses Typst's BibLaTeX parser, which is stricter
+> than Pandoc's citeproc. Duplicate `.bib` entries that Pandoc
+> tolerated will be a fatal render error here — deduplicate the
+> bibliography before switching from `html` to `fmup-typst`.
+
 ## Examples
 
 Three minimal reference projects live in `example/`:
@@ -75,6 +84,32 @@ Preview any of them with `quarto preview` from inside the folder.
 ```sh
 quarto update tiagojct/quarto-fmup
 ```
+
+## Known issues
+
+### Single-file render of a nested `.qmd` may fail to resolve the extension
+
+If you install via `quarto add tiagojct/quarto-fmup`, the extension
+lands at `_extensions/tiagojct/fmup/` (Quarto's canonical
+`<org>/<name>` layout). When rendering a single nested file:
+
+```sh
+quarto render subdir/chapter.qmd   # → ERROR: Unable to read the extension 'fmup'
+```
+
+This is a Quarto extension-resolver bug (the resolver does not walk
+up to the project root when given a single nested file). It does
+**not** affect:
+
+- `quarto render` (project-wide) — works.
+- `quarto render chapter.qmd` at the project root — works.
+- `quarto preview` of the project — works.
+
+Workarounds:
+
+1. Render project-wide (`quarto render`) instead of single-file.
+2. Flatten the extension path: `mv _extensions/tiagojct/fmup _extensions/fmup`
+   (note: breaks `quarto update`, which expects the org-prefixed path).
 
 ## Override
 

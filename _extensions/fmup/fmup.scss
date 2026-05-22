@@ -58,8 +58,8 @@ article a:not(.citation):not(.no-underline),
 
   &:hover {
     background: $fmup-yellow;
-    color: $fmup-text;
-    text-decoration-color: $fmup-text;
+    color: $fmup-ink-on-yellow;
+    text-decoration-color: $fmup-ink-on-yellow;
   }
 }
 
@@ -161,7 +161,7 @@ h1 { font-weight: 800; }
 
     &:hover, &.active {
       background: $fmup-yellow;
-      color: $fmup-text !important;
+      color: $fmup-ink-on-yellow !important;
     }
   }
 
@@ -203,9 +203,9 @@ h1 { font-weight: 800; }
   .sidebar-item.active > .sidebar-item-container .sidebar-item-text,
   .sidebar-link.active {
     background: $fmup-yellow;
-    color: $fmup-text;
+    color: $fmup-ink-on-yellow;
     font-weight: 700;
-    border-left: 3px solid $fmup-text;
+    border-left: 3px solid $fmup-ink-on-yellow;
     padding: 0.55rem 0.6rem 0.55rem calc(0.6rem - 3px);
   }
 }
@@ -311,13 +311,13 @@ nav.toc-active ul li a.active,
 
 .btn-primary {
   background-color: $fmup-yellow !important;
-  border-color: $fmup-text !important;
-  color: $fmup-text !important;
+  border-color: $fmup-ink-on-yellow !important;
+  color: $fmup-ink-on-yellow !important;
   font-weight: 700;
 
   &:hover, &:focus, &:active {
-    background-color: $fmup-text !important;
-    border-color: $fmup-text !important;
+    background-color: $fmup-ink-on-yellow !important;
+    border-color: $fmup-ink-on-yellow !important;
     color: $fmup-yellow !important;
   }
 }
@@ -330,7 +330,7 @@ nav.toc-active ul li a.active,
 
   &:hover {
     background-color: $fmup-yellow !important;
-    color: $fmup-text !important;
+    color: $fmup-ink-on-yellow !important;
   }
 }
 

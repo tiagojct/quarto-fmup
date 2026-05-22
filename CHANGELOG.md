@@ -5,7 +5,62 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.2.2
+## [Unreleased] - 1.2.3
+
+### Fixed (CRITICAL)
+
+- **Typst PDF: `font-paths` was a project-relative absolute path
+  (`_extensions/fmup/fonts`), broken under `quarto add` because
+  Quarto installs extensions at `_extensions/<org>/<name>/`.** With
+  the canonical org-prefixed install, Typst looked for fonts in
+  `_extensions/fmup/fonts` (does not exist), silently fell back to
+  Libertinus Serif for the body and DejaVu Sans Mono for code.
+  Changed to `font-paths: [fonts]` (relative to the extension dir);
+  Quarto auto-resolves this to the correct absolute path regardless
+  of org-prefix.
+- **Typst PDF: Geist Mono fell back to DejaVu Sans Mono in body
+  text.** Two causes:
+  1. Quarto's Typst template reads `codefont:` from YAML, not
+     `monofont:`. Without an explicit `codefont:` key in the typst
+     contribution, raw / code blocks hit Typst's hardcoded DejaVu
+     Sans Mono default. Added `codefont: "Geist Mono"` to the typst
+     format block.
+  2. Geist Mono only shipped Regular + Medium TTFs; Bold + Italic
+     requests synthesised or fell back. Added the official Vercel
+     Geist Mono Regular / Medium / Bold / Italic TTFs (~745 KB
+     total) under `_extensions/fmup/fonts/`. Geist Mono does not
+     ship a true BoldItalic upstream; Typst synthesises.
+- **Buttons + yellow-anchor surfaces were illegible in dark mode.**
+  `.btn-primary` declared `color: $fmup-text`, which flips to
+  `#F2F2F2` (near-white) in dark mode while the background stays
+  `#FFCD00` yellow. Contrast collapsed to ~1.4:1. Same bug class
+  affected `.btn-secondary:hover`, navbar nav-link hover/active,
+  sidebar active item, prose link hover, `.reveal .slides a:hover`,
+  and `.reveal .highlight`. Introduced two constant tokens that do
+  NOT flip across modes:
+  ```scss
+  $fmup-ink-on-yellow:  #1A1A1A !default;
+  $fmup-ink-on-danger:  #FFFFFF !default;
+  ```
+  Used wherever the background is an institutional anchor colour.
+  See design scar #2d.
+
+### Documented
+
+- **README**: explicit warning that `format: fmup-*` (prefixed) is
+  REQUIRED. Bare `format: typst` / `format: html` does NOT pick up
+  extension defaults.
+- **README**: known-issue note on single-file `quarto render
+  subdir/chapter.qmd` failing to resolve the extension under
+  org-prefixed install (Quarto resolver bug). Workarounds: render
+  project-wide, or flatten the extension path.
+- **README**: Typst's BibLaTeX parser is stricter than Pandoc's
+  citeproc. Duplicate `.bib` entries tolerated under `html` become
+  fatal under `fmup-typst`. Deduplicate before switching formats.
+- **Design scar #2d** (text-on-anchor-bg colour tokens) added to
+  `docs/design-scars.qmd`.
+
+## [1.2.2] - 2026-05-22
 
 ### Removed
 
