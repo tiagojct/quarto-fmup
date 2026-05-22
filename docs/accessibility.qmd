@@ -13,7 +13,6 @@ description: "Decisões WCAG-baseadas e checklist para conteúdo."
 | Foco visível: `2px solid #1A1A1A` + `box-shadow` amarelo | Cumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia. |
 | Vermelho `#B91C1C` reservado a `callout-important` | Único vermelho na paleta; reconhecido universalmente como "parar". Na dark mode clareia para `#F87171` para manter ≥4.5:1 contra fundo escuro. |
 | `prefers-reduced-motion: reduce` | Anula `smooth-scroll`. Bootstrap 5 trata transições e animações via `$enable-reduced-motion: true`. |
-| Seta `↗` em links externos | Indica destino externo a quem não tenha tooltips visíveis. |
 
 ## Contrastes (light)
 

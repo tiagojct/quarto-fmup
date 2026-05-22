@@ -5,7 +5,47 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.2.1
+## [Unreleased] - 1.2.2
+
+### Removed
+
+- **External-link `::after` arrow (`↗`).** Two visual artefacts:
+  on hover the yellow background flowed over the arrow but the
+  underline did not extend through the ::after pseudo-element, so
+  the arrow read as floating in a yellow void; in dense rows
+  (cards, single-line table cells with links) the arrow sat
+  ambiguously close to other icons (anchorjs headings, table
+  markers) and created visual stutter. Link distinction is now
+  carried purely by the existing yellow underline
+  (`text-decoration-thickness: 2.5px`) + `font-weight: 500`, which
+  is already WCAG-compliant (two channels). Documentation in
+  `docs/formats/html.qmd` and `docs/accessibility.qmd` updated.
+
+### Documented
+
+- **New design scar #7d**: root `.gitignore` `*.<ext>` rules
+  silently swallow assets inside `_extensions/`. Lives in
+  `docs/design-scars.qmd`, `CONTRIBUTING.md` and `CLAUDE.md`. The
+  v1.2.0 release that shipped without `fmup-fonts.html` is the
+  reference incident.
+
+## [1.2.1] - 2026-05-22
+
+### Fixed
+
+- **`fmup-fonts.html` was missing from the v1.2.0 release tarball.**
+  Root `.gitignore` had a broad `*.html` rule (intended for Quarto
+  build artefacts) which silently swallowed the file. Downstream
+  installs via `quarto add / update` got an `_extension.yml` that
+  references `include-in-header: [fmup-fonts.html]` for the
+  `fmup-revealjs` format but no such file on disk, so reveal decks
+  fell back to system fonts. `.gitignore` now negates the path
+  (`!_extensions/fmup/fmup-fonts.html`); the file is shipped with
+  this release. Affected users: anyone who ran
+  `quarto add tiagojct/quarto-fmup@v1.2.0` for reveal output - run
+  `quarto update tiagojct/quarto-fmup` to pull the fix.
+
+> **v1.2.0 is broken:** missing `fmup-fonts.html`. Use v1.2.1 or later. See above.
 
 ### Fixed
 

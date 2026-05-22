@@ -193,6 +193,34 @@ file://.
 **Não fazer:** assumir que `css:` faz o mesmo nas duas contribuições
 de formato.
 
+## 7d. `.gitignore` `*.<ext>` engole assets do extension.
+
+**Problema:** o `.gitignore` da raiz tem `*.html` (para artefactos de
+build do Quarto). Quando se adicionou `fmup-fonts.html` em
+`_extensions/fmup/`, o `git add -A` incluiu o ficheiro - ou pensava
+que tinha incluído. Na realidade o glob `*.html` apanhava-o em
+silêncio e o ficheiro nunca chegou ao commit. A versão v1.2.0 foi
+publicada sem o ficheiro: utilizadores que fizeram
+`quarto add tiagojct/quarto-fmup` ficaram com um `_extension.yml` a
+referenciar `include-in-header: [fmup-fonts.html]` mas sem o
+ficheiro em disco. Resultado: o reveal caía para fonte de sistema.
+
+**Solução:** negar o caminho explicitamente no `.gitignore`:
+
+```gitignore
+*.html
+!_extensions/fmup/fmup-fonts.html
+```
+
+Padrão genérico: para qualquer asset shipped pelo extension cujo
+extension casa com um glob de build (`*.html`, `*.pdf`, etc.),
+adicionar negação explícita.
+
+**Não fazer:** confiar que `git add -A` mostra a lista completa.
+Sempre verificar com `git status` E `git check-ignore -v
+caminho/suspeito` antes de tagar uma release. Ou usar `git ls-files`
+para confirmar o conteúdo do tag.
+
 ## 10b. Tema de syntax-highlighting precisa de variante dark.
 
 **Problema:** os `.theme` do Pandoc são JSON estático e não reagem ao

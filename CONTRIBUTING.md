@@ -88,6 +88,14 @@ come back if you re-introduce the pattern. The full register lives at
    header comments (common SCSS habit after renaming), the parser
    bails and every subsequent `@font-face` declaration is silently
    discarded.
+7c. **`.gitignore` `*.<ext>` rules at the root SILENTLY swallow
+   assets inside `_extensions/`.** v1.2.0 shipped without
+   `fmup-fonts.html` because the build-artefact `*.html` glob
+   matched it. Always negate explicitly
+   (`!_extensions/fmup/fmup-fonts.html`) for any asset whose
+   extension overlaps a build glob. Verify with
+   `git ls-files _extensions/fmup/ | grep <file>` BEFORE tagging a
+   release.
 8. **Attribute selector values must not contain `//`.** The css-vars
    analyser treats `//` as a comment start even inside strings.
 9. **`include-in-header` does not interpolate Pandoc templates.** Use

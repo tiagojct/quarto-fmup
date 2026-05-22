@@ -63,23 +63,22 @@ article a:not(.citation):not(.no-underline),
   }
 }
 
-// External-link affordance. Since `link-external-icon: false` is set
-// in _extension.yml (Quarto's built-in icon clashes with the theme's
-// yellow underline), append a CSS arrow. The selector targets any
-// href starting with http but excludes citations, links the author
-// marks .no-underline, and localhost previews. The arrow inherits the
-// muted text colour so it reads as a hint, not as link content.
-main a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
-.content a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
-article a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
-.quarto-document-content a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after {
-  content: " \2197";
-  display: inline-block;
-  margin-left: 0.1em;
-  color: $fmup-text-muted;
-  font-weight: 400;
-  text-decoration: none;
-}
+// (v1.2.2: removed the external-link ::after arrow.)
+// The arrow created two awkward visual artefacts:
+//
+//   1. On link:hover, the yellow background filled the whole link
+//      box including the ::after pseudo-element, but the underline
+//      stopped at the end of the text and never extended to the
+//      arrow. The arrow read as floating in a yellow void.
+//   2. In dense lines (cards, table cells with one-line links), the
+//      arrow sat ambiguously between "external-link cue" and the
+//      anchorjs heading icon next to it, creating a visual stutter.
+//
+// Distinction from body text is already carried by the yellow
+// underline (text-decoration-thickness: 2.5px) and font-weight: 500
+// declared on prose-link rules above. That cue is WCAG-compliant
+// (two channels: weight + underline) and stays consistent across
+// hover, focus, and the link's pseudo-element children.
 
 // Citation / cross-reference numbers (e.g. [1], [Anexo A], anchor icons
 // next to headings) - no yellow underline.

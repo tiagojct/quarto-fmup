@@ -18,7 +18,7 @@ Ao escolher `fmup-html`, herdam-se automaticamente:
 | `code-overflow` | `wrap` |
 | `smooth-scroll` | `true` |
 | `link-external-newwindow` | `true` |
-| `link-external-icon` | `false` (substituído por seta `↗` em CSS) |
+| `link-external-icon` | `false` (a distinção dos links externos faz-se pelo sublinhado amarelo + `font-weight: 500`) |
 | `highlight-style` | `fmup-highlight.theme` (paleta FMUP) |
 
 Para sobrepor qualquer um, declarar no próprio `_quarto.yml`:
