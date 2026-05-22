@@ -1,0 +1,53 @@
+---
+title: "Acessibilidade"
+description: "Decisões WCAG-baseadas e checklist para conteúdo."
+---
+
+## Decisões do tema
+
+| Decisão | Razão |
+|---|---|
+| Tipografia Atkinson Hyperlegible Next | Desenhada pelo *Braille Institute* para utilizadores com visão reduzida. Distingue glifos comummente confundidos (`I`, `l`, `1`; `O`, `0`). |
+| `font-weight: 500` em links de prosa | Segunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo). |
+| Sublinhado amarelo a `2.5px` em links | Reforço visual; mantido mesmo em renderizadores monocromáticos. |
+| Foco visível: `2px solid #1A1A1A` + `box-shadow` amarelo | Cumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia. |
+| Vermelho `#B91C1C` reservado a `callout-important` | Único vermelho na paleta; reconhecido universalmente como "parar". Na dark mode clareia para `#F87171` para manter ≥4.5:1 contra fundo escuro. |
+| `prefers-reduced-motion: reduce` | Anula `smooth-scroll`. Bootstrap 5 trata transições e animações via `$enable-reduced-motion: true`. |
+| Seta `↗` em links externos | Indica destino externo a quem não tenha tooltips visíveis. |
+
+## Contrastes (light)
+
+| Combinação | Ratio | WCAG |
+|---|---|---|
+| `#1A1A1A` em `#FFFFFF` | ~16:1 | AAA |
+| `#1A1A1A` em `#FFCD00` | ~12.6:1 | AAA |
+| `#5B6470` em `#FFFFFF` | ~5.0:1 | AA |
+| `#FFCD00` em `#FFFFFF` | ~1.4:1 | **falha** - nunca usar amarelo como cor de texto sobre branco |
+
+## Contrastes (dark)
+
+| Combinação | Ratio | WCAG |
+|---|---|---|
+| `#F2F2F2` em `#0E0E0E` | ~17:1 | AAA |
+| `#FFCD00` em `#0E0E0E` | ~14:1 | AAA |
+| `#A0A8B0` em `#0E0E0E` | ~7:1 | AAA |
+| `#F87171` em `#1A1A1A` | ~5:1 | AA (texto), AAA (componentes UI) |
+
+## Checklist para conteúdo
+
+Coisas que o tema NÃO pode fazer por quem escreve:
+
+- [ ] Cada imagem tem `alt` significativo (não decorativa: descreve; decorativa: `alt=""`).
+- [ ] Cabeçalhos seguem hierarquia sem saltos (H2 antes de H3, não H4 logo a seguir a H2).
+- [ ] Links têm texto que faz sentido fora de contexto (evitar "clica aqui").
+- [ ] Tabelas têm `<caption>` ou parágrafo descritivo se forem complexas.
+- [ ] Vídeos têm transcrição ou legendas.
+- [ ] Cores no conteúdo (gráficos, diagramas) não são o único veículo de informação.
+- [ ] PDF gerado via Typst: verificar tags de acessibilidade no leitor (Typst gera PDFs com estrutura semântica básica).
+- [ ] `lang:` declarado em `_quarto.yml` (não confiar no default pandoc).
+
+## Recursos
+
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
+- [WebAIM contrast checker](https://webaim.org/resources/contrastchecker/)
+- [Atkinson Hyperlegible Next - Braille Institute](https://www.brailleinstitute.org/freefont)

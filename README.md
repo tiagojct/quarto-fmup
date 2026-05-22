@@ -4,6 +4,17 @@ The Faculty of Medicine of the University of Porto (FMUP) visual identity
 for Quarto — yellow `#FFCD00` + black + Atkinson Hyperlegible Next, ready
 for **websites**, **books**, and **reveal.js presentations**.
 
+<!-- screenshots: add after the next render -->
+<!--
+| Website | Book | Slides |
+|---|---|---|
+| ![](docs/screenshots/site.png) | ![](docs/screenshots/book.png) | ![](docs/screenshots/slides.png) |
+-->
+
+> **Screenshots** of the three example projects live under
+> `docs/screenshots/` once generated. See `CONTRIBUTING.md` for the
+> capture workflow.
+
 ## Install
 
 From the root of any Quarto project:

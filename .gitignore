@@ -16,3 +16,13 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+/.luarc.json
+
+# Visual-regression scaffold
+tests/visual/node_modules/
+tests/visual/test-results/
+tests/visual/playwright-report/
+
+# Quarto compile diagnostics (regenerated on each render)
+_quarto_internal_scss_error.scss

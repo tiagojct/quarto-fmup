@@ -1,0 +1,101 @@
+---
+title: "Formato Reveal.js (`fmup-revealjs`)"
+description: "Apresentações reveal.js com a identidade FMUP."
+---
+
+## Defaults
+
+| Opção | Valor |
+|---|---|
+| `slide-number` | `c/t` (atual / total) |
+| `slide-level` | `2` (H2 = novo slide) |
+| `transition` | `none` |
+| `width × height` | `1280 × 720` |
+| `center` | `true` (centra cada slide verticalmente) |
+| `controls` | `false` |
+| `menu` | `false` |
+| `hash` / `history` | ambas `true` |
+| `min-scale` / `max-scale` | `0.2` / `2.0` |
+
+`mainfont` e `monofont` correspondem aos do HTML. A fonte do corpo dos
+slides é `28px`, o que é mais pequeno do que o default do reveal
+(40px) - opção deliberada para acomodar mais conteúdo por slide em
+contexto académico. Para auditórios grandes, sobrepor:
+
+```yaml
+format:
+  fmup-revealjs:
+    revealjs-plugins: []
+---
+````{=html}
+<style>.reveal { font-size: 36px; }</style>
+````
+```
+
+## Footer
+
+Recomendado declarar uma vez:
+
+```yaml
+format:
+  fmup-revealjs:
+    footer: "FMUP · Faculdade de Medicina da Universidade do Porto"
+```
+
+O footer fica centrado horizontalmente. Centrar via `text-align:
+center` no SCSS precisa de `!important` porque o
+`support.js` do Quarto força `display: block` no `<p>` dentro do footer
+em tempo de hidratação - se algum CSS personalizado pretende mudar isto,
+ler [Design scars](../design-scars.qmd).
+
+## Logo
+
+Mesmo mecanismo do HTML: declarar `fmup.logo` no front matter e o
+`fmup.lua` propaga para o `logo:` de topo, que o reveal mostra como
+imagem fixa em todos os slides.
+
+```yaml
+fmup:
+  logo: assets/fmup-wordmark.svg
+```
+
+## Callouts
+
+`fmup-revealjs` aplica a mesma repaleta de callouts do HTML:
+
+- `note` - amarelo (acento institucional).
+- `tip`, `warning`, `caution` - escala de cinzentos.
+- `important` - vermelho `#B91C1C` (o único vermelho reservado).
+
+## Divisores de secção
+
+Para criar um slide divisor centrado verticalmente:
+
+```markdown
+## Parte 2 {.center}
+```
+
+A classe `.center` é interpretada pelo plugin de centragem do reveal.
+Não tentar centrar via CSS no tema - dá conflito com o
+posicionamento que o reveal aplica nativamente.
+
+::: {.callout-warning}
+**Não sobrepor `display`, `position` ou `height` em `#title-slide` ou
+`section.center`.** Esses overrides batem com a especificidade do
+posicionamento do reveal e quebram a renderização dos outros slides. O
+tema só pinta - o layout pertence ao reveal.
+:::
+
+## Slide-number
+
+O número do slide partilha tipografia (`Geist Mono`, `0.4em`), padding
+e offset com o texto do footer, para que ambos fiquem alinhados na
+mesma linha base.
+
+## Atalhos úteis
+
+- `?` - mostra atalhos do reveal.
+- `s` - abre o painel de notas do orador.
+- `f` - ecrã inteiro.
+- `o` - vista geral (todos os slides em grelha).
+- `b` ou `.` - blackout.

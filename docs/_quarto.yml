@@ -1,0 +1,63 @@
+project:
+  type: website
+  output-dir: _site
+
+lang: pt-PT
+
+website:
+  title: "quarto-fmup"
+  description: "Tema FMUP para Quarto"
+  site-url: "https://tiagojct.github.io/quarto-fmup/"
+  repo-url: "https://github.com/tiagojct/quarto-fmup"
+  repo-actions: [edit, issue]
+  open-graph: true
+  twitter-card: true
+  navbar:
+    background: white
+    pinned: true
+    search: true
+    left:
+      - href: index.qmd
+        text: Início
+      - href: install.qmd
+        text: Instalação
+      - text: Formatos
+        menu:
+          - href: formats/html.qmd
+            text: HTML
+          - href: formats/revealjs.qmd
+            text: Reveal.js
+          - href: formats/typst.qmd
+            text: Typst
+      - href: customise.qmd
+        text: Personalizar
+      - href: accessibility.qmd
+        text: Acessibilidade
+    right:
+      - icon: github
+        href: https://github.com/tiagojct/quarto-fmup
+        aria-label: GitHub
+  sidebar:
+    style: docked
+    contents:
+      - section: "Começar"
+        contents:
+          - index.qmd
+          - install.qmd
+      - section: "Formatos"
+        contents:
+          - formats/html.qmd
+          - formats/revealjs.qmd
+          - formats/typst.qmd
+      - section: "Avançado"
+        contents:
+          - customise.qmd
+          - accessibility.qmd
+          - dataviz.qmd
+          - design-scars.qmd
+  page-footer:
+    left: "MIT License · Tema FMUP"
+    right: "Construído com [Quarto](https://quarto.org) + quarto-fmup"
+
+format:
+  fmup-html: default

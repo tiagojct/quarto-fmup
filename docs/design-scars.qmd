@@ -1,0 +1,226 @@
+---
+title: "Design scars"
+description: "Bugs que o SCSS resolve, e que voltarão a aparecer se reescrito sem cuidado."
+---
+
+Esta página existe para que quem editar `_extensions/fmup/*.scss`
+**não tropece duas vezes** nas mesmas pedras. Cada *scar* descreve um
+problema real, a solução em vigor, e o que NÃO fazer.
+
+## 1. Reveal manda no layout. O tema só pinta.
+
+**Problema:** versões antigas do tema sobrepunham `display`,
+`position`, e `height` em `#title-slide` e `section.center` para
+centrar verticalmente. O resultado: outros slides deixavam de
+renderizar porque o reveal.js perdeu o controlo do posicionamento.
+
+**Solução:** `fmup-revealjs.scss` muda APENAS cor, tipografia e
+pequenos detalhes tipográficos. Centragem vertical usa o `center: true`
+nativo do reveal, declarado no `_extension.yml`. Por slide, `{.center}`.
+
+**Não fazer:** `#title-slide { display: ...; position: ...; }`,
+`section.center { height: ...; }`. Nem mesmo com `!important`.
+
+## 2. Callouts: `!important` é obrigatório.
+
+**Problema:** Quarto core CSS define `border-left-color`,
+`.callout-title { background-color }`, e ícones SVG por
+tipo-de-callout. Esse CSS carrega DEPOIS dos temas. Sem `!important`,
+as regras do tema perdem em especificidade.
+
+**Solução:** `partials/_callouts.scss` e
+`partials/_callouts-revealjs.scss` usam `!important` em todas as
+regras de cor de callout. Lendo isolado parece exagero, mas é o único
+hook fiável (issue Quarto ainda em aberto na 1.9.x).
+
+**Não fazer:** tirar os `!important`. Não usar selectors mais
+específicos esperando ganhar em vez disso - o Quarto também escala
+specificidade nas suas regras.
+
+## 2b. Callout-HEADER e callout-TITLE são elementos diferentes.
+
+**Problema:** o Quarto core CSS pinta o fundo do callout na
+`.callout-header` (a barra inteira do cabeçalho), não na
+`.callout-title` (o `<div>` interno do texto). Versões anteriores
+sobrescreviam só `.callout-title`, o que parecia funcionar em light
+mode (porque a `.callout-title` por baixo aparentava colorir tudo) mas
+em dark mode os defaults do Bootstrap aparecem visivelmente: note a
+azul, tip a verde.
+
+**Solução:** os partials de callouts agora cobrem AMBOS
+`.callout-header` e `.callout-title` na mesma regra, com `!important`
+em ambos. Manter os dois mesmo quando aparentar redundância.
+
+**Não fazer:** abreviar a lista de selectors para só um dos dois. Já
+quebrou uma vez.
+
+## 2c. Cabeçalho da tabela: literais, não tokens que invertem.
+
+**Problema:** `table.table thead th { background: $fmup-text; color:
+$fmup-yellow; }` parece elegante, mas em dark mode `$fmup-text` é
+`#F2F2F2` (quase-branco) e `$fmup-yellow` mantém-se `#FFCD00`.
+Resultado: amarelo sobre quase-branco = 1.4:1, falha WCAG.
+
+**Solução:** pinar `background: #1A1A1A; color: #FFCD00;` em literal,
+porque o "preto + amarelo" no cabeçalho da tabela é uma assinatura
+institucional que deve manter-se igual em ambos os modos.
+
+**Não fazer:** usar tokens que invertem para componentes cuja
+identidade depende de não inverter.
+
+## 3. Footer do reveal: `display: block` é inline-style.
+
+**Problema:** o `support.js` do Quarto, em tempo de hidratação do
+deck, escreve `style="display: block"` no `.reveal .footer` quando
+não há override per-slide. Isso bate em qualquer
+`.reveal .footer { display: flex; }` declarado em CSS (inline-style >
+stylesheet sem `!important`). O footer fica alinhado à esquerda em vez
+de centrado.
+
+**Solução:** `text-align: center !important` em `.reveal .footer` E
+em `.reveal .footer p` (cintos e suspensórios). Não tentar
+centrar via `display: flex` - perde sempre para o inline-style.
+
+**Não fazer:** `.reveal .footer { display: flex; justify-content: center; }`.
+Não funciona; em produção, alinha à esquerda.
+
+## 4. Slide-number alinhada com o footer
+
+**Problema:** `.reveal .slide-number` e `.reveal .footer` ficavam em
+linhas diferentes - a baseline tipográfica desviava 2-3 pixels.
+
+**Solução:** ambos partilham `font-size: 0.4em`, `padding: 0.5em 0.6em`
+e `bottom: 18px`. Mudando um, tem que mudar o outro.
+
+**Não fazer:** alterar `font-size` ou `padding` do slide-number sem
+ajustar o footer.
+
+## 5. Largura da sidebar
+
+**Problema:** alargar `.sidebar { width: 360px; }` faz a coluna
+principal sobrepor-se à sidebar (Quarto usa grid; mexer só na sidebar
+não actualiza a coluna).
+
+**Solução:** override de `.page-columns { grid-template-columns: ... }`
+no projecto-cliente, não no tema.
+
+**Não fazer:** `.sidebar { width: 360px; }` em isolado.
+
+## 6. Estilos de prosa fora do prose
+
+**Problema:** o sublinhado amarelo + hover amarelo dos links de prosa
+fugia para a navbar, sidebar, footer, page TOC, e *repo actions*.
+
+**Solução:** prefixar todos os selectors com
+`main / .content / article / .quarto-document-content` e excluir
+`.citation`, `.no-underline`, `.header-anchor`, `.anchorjs-link`, e
+referências de notas-de-rodapé.
+
+**Não fazer:** declarar `a { text-decoration: ... }` global.
+
+## 7. Quarto `css-vars analyser` não engole base64 fonts
+
+**Problema:** quando `fmup-fonts.scss` (com URIs `data:font/woff2;base64,...`
+inline) entrava na *theme stack*, o analisador interno
+`SCSSParsingError: Expecting punctuation: ")"` falhava na fase
+pós-compilação que extrai variáveis SCSS para CSS custom properties.
+A CSS compilada continuava correcta - mas o `stderr` ficava com
+duas traces longas por render.
+
+**Solução:** ship das fontes como `fmup-fonts.css` (ficheiro CSS puro)
+e ligação via `css:`, não via `theme:`. Bypass do analisador SCSS.
+
+**Não fazer:** voltar a pôr `@font-face` com data URIs num ficheiro
+listado em `theme:`.
+
+## 8. `//` dentro de string de attribute selector
+
+**Problema:** o mesmo analisador trata `//` como início de comentário,
+MESMO dentro de uma string de attribute selector. `[href*="//localhost"]`
+fazia o parser pensar que o resto do ficheiro era comentário e abortar.
+
+**Solução:** usar `[href*="localhost"]` sem barras.
+
+**Não fazer:** valores de attribute selector com `//` literais.
+
+## 9. Templates não interpolam em `include-in-header`
+
+**Problema:** ficheiros listados em `include-in-header` são incluídos
+como TEXTO BRUTO. Variáveis `$title$`, `$author$`, etc. ficam
+literais no HTML.
+
+**Solução:** Open Graph + Twitter Card são emitidos por `fmup.lua`
+via `quarto.doc.include_text('in-header', ...)`, com os valores
+extraídos de `meta.title` / `meta.description` etc. e escapados a HTML.
+
+**Não fazer:** voltar a usar partials HTML com sintaxe `$if(title)$...$endif$`
+- nunca correm.
+
+## 7b. `//` comments in `.css` files are NOT valid; browsers bail.
+
+**Problema:** quando `fmup-fonts.scss` foi renomeado para
+`fmup-fonts.css` (para escapar ao analisador SCSS - ver scar #7), o
+header de comentários ficou em sintaxe SCSS (`// ...`). O parser CSS
+dos browsers não reconhece `//` como comentário; ao encontrar isto no
+topo do ficheiro, abandona silenciosamente o resto. Resultado: as
+declarações `@font-face` nunca chegavam ao registo do browser e a
+fonte caía para o stack de fallback (system-ui). Em slides reveal, o
+sintoma era especialmente visível porque a Atkinson Hyperlegible Next
+nunca apareceu.
+
+**Solução:** todos os comentários em `.css` em sintaxe `/* ... */`.
+Mesmo o comentário em multi-linha tem que abrir e fechar formalmente.
+
+**Não fazer:** copiar/colar comentários SCSS para um ficheiro `.css`.
+Se o ficheiro acabar em `.css`, abrir cada comentário com `/*` e
+fechar com `*/`.
+
+## 7c. Reveal `css:` declara link mas não copia ficheiro.
+
+**Problema:** o `css:` na contribuição de formato html copia o
+ficheiro para `_site/site_libs/quarto-contrib/...` e o `<link
+rel="stylesheet">` resolve. Para `revealjs`, o `css:` apenas insere o
+`<link>` - o ficheiro NÃO é copiado para o output. No source tree o
+caminho funciona pelo symlink `_extensions -> ../../_extensions`, mas
+qualquer deck partilhado ou servido fora do projecto vê um 404.
+
+**Solução:** para revealjs, usar
+`include-in-header: [fmup-fonts.html]` (ficheiro com `<style>...</style>`
+a embrulhar o mesmo CSS). O resultado é um único `slides.html`
+auto-contido: serve para email, USB stick, GitHub Pages, ou
+file://.
+
+**Não fazer:** assumir que `css:` faz o mesmo nas duas contribuições
+de formato.
+
+## 10b. Tema de syntax-highlighting precisa de variante dark.
+
+**Problema:** os `.theme` do Pandoc são JSON estático e não reagem ao
+`data-bs-theme` no `<html>`. Carregar o mesmo `fmup-highlight.theme`
+em ambos os modos deixa código quase ilegível em dark: texto a
+`#1A1A1A` (quase-preto) sobre fundo dark de superfície.
+
+**Solução:** ship de dois ficheiros, `fmup-highlight.theme` (light)
+e `fmup-highlight-dark.theme` (dark, com `#F2F2F2`/`#A0A8B0`/
+`#FFCD00`/`#F87171`), e declaração no `_extension.yml`:
+
+```yaml
+highlight-style:
+  light: fmup-highlight.theme
+  dark:  fmup-highlight-dark.theme
+```
+
+**Não fazer:** assumir que um único `.theme` chega aos dois modos.
+Não chega.
+
+## 10. Tipografia variável e Typst
+
+**Problema:** Typst (≤ 0.14.x) não suporta fontes variáveis. As
+woff2 que o tema embute para HTML são *variable axis*; o Typst
+avisa em cada render e cai para fallback.
+
+**Solução:** documentar (ver [Formato Typst](formats/typst.qmd)). Pedir
+ao utilizador para instalar versões *static* no sistema, ou trocar
+`mainfont` no front matter Typst.
+
+**Não fazer:** ignorar os warnings. São reais.

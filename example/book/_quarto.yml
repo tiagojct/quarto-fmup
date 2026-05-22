@@ -2,6 +2,8 @@ project:
   type: book
   output-dir: _book
 
+lang: pt-PT
+
 book:
   title: "Livro exemplo · FMUP"
   subtitle: "Demonstração do tema quarto-fmup em formato livro"

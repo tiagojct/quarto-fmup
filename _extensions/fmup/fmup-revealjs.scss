@@ -1,6 +1,6 @@
 /*-- scss:defaults --*/
 //
-// FMUP institutional theme for reveal.js — minimal: paint only.
+// FMUP institutional theme for reveal.js - minimal: paint only.
 //
 // Design rule: this file changes COLOURS, FONTS, and small typographic
 // details only. It does not touch slide layout, positioning, height, or
@@ -15,20 +15,7 @@
 // built-in option) or apply it per-slide via attributes. Don't fight
 // reveal with CSS.
 //
-
-// Palette
-$fmup-yellow:        #FFCD00;
-$fmup-yellow-dark:   #E6B800;
-$fmup-text:          #1A1A1A;
-$fmup-text-muted:    #5B6470;
-$fmup-bg:            #FFFFFF;
-$fmup-surface:       #F7F7F7;
-$fmup-border:        #E0E0E0;
-$fmup-border-strong: #B3BBC4;
-
-// Typography
-$font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
+// Palette and font stacks live in `_variables.scss`.
 
 // Reveal.js variables (consumed by reveal's own SCSS)
 $body-bg:                       $fmup-bg;
@@ -39,11 +26,11 @@ $selection-bg:                  $fmup-yellow;
 $selection-color:               $fmup-text;
 $backgroundColor:               $fmup-bg;
 
-$mainFont:                      $font-family-sans-serif;
+$mainFont:                      $fmup-font-sans;
 $mainFontSize:                  28px;
 $mainColor:                     $fmup-text;
 
-$headingFont:                   $font-family-sans-serif;
+$headingFont:                   $fmup-font-sans;
 $headingColor:                  $fmup-text;
 $headingFontWeight:             800;
 $headingTextShadow:             none;
@@ -55,15 +42,15 @@ $heading2Size:                  1.35em;
 $heading3Size:                  1.1em;
 $heading4Size:                  1.0em;
 
-$codeFont:                      $font-family-monospace;
-$code-block-bg:                 $fmup-surface;
+$codeFont:                      $fmup-font-mono;
+$code-block-bg:                 $fmup-surface-strong;
 $code-block-color:              $fmup-text;
 $code-block-font-size:          0.7em;
 
 /*-- scss:rules --*/
 
 .reveal {
-  font-family: $font-family-sans-serif;
+  font-family: $fmup-font-sans;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,7 +62,7 @@ $code-block-font-size:          0.7em;
 .reveal h2,
 .reveal h3,
 .reveal h4 {
-  font-family: $font-family-sans-serif;
+  font-family: $fmup-font-sans;
   letter-spacing: -0.01em;
   text-transform: none;
 }
@@ -98,7 +85,7 @@ $code-block-font-size:          0.7em;
 // ---- Title slide ----
 // PAINT ONLY: typography for .title / .subtitle / .author / .institute
 // / .date. Reveal's layout untouched. The yellow stripe at the top of
-// the slide is added via the title block's existing wrapper — pure
+// the slide is added via the title block's existing wrapper - pure
 // background, no positioning gymnastics.
 
 #title-slide .title {
@@ -191,7 +178,7 @@ $code-block-font-size:          0.7em;
 
 .reveal code,
 .reveal pre code {
-  font-family: $font-family-monospace;
+  font-family: $fmup-font-mono;
   background: $fmup-surface;
   color: $fmup-text;
   border-radius: 4px;
@@ -226,8 +213,10 @@ $code-block-font-size:          0.7em;
 }
 
 .reveal table thead th {
-  background: $fmup-text;
-  color: $fmup-yellow;
+  // Institutional dark + yellow band. Pinned literal so a future dark
+  // reveal palette would not invert the header into yellow-on-white.
+  background: #1A1A1A;
+  color: #FFCD00;
   font-weight: 700;
   padding: 0.4em 0.7em;
   border: none;
@@ -284,13 +273,13 @@ $code-block-font-size:          0.7em;
 // Baseline-aligned with the footer text. To put both on the same
 // horizontal line, the slide-number needs identical typography to the
 // footer (same font-size and same vertical padding) AND the same
-// `bottom` offset — otherwise the content heights differ and the
+// `bottom` offset - otherwise the content heights differ and the
 // baselines drift by a couple of pixels.
 
 .reveal .slide-number {
   background: transparent;
   color: $fmup-text-muted;
-  font-family: $font-family-monospace;
+  font-family: $fmup-font-mono;
   font-size: 0.4em;
   font-weight: 500;
   padding: 0.5em 0.6em;
@@ -354,64 +343,9 @@ $code-block-font-size:          0.7em;
 }
 
 // ---- Quarto callouts (reveal.js) ----
-// Quarto's per-callout core CSS loads after the theme; only !important
-// reliably wins. Yellow on Note, greyscale on Tip/Warning/Caution,
-// red kept on Important.
-
-.reveal div.callout.callout-style-default {
-  border: 1px solid $fmup-border !important;
-  border-left-width: 4px !important;
-  border-radius: 6px;
-  font-size: 0.7em;
-}
-
-.reveal div.callout.callout-note,
-.reveal div.callout-note.callout {
-  border-left-color: $fmup-yellow !important;
-}
-.reveal div.callout.callout-note .callout-title,
-.reveal div.callout-note .callout-title {
-  background-color: rgba($fmup-yellow, 0.15) !important;
-}
-.reveal div.callout-note .callout-icon::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%231A1A1A" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>') !important;
-}
-
-.reveal div.callout.callout-tip,
-.reveal div.callout-tip.callout {
-  border-left-color: $fmup-text !important;
-}
-.reveal div.callout.callout-tip .callout-title,
-.reveal div.callout-tip .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-.reveal div.callout.callout-warning,
-.reveal div.callout-warning.callout {
-  border-left-color: $fmup-border-strong !important;
-}
-.reveal div.callout.callout-warning .callout-title,
-.reveal div.callout-warning .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-.reveal div.callout.callout-caution,
-.reveal div.callout-caution.callout {
-  border-left-color: $fmup-text-muted !important;
-}
-.reveal div.callout.callout-caution .callout-title,
-.reveal div.callout-caution .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-.reveal div.callout.callout-important,
-.reveal div.callout-important.callout {
-  border-left-color: #B91C1C !important;
-}
-.reveal div.callout.callout-important .callout-title,
-.reveal div.callout-important .callout-title {
-  background-color: rgba(#B91C1C, 0.08) !important;
-}
+// Extracted to partials/_callouts-revealjs.scss - parallel to
+// partials/_callouts.scss for the HTML format.
+@import "partials/callouts-revealjs";
 
 // ---- Section dividers ----
 // To centre a divider slide vertically, the cleanest path is reveal's
@@ -432,4 +366,17 @@ $code-block-font-size:          0.7em;
 .reveal section.center h1,
 .reveal section.center h2 {
   border-bottom: none;
+}
+
+// ---- Reduced motion ----
+// Reveal already honours prefers-reduced-motion for its built-in slide
+// transitions when transition: none, but downstream content (callouts,
+// fragments, embedded animations) may still animate. Clamp them.
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal *, .reveal *::before, .reveal *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

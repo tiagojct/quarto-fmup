@@ -1,0 +1,121 @@
+---
+title: "Formato HTML (`fmup-html`)"
+description: "Opções, dark mode, logo e personalização do formato HTML."
+---
+
+## Defaults
+
+Ao escolher `fmup-html`, herdam-se automaticamente:
+
+| Opção | Valor |
+|---|---|
+| `theme.light` | `default + fmup.scss + fmup-variables.scss` |
+| `theme.dark` | `default + fmup.scss + fmup-variables-dark.scss` |
+| `mainfont` | Atkinson Hyperlegible Next |
+| `monofont` | Geist Mono |
+| `toc` | `true` |
+| `code-copy` | `true` |
+| `code-overflow` | `wrap` |
+| `smooth-scroll` | `true` |
+| `link-external-newwindow` | `true` |
+| `link-external-icon` | `false` (substituído por seta `↗` em CSS) |
+| `highlight-style` | `fmup-highlight.theme` (paleta FMUP) |
+
+Para sobrepor qualquer um, declarar no próprio `_quarto.yml`:
+
+```yaml
+format:
+  fmup-html:
+    toc: false
+    code-overflow: scroll
+```
+
+## Dark mode
+
+`fmup-html` declara variantes `light:` e `dark:`. O Quarto coloca um
+toggle no navbar (quando há `website.navbar.tools` ou via
+`website.tools-collapse: true`) e troca via `data-bs-theme` no `<html>`.
+
+Para forçar uma variante:
+
+```yaml
+format:
+  fmup-html:
+    theme:
+      - default
+      - fmup.scss
+      - fmup-variables.scss   # só light
+```
+
+A paleta dark inverte o fundo para `#0E0E0E`, mantém o amarelo
+`#FFCD00` como acento (passa WCAG AAA contra near-black) e clareia o
+vermelho do `callout-important` para `#F87171` (mantém ≥4.5:1 contra a
+superfície escura).
+
+## Logo institucional
+
+Definir uma vez no front matter do projeto:
+
+```yaml
+fmup:
+  logo: assets/fmup-wordmark.svg
+```
+
+A *Lua filter* `fmup.lua` copia esse valor para `website.navbar.logo`
+(websites) ou `book.navbar.logo` (livros), e também para o `logo:` de
+topo (usado pelo reveal).
+
+::: {.callout-tip}
+Se já se declarou `website.navbar.logo` à mão, esse valor tem
+precedência. A filtragem é não-destrutiva.
+:::
+
+## Open Graph e Twitter Card
+
+O `fmup.lua` injeta automaticamente meta-tags `og:title`,
+`og:description`, `og:locale`, `og:type=article`, `article:author`,
+`twitter:card=summary_large_image`, `twitter:title` e
+`twitter:description` a partir do front matter de cada página.
+
+Para imagem social, manter o canal padrão Quarto:
+
+```yaml
+website:
+  open-graph:
+    image: assets/og.png
+```
+
+## Sobrepor a paleta
+
+A paleta vive em `_extensions/fmup/fmup-variables.scss` e tokeniza-se
+toda com `!default`. Para mudar uma cor sem editar o ficheiro do tema,
+adicionar um SCSS próprio APÓS o tema na lista:
+
+```yaml
+format:
+  fmup-html:
+    theme:
+      - default
+      - fmup.scss
+      - fmup-variables.scss
+      - mytokens.scss
+```
+
+E em `mytokens.scss`:
+
+```scss
+/*-- scss:defaults --*/
+$fmup-yellow: #E5B800;   // amarelo mais quente
+```
+
+## Acessibilidade
+
+- Foco visível: contorno `2px solid #1A1A1A` + `box-shadow` amarelo
+  (cumpre WCAG 1.4.11; amarelo puro contra branco fica em 1.4:1 e
+  falha).
+- Links no corpo: `font-weight: 500` + sublinhado amarelo `2.5px` —
+  segunda dimensão de distinção além da cor.
+- `prefers-reduced-motion`: anula `smooth-scroll` (e o Bootstrap 5
+  trata o resto via `$enable-reduced-motion`).
+- Tipografia: Atkinson Hyperlegible Next foi desenhada pelo
+  *Braille Institute* para utilizadores com visão reduzida.

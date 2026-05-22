@@ -1,0 +1,45 @@
+name: render-examples
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        example:
+          - { name: site,   path: example/site,   args: "" }
+          - { name: book,   path: example/book,   args: "" }
+          - { name: slides, path: example/slides, args: "slides.qmd" }
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: pre-release
+
+      - name: Render ${{ matrix.example.name }}
+        working-directory: ${{ matrix.example.path }}
+        run: quarto render ${{ matrix.example.args }}
+
+      - name: Upload rendered output
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rendered-${{ matrix.example.name }}
+          path: |
+            ${{ matrix.example.path }}/_site/
+            ${{ matrix.example.path }}/_book/
+            ${{ matrix.example.path }}/*.html
+            ${{ matrix.example.path }}/*_files/
+          if-no-files-found: ignore
+          retention-days: 14

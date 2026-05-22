@@ -1,0 +1,232 @@
+# Changelog
+
+All notable changes to `quarto-fmup` are documented here.
+
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased] - 1.1.0
+
+### Added
+
+**Tokens + architecture**
+
+- `fmup-variables.scss` and `fmup-variables-dark.scss` - single
+  source of truth for palette, font stacks and radii. Listed as
+  separate entries in the theme stack so they participate in Quarto's
+  reverse-ordered defaults compilation.
+- `$fmup-surface-strong` (`#F0F0F0`) token, used as background for
+  code blocks and inline code so they read distinctly from `$fmup-bg`.
+- `$fmup-danger` token (`#B91C1C` light / `#F87171` dark) replaces
+  the hard-coded red in callout-important.
+- `$fmup-chart-1..6` data-viz palette (Okabe-Ito derived,
+  deuteranopia-safe, no green). Also exported as `--fmup-chart-1..6`
+  CSS custom properties on `:root` for JS / R / Python access.
+- `partials/_callouts.scss` and `partials/_callouts-revealjs.scss` -
+  highest-volatility section of each main SCSS extracted into paired
+  partials.
+
+**Dark mode**
+
+- Full dark variant for `fmup-html` via `theme: { light, dark }`.
+  Background to `#0E0E0E`, text to `#F2F2F2`, surfaces step up in two
+  stops, yellow stays (passes WCAG AAA against near-black), red
+  lightens for AA on dark.
+
+**Self-hosted fonts**
+
+- Atkinson Hyperlegible Next (latin + latin-ext, regular + italic
+  variable axes) and Geist Mono (latin + latin-ext variable) embedded
+  as base64 data URIs in `fmup-fonts.css`. Zero third-party network
+  requests at render time. GDPR-clean, offline-renderable, cached once
+  per site via Quarto's `css:` mechanism.
+- Source woff2 files committed under `_extensions/fmup/fonts/` for
+  provenance.
+
+**Typography + accessibility**
+
+- Prose link `font-weight: 500` + 2.5px yellow underline - second
+  channel of distinction beyond colour for monochrome / high-contrast
+  renderers.
+- External-link CSS pseudo-element (north-east arrow) on
+  `[href^="http"]` links, scoped to article content, excluding
+  `.citation`, `.no-underline`, and localhost.
+- `prefers-reduced-motion: reduce` media-query disables theme
+  smooth-scroll. Bootstrap 5 covers component-level animations via
+  `$enable-reduced-motion`.
+
+**Format coverage**
+
+- `fmup-typst.typ` extends the Typst format with H1 yellow underline
+  rule, dark links with yellow underline, surface-tinted code blocks,
+  yellow-bordered blockquotes, dark / yellow table headers.
+- `fmup-highlight.theme` - Pandoc syntax-highlighting theme tuned to
+  the FMUP palette. Restrained: weight + greyscale carry
+  differentiation; yellow-dark accent on keywords; red kept for errors
+  / alerts only.
+- Print stylesheet for HTML: hides navbar / sidebar / TOC / footer,
+  prints external-link URLs after each link, drops surface fills,
+  prevents page breaks inside headings / figures / tables.
+
+**Lua filter (`fmup.lua`)**
+
+- Forwards `fmup.logo` from project YAML to format-specific keys
+  (`logo` for revealjs, `website.navbar.logo` for sites,
+  `book.navbar.logo` for books). Non-destructive of user-set values.
+- Emits Open Graph + Twitter Card meta tags populated from each
+  page's `title`, `description`, `lang`, `author`.
+
+**Docs + process**
+
+- Dogfooded documentation site under `docs/` (rendered with
+  `fmup-html` itself). Covers install, format options, customisation,
+  accessibility, data-viz palette, and the full design-scars
+  register.
+- `CONTRIBUTING.md` with branch / commit / release flow and the
+  design-rules summary.
+- `CHANGELOG.md` (this file) backfilled from git tags.
+- CI: `render-examples.yml` matrix-renders all three example projects
+  on push / PR. `visual-regression.yml` runs Playwright against
+  committed baselines. `publish-docs.yml` deploys `docs/_site` to
+  `gh-pages` on push to main.
+- Playwright visual-regression scaffold under `tests/visual/`.
+
+### Changed
+
+- `:focus-visible` outline is now `$fmup-text` with a yellow
+  `box-shadow` glow. Pure yellow on white was 1.4:1 and failed WCAG
+  1.4.11; brand cue preserved through the glow.
+- Code-block and inline-code backgrounds use `$fmup-surface-strong`
+  instead of `$fmup-surface` for visible distinction from body.
+- Removed `lang: pt-PT` from the `common` format defaults. Consumers
+  must set `lang:` in their own project YAML; the bundled `example/`
+  projects do so explicitly.
+- Bumped extension version to `1.1.0` (additive minor release).
+
+### Fixed
+
+- Table zebra striping was effectively invisible
+  (`lighten($fmup-surface, 1.5%)` rounded to ~`#F9F9F9` against
+  `#FFFFFF`). Striping now uses `$fmup-surface` directly.
+- Selector form `[href*="//localhost"]` triggered Quarto's css-vars
+  analyser to treat `//` as a comment and abort. Now
+  `[href*="localhost"]`.
+
+### Font-rendering fix (post-Tier-4 follow-up)
+
+- **`fmup-fonts.css` had `//` SCSS comments at the top.** Browsers'
+  CSS parser does not accept `//` comments and bailed before reaching
+  the `@font-face` declarations, so Atkinson Hyperlegible Next never
+  registered. Body text everywhere fell back to system-ui. Comments
+  converted to `/* ... */`.
+- **Reveal's `css:` key does NOT copy the linked file into the output
+  bundle** (HTML format does; reveal does not). The reveal preview
+  worked locally because the in-source `_extensions` symlink resolved,
+  but any shared `slides.html` 404'd the font CSS. Reveal now uses
+  `include-in-header: [fmup-fonts.html]` - a `<style>`-wrapped copy
+  of the font payload that lands inline in `<head>`. Single-file
+  decks are now genuinely self-contained.
+
+### Dark-mode fixes (post-Tier-4 follow-up)
+
+- **Callout headers**: Quarto core CSS paints the WHOLE `.callout-header`
+  bar, not just the inner `.callout-title`. Earlier overrides targeted
+  only `.callout-title`, so in dark mode the Bootstrap defaults
+  (blue for note, green for tip) bled through visibly. Both selectors
+  are now in `partials/_callouts.scss` and `partials/_callouts-revealjs.scss`.
+- **Table header**: was `background: $fmup-text`, which flipped to
+  `#F2F2F2` in dark mode, leaving yellow text on near-white background
+  (1.4:1, fails WCAG). Pinned to literal `#1A1A1A` / `#FFCD00` (with
+  `!important` for HTML) since the institutional table band is
+  identity-preserving across modes.
+- **Syntax highlighting**: Pandoc `.theme` files are static JSON and do
+  not react to `data-bs-theme`. Added `fmup-highlight-dark.theme` with
+  the dark palette colours and wired
+  `highlight-style: { light: fmup-highlight.theme, dark: fmup-highlight-dark.theme }`
+  for the HTML format. Code blocks in dark mode now read as
+  `#F2F2F2` text on `#242424` surface, with yellow keyword accent and
+  `#F87171` for errors / alerts.
+
+### Known issues
+
+- Typst PDF render emits "variable fonts are not currently supported"
+  warnings (Typst <= 0.14.x limitation; falls back silently). Users
+  who want institutional fonts in PDF should install the static-weight
+  TTF files system-wide or override `mainfont` in their Typst block.
+- Quarto's css-vars analyser cannot extract `--`-exported colour vars
+  when the SCSS rules block contains the universal selector inside an
+  `@media` query, so the reduced-motion clamp is intentionally scoped
+  to `html` only.
+
+## [1.0.14] - 2025
+- Callout selectors now target `.callout-title`; smaller footer font.
+
+## [1.0.13] - 2025
+- Enable reveal's `center: true` by default for the `fmup-revealjs` format.
+
+## [1.0.12] - 2025
+- Belt-and-braces footer-paragraph centring (`width: 100%` + `text-align`)
+  to defeat Quarto's `support.js` inlining `display: block` at deck-ready.
+
+## [1.0.11] - 2025
+- Baseline-align `.reveal .slide-number` with the footer text by sharing
+  font size, padding, and `bottom` offset.
+
+## [1.0.10] - 2025
+- Pin `text-align: center` with `!important` on `.footer` and its inner
+  `<p>` so the inline-style override from `support.js` does not clobber it.
+
+## [1.0.9] - 2025
+- Place `.reveal .slide-number` on the same horizontal line as the
+  footer text.
+
+## [1.0.8] - 2025
+- Footer flex-centring (text-align alone was being inherited away).
+
+## [1.0.7] - 2025
+- Footer horizontal centring (box-sizing fix).
+
+## [1.0.6] - 2025
+- Rewrite reveal.js SCSS as paint-only. No layout overrides on
+  `#title-slide` or `section.center` - reveal owns layout, the theme
+  only owns colour and typography.
+
+## [1.0.5] - 2025
+- Hotfix: empty-slides regression introduced by an earlier
+  layout-override attempt.
+
+## [1.0.4] - 2025
+- Smaller slide font; redesigned title slide; callouts in the reveal
+  format.
+
+## [1.0.3] - 2025
+- Callout overrides require `!important` to beat Quarto's core CSS,
+  which loads after theme SCSS.
+- Simplify README: install + three copy-paste YAML snippets.
+
+## [1.0.2] - 2025
+- Fix section-divider centring, footer layout, drop auto-TOC.
+
+## [1.0.1] - 2025
+- Fix font loading; scope prose underlines to `main`/`article`; tone
+  callout palette; slide-chrome cleanup.
+
+## [1.0.0] - 2025
+- Initial release: `fmup-html`, `fmup-revealjs`, `fmup-typst` formats.
+
+[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.0.14...HEAD
+[1.0.14]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.14
+[1.0.13]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.13
+[1.0.12]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.12
+[1.0.11]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.11
+[1.0.10]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.10
+[1.0.9]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.9
+[1.0.8]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.8
+[1.0.7]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.7
+[1.0.6]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.6
+[1.0.5]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.5
+[1.0.4]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.4
+[1.0.3]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.3
+[1.0.2]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.2
+[1.0.1]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.1
+[1.0.0]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.0

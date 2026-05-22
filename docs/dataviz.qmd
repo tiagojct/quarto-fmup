@@ -1,0 +1,116 @@
+---
+title: "Paleta para gráficos"
+description: "Cores categóricas FMUP, daltonismo-seguras, com snippets para R/ggplot2 e Python/matplotlib."
+---
+
+## A paleta
+
+| # | Token | HEX (light) | HEX (dark) |
+|---|---|---|---|
+| 1 | `$fmup-chart-1` | `#1A1A1A` | `#F2F2F2` |
+| 2 | `$fmup-chart-2` | `#FFCD00` | `#FFCD00` |
+| 3 | `$fmup-chart-3` | `#0072B2` | `#56B4E9` |
+| 4 | `$fmup-chart-4` | `#D55E00` | `#E58A4D` |
+| 5 | `$fmup-chart-5` | `#56B4E9` | `#87CEEB` |
+| 6 | `$fmup-chart-6` | `#CC79A7` | `#E091B7` |
+
+Critérios:
+
+- **Daltonismo-seguras** (derivadas da paleta Okabe-Ito).
+- Sem verde - num contexto de Faculdade de Medicina, verde lê-se como
+  "semáforo OK" e enviesa interpretação.
+- Slots 1 e 2 são **near-black + amarelo FMUP**. Gráficos com 1 ou 2
+  séries devem usar estes; ficam visualmente alinhados com a marca.
+- Slots 3-6 entram por ordem para preservar legibilidade quando os
+  primeiros se esgotam.
+
+## Exemplos
+
+### R / ggplot2
+
+```r
+fmup_chart <- c("#1A1A1A", "#FFCD00", "#0072B2",
+                "#D55E00", "#56B4E9", "#CC79A7")
+
+library(ggplot2)
+ggplot(mtcars, aes(mpg, hp, colour = factor(cyl))) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = fmup_chart) +
+  theme_minimal(base_family = "Atkinson Hyperlegible Next") +
+  theme(panel.grid.minor = element_blank())
+```
+
+Para um wrapper reutilizável:
+
+```r
+scale_colour_fmup <- function(...) {
+  ggplot2::scale_colour_manual(
+    values = c("#1A1A1A", "#FFCD00", "#0072B2",
+               "#D55E00", "#56B4E9", "#CC79A7"),
+    ...
+  )
+}
+
+scale_fill_fmup <- function(...) {
+  ggplot2::scale_fill_manual(
+    values = c("#1A1A1A", "#FFCD00", "#0072B2",
+               "#D55E00", "#56B4E9", "#CC79A7"),
+    ...
+  )
+}
+```
+
+### Python / matplotlib
+
+```python
+import matplotlib as mpl
+
+FMUP_CHART = ["#1A1A1A", "#FFCD00", "#0072B2",
+              "#D55E00", "#56B4E9", "#CC79A7"]
+
+mpl.rcParams.update({
+    "axes.prop_cycle": mpl.cycler(color=FMUP_CHART),
+    "font.family": "Atkinson Hyperlegible Next",
+    "axes.edgecolor": "#1A1A1A",
+    "axes.labelcolor": "#1A1A1A",
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "grid.color": "#E0E0E0",
+    "grid.linestyle": "--",
+})
+```
+
+E depois:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+x = np.linspace(0, 10, 100)
+for i in range(4):
+    plt.plot(x, np.sin(x + i), label=f"série {i+1}")
+plt.legend()
+plt.show()
+```
+
+### Observable / runtime (JS)
+
+A paleta também é exposta como custom properties em `:root`:
+
+```js
+const css = getComputedStyle(document.documentElement);
+const FMUP_CHART = [1,2,3,4,5,6].map(
+  i => css.getPropertyValue(`--fmup-chart-${i}`).trim()
+);
+```
+
+Útil em widgets que usam D3, Plotly, ou Observable Inputs - a paleta
+adapta-se automaticamente ao light/dark toggle do Quarto.
+
+## Notas
+
+- Para mapas, escalas sequenciais ou divergentes precisam de outra
+  paleta (esta é só categórica). Sugestão: `viridis` para sequencial,
+  `RdBu` para divergente - ambas daltonismo-seguras.
+- Para tipo de marcador além da cor, alternar `shape` em ggplot e
+  `marker` em matplotlib. Cor sozinha não basta para WCAG 1.4.1.

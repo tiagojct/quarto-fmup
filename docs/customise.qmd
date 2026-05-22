@@ -1,0 +1,123 @@
+---
+title: "Personalizar"
+description: "Tokens de design, partials, paleta e tipografia."
+---
+
+## Tokens de design
+
+Todos os parâmetros vivem em
+[`_extensions/fmup/fmup-variables.scss`](https://github.com/tiagojct/quarto-fmup/blob/main/_extensions/fmup/fmup-variables.scss):
+
+```scss
+$fmup-yellow:         #FFCD00 !default;
+$fmup-yellow-dark:    #E6B800 !default;
+$fmup-text:           #1A1A1A !default;
+$fmup-text-muted:     #5B6470 !default;
+$fmup-bg:             #FFFFFF !default;
+$fmup-surface:        #F7F7F7 !default;
+$fmup-surface-strong: #F0F0F0 !default;
+$fmup-border:         #E0E0E0 !default;
+$fmup-border-strong:  #B3BBC4 !default;
+$fmup-danger:         #B91C1C !default;
+
+$fmup-font-sans: "Atkinson Hyperlegible Next", ...;
+$fmup-font-mono: "Geist Mono", ...;
+
+$fmup-radius-sm: 4px !default;
+$fmup-radius:    6px !default;
+```
+
+Todos `!default`. Para sobrepor sem editar o ficheiro do tema, criar
+um SCSS próprio e listá-lo APÓS o tema:
+
+```yaml
+format:
+  fmup-html:
+    theme:
+      - default
+      - fmup.scss
+      - fmup-variables.scss
+      - mytokens.scss        # <- ganha
+```
+
+```scss
+/*-- scss:defaults --*/
+$fmup-yellow:        #E5B800;   // mais quente
+$fmup-radius:        8px;       // raios maiores
+```
+
+::: {.callout-note}
+O Quarto compila as defaults em ORDEM INVERSA da `theme:`. Por isso o
+ficheiro do utilizador (último na lista) é processado PRIMEIRO no
+output compilado - definições sem `!default` ficam em vigor antes do
+tema chegar a usar a variável.
+:::
+
+## Substituir um partial
+
+O bloco mais provável de personalizar são os **callouts**. Vive em
+[`partials/_callouts.scss`](https://github.com/tiagojct/quarto-fmup/blob/main/_extensions/fmup/partials/_callouts.scss).
+
+Para mudar o tom da `callout-note`:
+
+```scss
+/*-- scss:rules --*/
+div.callout.callout-note .callout-title,
+div.callout-note .callout-title {
+  background-color: rgba($fmup-yellow, 0.25) !important;  // mais saturado
+}
+```
+
+`!important` é obrigatório - a CSS core do Quarto carrega DEPOIS do
+tema e ganharia em especificidade sem ele.
+
+## Tipografia
+
+Para trocar a fonte de corpo:
+
+```scss
+/*-- scss:defaults --*/
+$fmup-font-sans: "IBM Plex Sans", system-ui, sans-serif;
+```
+
+Se a nova fonte não estiver no payload `fmup-fonts.css` (que só inclui
+Atkinson Hyperlegible Next e Geist Mono), ligar via `include-in-header`
+do utilizador:
+
+```yaml
+format:
+  fmup-html:
+    include-in-header:
+      - text: |
+          <link rel="stylesheet" href="https://...">
+```
+
+## Paleta dark
+
+Mesmo padrão, em `fmup-variables-dark.scss`. Para customizar só o dark
+mode:
+
+```yaml
+theme:
+  dark:
+    - default
+    - fmup.scss
+    - fmup-variables-dark.scss
+    - mydark.scss
+```
+
+```scss
+/*-- scss:defaults --*/
+$fmup-bg: #000000;       // preto puro em vez de #0E0E0E
+$fmup-text: #FFFFFF;
+```
+
+## Adicionar logo
+
+Ver [Formato HTML / Logo](formats/html.qmd#logo-institucional). Em
+resumo:
+
+```yaml
+fmup:
+  logo: assets/fmup-wordmark.svg
+```

@@ -2,6 +2,8 @@ project:
   type: website
   output-dir: _site
 
+lang: pt-PT
+
 website:
   title: "Site exemplo · FMUP"
   description: "Demonstração do tema quarto-fmup numa configuração de website."

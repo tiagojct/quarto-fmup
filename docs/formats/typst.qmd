@@ -1,0 +1,81 @@
+---
+title: "Formato Typst (`fmup-typst`)"
+description: "PDF institucional via Typst."
+---
+
+## Defaults
+
+| Opção | Valor |
+|---|---|
+| `papersize` | `a4` |
+| `mainfont` / `sansfont` | Atkinson Hyperlegible Next |
+| `monofont` | Geist Mono |
+| `fontsize` | `11pt` |
+| `margin.x` / `margin.y` | `2.5cm` / `2.5cm` |
+| `number-sections` | `true` |
+| `toc` / `toc-depth` | `true` / `3` |
+
+O ficheiro `fmup-typst.typ` (carregado via `include-in-header`) traz:
+
+- H1 com regra amarela inferior (3pt + `#FFCD00`).
+- H3 a `#5B6470` (texto cinzento atenuado).
+- Links: texto a `#1A1A1A` com sublinhado amarelo a 1pt.
+- Inline code: caixa cinzenta-clara com raio 2pt.
+- Blocos de código: caixa com borda cinzenta, fundo `#F0F0F0`.
+- Blockquote: borda amarela à esquerda, fundo `#F7F7F7`.
+- Tabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).
+
+## Limitações conhecidas
+
+### 1. Fontes variáveis
+
+```
+warning: variable fonts are not currently supported and may render incorrectly
+    = hint: try installing a static version of "atkinson hyperlegible next" instead
+```
+
+O Typst (até `0.14.x`) não suporta fontes variáveis. As fontes que o
+tema embute para HTML/reveal são variáveis - boas para a web, más para
+o Typst. Soluções:
+
+1. **Instalar a versão *static* no sistema** que executa o `quarto
+   render`. O Braille Institute distribui ficheiros TTF por peso
+   individual (`AtkinsonHyperlegibleNext-Regular.ttf`,
+   `-Bold.ttf`, etc.). O Typst encontra-as via `fontconfig` /
+   *system fonts*.
+
+2. **Sobrepor a fonte para Typst**:
+
+   ```yaml
+   format:
+     fmup-typst:
+       mainfont: "Source Serif Pro"
+   ```
+
+3. **Esperar pela versão Typst** que suportará variáveis (issue
+   `typst/typst#185`).
+
+### 2. Callouts não estilizados
+
+O template Typst do Quarto gera `#callout(...)` com a estética default
+do Quarto. O `fmup-typst.typ` ainda não sobrescreve essa função - PR
+bem-vindo. *Workaround*: usar `#admonition()` próprio em documentos
+onde callouts apareçam frequentemente.
+
+### 3. Logo institucional
+
+Sem hook standard. Adicionar manualmente no início do documento:
+
+```typst
+#image("assets/fmup-wordmark.svg", width: 4cm)
+```
+
+ou via include-in-header próprio.
+
+## Render
+
+```sh
+quarto render documento.qmd --to fmup-typst
+```
+
+Gera `documento.pdf` no mesmo diretório.

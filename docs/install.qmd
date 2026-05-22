@@ -1,0 +1,74 @@
+---
+title: "Instalação"
+description: "Como adicionar quarto-fmup a um projeto Quarto."
+---
+
+## Pré-requisitos
+
+- Quarto **>= 1.4**. Versões mais antigas não conhecem `theme:` com
+  variantes `light:` / `dark:`.
+- Para PDF via Typst: a fonte **Atkinson Hyperlegible Next** instalada
+  no sistema (ver [Formato Typst](formats/typst.qmd) para o motivo).
+
+## Adicionar ao projeto
+
+A partir da raiz de qualquer projeto Quarto:
+
+```sh
+quarto add tiagojct/quarto-fmup
+```
+
+Responder `y` quando perguntar se confia na extensão. O Quarto descarrega
+`_extensions/fmup/` para dentro do projeto e nada mais é preciso
+instalar — as fontes estão embutidas no próprio tema.
+
+## Declarar o formato
+
+### Website ou livro
+
+```yaml
+# _quarto.yml
+format:
+  fmup-html: default
+```
+
+### Apresentação reveal.js
+
+```yaml
+---
+title: "Slides"
+author: "Autor"
+format:
+  fmup-revealjs:
+    footer: "FMUP · Faculdade de Medicina da Universidade do Porto"
+---
+```
+
+### PDF via Typst
+
+```yaml
+format:
+  fmup-typst: default
+```
+
+## Atualizar
+
+```sh
+quarto update tiagojct/quarto-fmup
+```
+
+O `update` segue a tag mais recente no GitHub. Para fixar uma versão:
+
+```sh
+quarto add tiagojct/quarto-fmup@v1.1.0
+```
+
+## Remover
+
+```sh
+quarto remove tiagojct/quarto-fmup
+```
+
+Apaga `_extensions/fmup/`. O formato passa a falhar com
+*"Format not found"* na próxima renderização — alterar `_quarto.yml`
+para outro formato antes ou depois.

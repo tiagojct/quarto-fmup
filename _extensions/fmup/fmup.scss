@@ -1,35 +1,23 @@
 /*-- scss:defaults --*/
 
-// FMUP institutional palette
-$fmup-yellow:        #FFCD00 !default;  // accent only
-$fmup-yellow-dark:   #E6B800 !default;
-$fmup-text:          #1A1A1A !default;
-$fmup-text-muted:    #5B6470 !default;
-$fmup-bg:            #FFFFFF !default;
-$fmup-surface:       #F7F7F7 !default;
-$fmup-border:        #E0E0E0 !default;
-$fmup-border-strong: #B3BBC4 !default;
-
-// Bootstrap mappings
+// Bootstrap mappings. Palette tokens and font stacks live in
+// fmup-variables.scss, listed before this file in the theme: chain.
 $primary:            $fmup-yellow !default;
 $body-bg:            $fmup-bg !default;
 $body-color:         $fmup-text !default;
 $link-color:         $fmup-text !default;
 
-// Typography: Atkinson Hyperlegible Next (Braille Institute) for body and
-// headings; Geist Mono for code. Loaded via the include-in-header <link>
-// tag declared in _extension.yml; SCSS only sets the font-family stack.
-$font-family-sans-serif: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
-$font-family-monospace:  "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
-$headings-font-family:   $font-family-sans-serif !default;
+$font-family-sans-serif: $fmup-font-sans !default;
+$font-family-monospace:  $fmup-font-mono !default;
+$headings-font-family:   $fmup-font-sans !default;
 $headings-font-weight:   700 !default;
 $headings-color:         $fmup-text !default;
 
 $font-size-base:    1rem !default;
 $line-height-base:  1.6 !default;
 
-$border-radius:     6px !default;
-$border-radius-sm:  4px !default;
+$border-radius:     $fmup-radius !default;
+$border-radius-sm:  $fmup-radius-sm !default;
 
 // Surfaces
 $gray-100: $fmup-surface !default;
@@ -54,13 +42,18 @@ body {
 // Prose links: yellow underline + yellow background on hover. Scoped to
 // article/main content so it does not cascade into navbar, sidebar, page
 // TOC, footer, or repo-action links.
+//
+// font-weight: 500 + a 2.5px yellow underline gives a second-channel
+// distinction from body text beyond colour, so users on monochrome
+// renderers and high-contrast modes still read links as links.
 main a:not(.citation):not(.no-underline),
 .content a:not(.citation):not(.no-underline),
 article a:not(.citation):not(.no-underline),
 .quarto-document-content a:not(.citation):not(.no-underline) {
+  font-weight: 500;
   text-decoration: underline;
   text-decoration-color: $fmup-yellow;
-  text-decoration-thickness: 2px;
+  text-decoration-thickness: 2.5px;
   text-underline-offset: 3px;
 
   &:hover {
@@ -70,8 +63,26 @@ article a:not(.citation):not(.no-underline),
   }
 }
 
+// External-link affordance. Since `link-external-icon: false` is set
+// in _extension.yml (Quarto's built-in icon clashes with the theme's
+// yellow underline), append a CSS arrow. The selector targets any
+// href starting with http but excludes citations, links the author
+// marks .no-underline, and localhost previews. The arrow inherits the
+// muted text colour so it reads as a hint, not as link content.
+main a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
+.content a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
+article a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after,
+.quarto-document-content a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after {
+  content: " \2197";
+  display: inline-block;
+  margin-left: 0.1em;
+  color: $fmup-text-muted;
+  font-weight: 400;
+  text-decoration: none;
+}
+
 // Citation / cross-reference numbers (e.g. [1], [Anexo A], anchor icons
-// next to headings) — no yellow underline.
+// next to headings) - no yellow underline.
 main a.citation,
 main a.quarto-xref,
 main a.anchorjs-link,
@@ -104,9 +115,13 @@ nav.toc-active a,
   }
 }
 
+// Focus indicator: dark outline carries WCAG 1.4.11 non-text contrast
+// (yellow on white is only 1.4:1 and fails). Yellow is preserved as a
+// soft outer glow so the brand cue is not lost.
 :focus-visible {
-  outline: 3px solid $fmup-yellow;
+  outline: 2px solid $fmup-text;
   outline-offset: 2px;
+  box-shadow: 0 0 0 5px rgba($fmup-yellow, 0.45);
 }
 
 // ---- Headings ----
@@ -159,7 +174,7 @@ h1 { font-weight: 800; }
 
 // Sidebar width: kept at Quarto's default. To widen it without breaking
 // the page grid, override Quarto's grid template columns on
-// `.page-columns` (book/site-specific) — not just the sidebar's own
+// `.page-columns` (book/site-specific) - not just the sidebar's own
 // width, which causes the content column to overlap.
 
 // ---- Sidebar (book/site left rail) ----
@@ -328,14 +343,14 @@ code, pre, kbd, samp {
 }
 
 pre {
-  background: $fmup-surface !important;
+  background: $fmup-surface-strong !important;
   border: 1px solid $fmup-border;
   border-radius: $border-radius;
   padding: 0.85rem 1rem;
 }
 
 code:not(pre code) {
-  background: $fmup-surface;
+  background: $fmup-surface-strong;
   padding: 0.1em 0.35em;
   border-radius: $border-radius-sm;
   color: $fmup-text;
@@ -344,84 +359,28 @@ code:not(pre code) {
 // ---- Tables ----
 
 table.table {
+  // Table header is institutional - always dark band + yellow text in
+  // BOTH light and dark modes. Using $fmup-text here would flip the
+  // header background to near-white in dark mode, putting yellow text
+  // on a near-white field (1.4:1, fails WCAG). Pin literals instead.
   thead th {
-    background: $fmup-text;
-    color: $fmup-yellow;
+    background: #1A1A1A !important;
+    color: #FFCD00 !important;
     border-bottom: none;
     font-weight: 700;
   }
 
   tbody tr:nth-of-type(odd) {
-    background: lighten($fmup-surface, 1.5%);
+    background: $fmup-surface;
   }
 }
 
 // ---- Quarto callouts ----
-// Quarto's core CSS sets per-callout-type border-left-color, header
-// background, and an SVG icon coloured to match. Those rules load AFTER
-// theme SCSS, so our overrides need `!important` to win — there is no
-// other reliable hook. The repalette: yellow on Note (institutional
-// informational accent), greyscale on Tip/Warning/Caution, red kept
-// only on Important (the one universal "stop" signal).
-
-div.callout.callout-style-default {
-  border: 1px solid $fmup-border !important;
-  border-left-width: 4px !important;
-  border-radius: $border-radius;
-}
-
-// Note
-div.callout.callout-note,
-div.callout-note.callout {
-  border-left-color: $fmup-yellow !important;
-}
-div.callout.callout-note .callout-title,
-div.callout-note .callout-title {
-  background-color: rgba($fmup-yellow, 0.15) !important;
-}
-div.callout-note .callout-icon::before {
-  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%231A1A1A" class="bi bi-info-circle" viewBox="0 0 16 16"><path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/><path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></svg>') !important;
-}
-
-// Tip — dark
-div.callout.callout-tip,
-div.callout-tip.callout {
-  border-left-color: $fmup-text !important;
-}
-div.callout.callout-tip .callout-title,
-div.callout-tip .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-// Warning — mid grey
-div.callout.callout-warning,
-div.callout-warning.callout {
-  border-left-color: $fmup-border-strong !important;
-}
-div.callout.callout-warning .callout-title,
-div.callout-warning .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-// Caution — slightly darker grey
-div.callout.callout-caution,
-div.callout-caution.callout {
-  border-left-color: $fmup-text-muted !important;
-}
-div.callout.callout-caution .callout-title,
-div.callout-caution .callout-title {
-  background-color: $fmup-surface !important;
-}
-
-// Important — kept red
-div.callout.callout-important,
-div.callout-important.callout {
-  border-left-color: #B91C1C !important;
-}
-div.callout.callout-important .callout-title,
-div.callout-important .callout-title {
-  background-color: rgba(#B91C1C, 0.08) !important;
-}
+// Extracted to partials/_callouts.scss - 67 lines of !important-heavy
+// per-callout-type overrides, kept separate because that file changes
+// independently of the rest of the theme and shipping it as a partial
+// keeps fmup.scss focused on framework-wide concerns.
+@import "partials/callouts";
 
 // ---- Blockquote ----
 
@@ -444,3 +403,80 @@ blockquote {
 
   a { color: $fmup-text; }
 }
+
+// ---- Reduced motion ----
+// Disables the theme's smooth-scroll. Bootstrap 5 emits its own
+// reduced-motion clamps for buttons, modals, etc. via
+// $enable-reduced-motion (true by default), so we do not need to
+// repeat them. A wider `html *` selector inside this @media block
+// triggers a Quarto post-process CSS-vars analyser bug, so we keep
+// the selector list narrow.
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+}
+
+// ---- Print ----
+// Academic outputs frequently get printed (handouts, exam revision,
+// peer review). Drop site chrome and force a sensible page geometry.
+// Code blocks lose the surface fill so toner usage stays sane.
+
+@media print {
+  .navbar,
+  .sidebar,
+  .quarto-sidebar-toc,
+  #quarto-margin-sidebar,
+  .nav-footer,
+  .quarto-back-to-top,
+  .quarto-search,
+  .quarto-secondary-nav,
+  .toc-actions {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  main, .content, article, .quarto-document-content {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  // Print URLs after external links so the reader can follow them on paper.
+  main a[href^="http"]:not([href*="localhost"]):not(.citation):not(.no-underline)::after {
+    content: " (" attr(href) ")";
+    color: #5B6470;
+    font-size: 0.85em;
+    text-decoration: none;
+  }
+
+  // Code blocks and inline code: no surface fill, just a thin border.
+  pre {
+    background: transparent !important;
+    border: 1px solid #B3BBC4 !important;
+    page-break-inside: avoid;
+  }
+
+  code:not(pre code) {
+    background: transparent;
+    border: 1px solid $fmup-border;
+  }
+
+  // Headings stay together with at least two lines of following text.
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+  }
+
+  // Figures + their captions should not split across pages.
+  figure, .quarto-figure, table {
+    page-break-inside: avoid;
+  }
+}
+
+

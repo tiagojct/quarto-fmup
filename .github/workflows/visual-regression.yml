@@ -1,0 +1,45 @@
+name: visual-regression
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Need full history so baseline PNGs (LFS or normal) come down.
+          fetch-depth: 0
+
+      - name: Install Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: pre-release
+
+      - name: Render examples
+        run: |
+          cd example/site   && quarto render && cd -
+          cd example/book   && quarto render && cd -
+          cd example/slides && quarto render slides.qmd && cd -
+
+      - name: Install Playwright
+        working-directory: tests/visual
+        run: |
+          npm install
+          npx playwright install --with-deps chromium
+
+      - name: Run visual regression
+        working-directory: tests/visual
+        run: npx playwright test
+
+      - name: Upload diff artefacts on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-diffs
+          path: tests/visual/test-results/
+          retention-days: 14

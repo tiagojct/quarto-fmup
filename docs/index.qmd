@@ -1,0 +1,58 @@
+---
+title: "quarto-fmup"
+subtitle: "A identidade visual da Faculdade de Medicina da Universidade do Porto para Quarto"
+description: "Tema institucional FMUP para websites, livros e apresentações reveal.js em Quarto."
+author: "Tiago Jacinto"
+---
+
+## O que é
+
+`quarto-fmup` é uma extensão Quarto que aplica a identidade visual da
+**Faculdade de Medicina da Universidade do Porto** a três formatos:
+
+- `fmup-html` para **websites** e **livros**.
+- `fmup-revealjs` para **apresentações** reveal.js.
+- `fmup-typst` para **PDF** via Typst.
+
+O tema parte de três princípios:
+
+1. **Legibilidade** antes de estética. Atkinson Hyperlegible Next como
+   tipografia base.
+2. **Cor como acento**, não como decoração. O amarelo `#FFCD00` aparece
+   onde precisa de chamar atenção, em mais lado nenhum.
+3. **Preto, branco e amarelo**. Sem segundos amarelos, sem verdes de
+   apoio. Vermelho `#B91C1C` reservado para `callout-important` e
+   estados de erro.
+
+## Instalação rápida
+
+```sh
+quarto add tiagojct/quarto-fmup
+```
+
+A partir daqui, declarar o formato em `_quarto.yml` ou no front matter:
+
+```yaml
+format:
+  fmup-html: default
+```
+
+Para os outros formatos e a configuração detalhada, ver
+[Instalação](install.qmd).
+
+## O que esta documentação cobre
+
+| Página | Conteúdo |
+|---|---|
+| [Instalação](install.qmd) | `quarto add`, alternativas, atualizações |
+| [Formato HTML](formats/html.qmd) | Opções, dark mode, logo, navbar |
+| [Formato Reveal.js](formats/revealjs.qmd) | Slides, footer, logo, atalhos |
+| [Formato Typst](formats/typst.qmd) | PDF, fontes, limitações conhecidas |
+| [Personalizar](customise.qmd) | Substituir tokens, partials, paleta |
+| [Acessibilidade](accessibility.qmd) | WCAG, contrastes, motion-safe |
+| [Design scars](design-scars.qmd) | Bugs cicatrizados que o SCSS resolve |
+
+::: {.callout-note}
+Este próprio site é gerado com `quarto-fmup`. Cada página é uma
+demonstração do tema aplicado a si próprio (*dogfooding*).
+:::

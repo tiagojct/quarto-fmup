@@ -5,6 +5,7 @@ author: "Tiago Jacinto"
 institute: "Faculdade de Medicina da Universidade do Porto"
 date: today
 date-format: "YYYY-MM-DD"
+lang: pt-PT
 format:
   fmup-revealjs:
     slide-number: c/t
