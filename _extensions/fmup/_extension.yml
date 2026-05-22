@@ -1,6 +1,6 @@
 title: FMUP
 author: Tiago Jacinto
-version: 1.1.0
+version: 1.2.0
 quarto-required: ">=1.4.0"
 contributes:
   formats:
@@ -105,5 +105,13 @@ contributes:
       number-sections: true
       toc: true
       toc-depth: 3
+      # Static-weight TTFs bundled inside the extension. Typst <= 0.14
+      # does not support variable fonts and warns on each render if
+      # left to find the variable woff2 / system variants; with these
+      # paths set, Typst loads the static Regular / Italic / Bold /
+      # BoldItalic + Geist Mono Regular / Medium directly, no warnings
+      # and PDFs render with the institutional typography end-to-end.
+      font-paths:
+        - _extensions/fmup/fonts
       include-in-header:
         - fmup-typst.typ

@@ -85,6 +85,30 @@ local function authors_string(meta)
   return table.concat(parts, ", ")
 end
 
+-- Resolve an OG image URL from the metadata. Looks at, in order:
+--   1. `meta.fmup.og-image` (extension-specific; one place to set
+--      institutional default for the whole project)
+--   2. `meta.website.open-graph.image` (Quarto's standard channel,
+--      respected if the project already declares it)
+--   3. `meta["og-image"]` (per-page override)
+-- Returns nil if none set; absence of og:image is acceptable per
+-- protocol (Facebook / Twitter just fall back to no preview image).
+local function get_og_image(meta)
+  if meta.fmup ~= nil and type(meta.fmup) == 'table' and meta.fmup['og-image'] ~= nil then
+    return meta_to_string(meta.fmup['og-image'])
+  end
+  if meta.website ~= nil and type(meta.website) == 'table'
+     and meta.website['open-graph'] ~= nil
+     and type(meta.website['open-graph']) == 'table'
+     and meta.website['open-graph'].image ~= nil then
+    return meta_to_string(meta.website['open-graph'].image)
+  end
+  if meta['og-image'] ~= nil then
+    return meta_to_string(meta['og-image'])
+  end
+  return nil
+end
+
 local function emit_social_meta(meta)
   -- Only run inside HTML-ish outputs where <meta> tags belong.
   if not (quarto.doc.is_format("html") or quarto.doc.is_format("revealjs")) then
@@ -95,6 +119,7 @@ local function emit_social_meta(meta)
   local description = meta_to_string(meta.description)
   local lang        = meta_to_string(meta.lang)
   local author      = authors_string(meta)
+  local og_image    = get_og_image(meta)
 
   local lines = {}
 
@@ -107,8 +132,18 @@ local function emit_social_meta(meta)
     local safe_author = author:gsub('&', '&amp;'):gsub('"', '&quot;')
     table.insert(lines, '<meta property="article:author" content="' .. safe_author .. '">')
   end
+  if og_image    then table.insert(lines, '<meta property="og:image" content="'       .. og_image    .. '">') end
 
-  table.insert(lines, '<meta name="twitter:card" content="summary_large_image">')
+  -- Twitter Card: summary_large_image when we have an image, plain
+  -- summary otherwise. Crawlers downgrade automatically if asked to
+  -- preview a card type and no image is supplied, but the cleaner
+  -- signal here is to pick the right card up front.
+  if og_image then
+    table.insert(lines, '<meta name="twitter:card" content="summary_large_image">')
+    table.insert(lines, '<meta name="twitter:image" content="' .. og_image .. '">')
+  else
+    table.insert(lines, '<meta name="twitter:card" content="summary">')
+  end
   if title       then table.insert(lines, '<meta name="twitter:title" content="'       .. title       .. '">') end
   if description then table.insert(lines, '<meta name="twitter:description" content="' .. description .. '">') end
 

@@ -5,7 +5,54 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.1.0
+## [Unreleased] - 1.2.0
+
+### Added
+
+- **Static-weight Atkinson Hyperlegible Next + Geist Mono TTFs**
+  bundled under `_extensions/fmup/fonts/` (Regular / Italic / Bold /
+  BoldItalic + Geist Mono Regular / Medium). The typst format now
+  declares `font-paths: [_extensions/fmup/fonts]` so Typst loads them
+  directly. **Eliminates the "variable fonts are not currently
+  supported" warning** that fired on every PDF render.
+- **Typst `#callout` override** in `fmup-typst.typ`. Quarto's
+  template calls `#callout(...)` with Bootstrap-default colours;
+  the override maps `note -> yellow`, `tip -> dark`, `warning ->
+  mid-grey`, `caution -> muted`, `important -> red` so PDFs match the
+  HTML / reveal callout palette. Layout: thick left border, tinted
+  header, body on page bg.
+- **Open Graph image plumbing in `fmup.lua`**. Reads
+  `meta.fmup["og-image"]` (extension key), `meta.website["open-graph"].image`
+  (Quarto's native key), or `meta["og-image"]` (per-page). Emits
+  `og:image` + `twitter:image` and upgrades the Twitter Card to
+  `summary_large_image` when an image is set; falls back to plain
+  `summary` otherwise.
+- **Per-slide `.no-footer` / `.no-logo`** opt-outs on reveal:
+  `## My slide {.no-footer .no-logo}` hides each via `:has()` rules.
+  Footer is also hidden by default on `#title-slide` and H1 section
+  dividers (convention: running matter does not appear on chapter
+  starts). Same default applies to logo.
+
+### Changed
+
+- **Font payload subsetted to LATIN ONLY** (was Latin + Latin-ext).
+  Portuguese and English glyphs all live in U+0000-00FF. Drops the
+  inlined base64 from 210 KB to 137 KB. Polish / Czech / Vietnamese /
+  Eastern European consumers add their own latin-ext `@font-face`
+  via include-in-header; recipe in `docs/customise.qmd`.
+- **Unused latin-ext `.woff2` files removed** from
+  `_extensions/fmup/fonts/`. Only the inlined latin variants stay
+  (kept as provenance for the base64 in `fmup-fonts.css`).
+- Bumped extension version to `1.2.0` (additive minor release).
+
+### Known issues
+
+- Reveal does not support `theme: { light, dark }` natively. Authors
+  who want a dark deck swap `fmup-variables.scss` for
+  `fmup-variables-dark.scss` in their own `theme:` list - recipe
+  documented in `docs/customise.qmd`.
+
+## [1.1.0] - 2026-05-22
 
 ### Added
 

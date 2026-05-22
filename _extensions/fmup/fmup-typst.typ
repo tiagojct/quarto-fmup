@@ -71,3 +71,56 @@
 // Header row inverts to dark + yellow, mirroring the HTML table style.
 #show table.cell.where(y: 0): set text(fill: fmup-yellow, weight: 700)
 #show table.cell.where(y: 0): set table.cell(fill: fmup-text)
+
+// ---- Callouts ----
+// Quarto's typst template generates `#callout(body: ..., title: ...,
+// icon_color: ..., ...)` calls. The function signature has no
+// callout-TYPE parameter, so we discriminate by the icon_color
+// Quarto computed from Bootstrap defaults and remap to the FMUP
+// palette. Layout: thick left border, no rounded corners other than
+// the small 2pt continuous radius, header bar in a tinted fill, body
+// on the page bg. Mirrors the HTML look in partials/_callouts.scss.
+
+#let callout(body: [], title: "Callout", background_color: rgb("#dddddd"), icon: none, icon_color: black, body_background_color: white) = {
+  // Map Quarto/Bootstrap defaults to FMUP equivalents. Anything we do
+  // not recognise falls through to the icon_color Quarto supplied.
+  let fmup-border-paint = if icon_color == rgb("#0d6efd") { fmup-yellow }
+                          else if icon_color == rgb("#198754") { fmup-text }
+                          else if icon_color == rgb("#dc3545") { fmup-danger }
+                          else if icon_color == rgb("#ffc107") { rgb("#B3BBC4") }
+                          else if icon_color == rgb("#fd7e14") { fmup-text-muted }
+                          else { icon_color }
+
+  let fmup-header-fill = if icon_color == rgb("#0d6efd") { rgb("#FFCD0026") }
+                         else if icon_color == rgb("#dc3545") { rgb("#B91C1C14") }
+                         else { fmup-surface }
+
+  block(
+    breakable: false,
+    fill: white,
+    stroke: (
+      left: 4pt + fmup-border-paint,
+      rest: 0.5pt + fmup-border,
+    ),
+    width: 100%,
+    radius: 2pt,
+    inset: 0pt,
+    block(
+      width: 100%,
+      fill: fmup-header-fill,
+      inset: 8pt,
+      below: 0pt,
+    )[
+      #if icon != none [#text(fmup-border-paint, weight: 900)[#icon] ]
+      #text(weight: 700)[#title]
+    ]
+    + if body != [] {
+      block(
+        inset: 8pt,
+        width: 100%,
+        fill: white,
+        body,
+      )
+    }
+  )
+}

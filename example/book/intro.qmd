@@ -29,3 +29,21 @@ com numeração; capítulos marcados `{.unnumbered}` (como o preâmbulo)
 não.
 
 A página actual é o capítulo 1.
+
+## Callouts (demonstração)
+
+::: {.callout-note}
+Os callouts FMUP usam amarelo institucional para o tipo `note`.
+:::
+
+::: {.callout-tip}
+A dica é marcada com borda preta sobre fundo cinzento claro.
+:::
+
+::: {.callout-warning}
+O aviso usa cinzento médio. Sem semáforos.
+:::
+
+::: {.callout-important}
+**Importante.** Único vermelho da paleta, reservado para sinais críticos.
+:::

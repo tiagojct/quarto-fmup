@@ -368,6 +368,52 @@ $code-block-font-size:          0.7em;
   border-bottom: none;
 }
 
+// Hide the running footer on the deck title slide and on H1 section
+// dividers. Title-slide and chapter dividers are running-matter-free by
+// convention; keeping the footer there leaves a disconnected white
+// strip at the bottom (especially obvious because reveal `center: true`
+// vertically centres the heading and the footer sits well below it).
+//
+// Uses :has() so the footer (which lives outside the per-slide section
+// tree at the .reveal level) reacts to which slide is currently
+// `.present`. Supported in Chrome 105+, Firefox 121+, Safari 15.4+ -
+// reveal already targets modern browsers.
+//
+// Quarto labels the deck title with id `title-slide` (class set is
+// `quarto-title-block center`) and labels H1 dividers with class
+// `title-slide`; both branches needed.
+
+.reveal:has(section.present.title-slide) .footer,
+.reveal:has(#title-slide.present) .footer,
+.reveal:has(section#title-slide.present) .footer {
+  display: none !important;
+}
+
+// Authors can opt out per slide with `## Slide title {.no-footer}`.
+.reveal:has(section.present.no-footer) .footer {
+  display: none !important;
+}
+
+// ---- Logo opt-out ----
+// Quarto / reveal pin the deck logo (set via `fmup.logo` ->
+// top-level `logo:`) to the bottom-right of every slide. Hiding it
+// per-slide with `## Slide title {.no-logo}` is conventional for
+// fullscreen photos, quotes, and demo embeds where the corner mark
+// reads as visual noise. Hidden by default on the deck title and
+// chapter dividers (consistent with the .no-footer rule above).
+
+.reveal:has(section.present.no-logo) .slide-logo,
+.reveal:has(section.present.no-logo) .reveal-logo,
+.reveal:has(section.present.no-logo) img.logo,
+.reveal:has(section.present.title-slide) .slide-logo,
+.reveal:has(section.present.title-slide) .reveal-logo,
+.reveal:has(section.present.title-slide) img.logo,
+.reveal:has(#title-slide.present) .slide-logo,
+.reveal:has(#title-slide.present) .reveal-logo,
+.reveal:has(#title-slide.present) img.logo {
+  display: none !important;
+}
+
 // ---- Reduced motion ----
 // Reveal already honours prefers-reduced-motion for its built-in slide
 // transitions when transition: none, but downstream content (callouts,

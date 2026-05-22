@@ -112,6 +112,53 @@ $fmup-bg: #000000;       // preto puro em vez de #0E0E0E
 $fmup-text: #FFFFFF;
 ```
 
+## Imagem Open Graph
+
+A meta `og:image` permite que ligações partilhadas mostrem uma
+*preview* gráfica em Slack / Twitter / Facebook / Discord. Definir
+uma vez no front matter do projecto:
+
+```yaml
+fmup:
+  og-image: assets/og.png
+```
+
+O `fmup.lua` injecta `og:image` e `twitter:image` automaticamente em
+todas as páginas. Sem `og-image`, o Twitter Card cai para `summary`
+(formato pequeno sem imagem) em vez do `summary_large_image`.
+
+Recomendações para a imagem:
+
+- **Dimensões**: 1200 × 630 px (rácio 1.91:1).
+- **Formato**: PNG ou JPG. SVG é aceite pela meta mas alguns
+  *crawlers* (Discord) ignoram.
+- **Peso**: < 1 MB. Twitter rejeita acima de 5 MB.
+- **Texto**: legível à dimensão final (~600 × 315 px na *preview*).
+- **Cor**: usar o amarelo `#FFCD00` no top stripe ou wordmark, mas
+  não como fundo do *card* inteiro (cansa).
+
+O Quarto preserva o canal nativo `website.open-graph.image`, que o
+`fmup.lua` lê se `fmup.og-image` não estiver definido.
+
+## Slides em dark mode
+
+O reveal.js do Quarto não suporta toggle `theme: { light, dark }` como
+o HTML. Para uma apresentação inteiramente em dark, sobrepor a lista
+`theme:` para trocar `fmup-variables.scss` por `fmup-variables-dark.scss`:
+
+```yaml
+format:
+  fmup-revealjs:
+    theme:
+      - default
+      - _extensions/fmup/fmup-revealjs.scss
+      - _extensions/fmup/fmup-variables-dark.scss
+```
+
+O resto do contrato do tema (footer, callouts, tabelas, slide-number)
+mantém-se intacto - apenas a paleta inverte. Útil para auditórios com
+projecção pouco brilhante ou para decks "modo cinema".
+
 ## Adicionar logo
 
 Ver [Formato HTML / Logo](formats/html.qmd#logo-institucional). Em
