@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-PT" xml:lang="pt-PT"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.5">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-09ad0a6b96af1c2df298622f3248cdd2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f769398821c0a8f170c1d75bb9b550ad.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-45fbfbf8933781464655e081d6b79ca9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-64b9b4817f7c3ade7b72ae2f7a69167a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -603,7 +603,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="b.-comments-in-.css-files-are-not-valid-browsers-bail." class="level2">
 <h2 class="anchored" data-anchor-id="b.-comments-in-.css-files-are-not-valid-browsers-bail.">7b. <code>//</code> comments in <code>.css</code> files are NOT valid; browsers bail.</h2>
-<p><strong>Problema:</strong> quando <code>fmup-fonts.scss</code> foi renomeado para <code>fmup-fonts.css</code> (para escapar ao analisador SCSS - ver scar #7), o header de comentários ficou em sintaxe SCSS (<code>// ...</code>). O parser CSS dos browsers não reconhece <code>//</code> como comentário; ao encontrar isto no topo do ficheiro, abandona silenciosamente o resto. Resultado: as declarações <code>@font-face</code> nunca chegavam ao registo do browser e a fonte caía para o stack de fallback (system-ui). Em slides reveal, o sintoma era especialmente visível porque a Atkinson Hyperlegible Next nunca apareceu.</p>
+<p><strong>Problema:</strong> quando <code>fmup-fonts.scss</code> foi renomeado para <code>fmup-fonts.css</code> (para escapar ao analisador SCSS - ver scar #7), o header de comentários ficou em sintaxe SCSS (<code>// ...</code>). O parser CSS dos browsers não reconhece <code>//</code> como comentário; ao encontrar isto no topo do ficheiro, abandona silenciosamente o resto. Resultado: as declarações <code>@font-face</code> nunca chegavam ao registo do browser e a fonte caía para o stack de fallback (system-ui). Em slides reveal, o sintoma era especialmente visível porque a tipografia institucional (na altura, Atkinson Hyperlegible Next; hoje Inter por default) nunca apareceu.</p>
 <p><strong>Solução:</strong> todos os comentários em <code>.css</code> em sintaxe <code>/* ... */</code>. Mesmo o comentário em multi-linha tem que abrir e fechar formalmente.</p>
 <p><strong>Não fazer:</strong> copiar/colar comentários SCSS para um ficheiro <code>.css</code>. Se o ficheiro acabar em <code>.css</code>, abrir cada comentário com <code>/*</code> e fechar com <code>*/</code>.</p>
 </section>

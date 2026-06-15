@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/dataviz.html</loc>
-    <lastmod>2026-05-22T21:32:39.544Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/formats/revealjs.html</loc>
-    <lastmod>2026-05-22T21:32:39.545Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/formats/html.html</loc>
-    <lastmod>2026-05-22T21:32:39.544Z</lastmod>
-  </url>
-  <url>
     <loc>https://tiagojct.github.io/quarto-fmup/index.html</loc>
-    <lastmod>2026-05-22T21:32:39.545Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/install.html</loc>
-    <lastmod>2026-05-22T21:32:39.545Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/customise.html</loc>
-    <lastmod>2026-05-22T21:32:39.544Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/design-scars.html</loc>
-    <lastmod>2026-05-22T21:32:39.544Z</lastmod>
-  </url>
-  <url>
-    <loc>https://tiagojct.github.io/quarto-fmup/formats/typst.html</loc>
-    <lastmod>2026-05-22T21:32:39.545Z</lastmod>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
   </url>
   <url>
     <loc>https://tiagojct.github.io/quarto-fmup/accessibility.html</loc>
-    <lastmod>2026-05-22T21:32:39.544Z</lastmod>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/dataviz.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/formats/revealjs.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/install.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/formats/html.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/formats/typst.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/design-scars.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
+  </url>
+  <url>
+    <loc>https://tiagojct.github.io/quarto-fmup/customise.html</loc>
+    <lastmod>2026-06-15T14:51:26.363Z</lastmod>
   </url>
 </urlset>

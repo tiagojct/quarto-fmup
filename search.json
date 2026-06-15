@@ -1,5 +1,125 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "quarto-fmup",
+    "section": "",
+    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Inter como tipografia base (default); Atkinson Hyperlegible Next disponível como opt-in para contextos de baixa visão.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-é",
+    "href": "index.html#o-que-é",
+    "title": "quarto-fmup",
+    "section": "",
+    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Inter como tipografia base (default); Atkinson Hyperlegible Next disponível como opt-in para contextos de baixa visão.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#instalação-rápida",
+    "href": "index.html#instalação-rápida",
+    "title": "quarto-fmup",
+    "section": "Instalação rápida",
+    "text": "Instalação rápida\nquarto add tiagojct/quarto-fmup\nA partir daqui, declarar o formato em _quarto.yml ou no front matter:\nformat:\n  fmup-html: default\nPara os outros formatos e a configuração detalhada, ver Instalação.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "index.html#o-que-esta-documentação-cobre",
+    "href": "index.html#o-que-esta-documentação-cobre",
+    "title": "quarto-fmup",
+    "section": "O que esta documentação cobre",
+    "text": "O que esta documentação cobre\n\n\n\nPágina\nConteúdo\n\n\n\n\nInstalação\nquarto add, alternativas, atualizações\n\n\nFormato HTML\nOpções, dark mode, logo, navbar\n\n\nFormato Reveal.js\nSlides, footer, logo, atalhos\n\n\nFormato Typst\nPDF, fontes, limitações conhecidas\n\n\nPersonalizar\nSubstituir tokens, partials, paleta\n\n\nAcessibilidade\nWCAG, contrastes, motion-safe\n\n\nDesign scars\nBugs cicatrizados que o SCSS resolve\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEste próprio site é gerado com quarto-fmup. Cada página é uma demonstração do tema aplicado a si próprio (dogfooding).",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "quarto-fmup"
+    ]
+  },
+  {
+    "objectID": "accessibility.html",
+    "href": "accessibility.html",
+    "title": "Acessibilidade",
+    "section": "",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Inter (default)\nSans-serif desenhada por Rasmus Andersson para legibilidade em ecrãs e UIs (default em GitHub, Figma, Microsoft Edge). Eixo opsz de optical sizing; altura-x alta; aberturas abertas em e, a, s. SIL OFL 1.1.\n\n\nAtkinson Hyperlegible Next (opt-in)\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0). Bundled na extensão; appender fmup-variables-atkinson.scss à lista theme: para reverter o default.\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#decisões-do-tema",
+    "href": "accessibility.html#decisões-do-tema",
+    "title": "Acessibilidade",
+    "section": "",
+    "text": "Decisão\nRazão\n\n\n\n\nTipografia Inter (default)\nSans-serif desenhada por Rasmus Andersson para legibilidade em ecrãs e UIs (default em GitHub, Figma, Microsoft Edge). Eixo opsz de optical sizing; altura-x alta; aberturas abertas em e, a, s. SIL OFL 1.1.\n\n\nAtkinson Hyperlegible Next (opt-in)\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0). Bundled na extensão; appender fmup-variables-atkinson.scss à lista theme: para reverter o default.\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#contrastes-light",
+    "href": "accessibility.html#contrastes-light",
+    "title": "Acessibilidade",
+    "section": "Contrastes (light)",
+    "text": "Contrastes (light)\n\n\n\n\n\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#1A1A1A em #FFFFFF\n~16:1\nAAA\n\n\n#1A1A1A em #FFCD00\n~12.6:1\nAAA\n\n\n#5B6470 em #FFFFFF\n~5.0:1\nAA\n\n\n#FFCD00 em #FFFFFF\n~1.4:1\nfalha - nunca usar amarelo como cor de texto sobre branco",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#contrastes-dark",
+    "href": "accessibility.html#contrastes-dark",
+    "title": "Acessibilidade",
+    "section": "Contrastes (dark)",
+    "text": "Contrastes (dark)\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#F2F2F2 em #0E0E0E\n~17:1\nAAA\n\n\n#FFCD00 em #0E0E0E\n~14:1\nAAA\n\n\n#A0A8B0 em #0E0E0E\n~7:1\nAAA\n\n\n#F87171 em #1A1A1A\n~5:1\nAA (texto), AAA (componentes UI)",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#checklist-para-conteúdo",
+    "href": "accessibility.html#checklist-para-conteúdo",
+    "title": "Acessibilidade",
+    "section": "Checklist para conteúdo",
+    "text": "Checklist para conteúdo\nCoisas que o tema NÃO pode fazer por quem escreve:\n\nCada imagem tem alt significativo (não decorativa: descreve; decorativa: alt=\"\").\nCabeçalhos seguem hierarquia sem saltos (H2 antes de H3, não H4 logo a seguir a H2).\nLinks têm texto que faz sentido fora de contexto (evitar “clica aqui”).\nTabelas têm &lt;caption&gt; ou parágrafo descritivo se forem complexas.\nVídeos têm transcrição ou legendas.\nCores no conteúdo (gráficos, diagramas) não são o único veículo de informação.\nPDF gerado via Typst: verificar tags de acessibilidade no leitor (Typst gera PDFs com estrutura semântica básica).\nlang: declarado em _quarto.yml (não confiar no default pandoc).",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
+    "objectID": "accessibility.html#recursos",
+    "href": "accessibility.html#recursos",
+    "title": "Acessibilidade",
+    "section": "Recursos",
+    "text": "Recursos\n\nWCAG 2.2\nWebAIM contrast checker\nInter - tipografia base do tema\nAtkinson Hyperlegible Next - Braille Institute - alternativa opt-in para baixa visão",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Acessibilidade"
+    ]
+  },
+  {
     "objectID": "dataviz.html",
     "href": "dataviz.html",
     "title": "Paleta para gráficos",
@@ -28,7 +148,7 @@
     "href": "dataviz.html#exemplos",
     "title": "Paleta para gráficos",
     "section": "Exemplos",
-    "text": "Exemplos\n\nR / ggplot2\nfmup_chart &lt;- c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n                \"#D55E00\", \"#56B4E9\", \"#CC79A7\")\n\nlibrary(ggplot2)\nggplot(mtcars, aes(mpg, hp, colour = factor(cyl))) +\n  geom_point(size = 3) +\n  scale_colour_manual(values = fmup_chart) +\n  theme_minimal(base_family = \"Atkinson Hyperlegible Next\") +\n  theme(panel.grid.minor = element_blank())\nPara um wrapper reutilizável:\nscale_colour_fmup &lt;- function(...) {\n  ggplot2::scale_colour_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\nscale_fill_fmup &lt;- function(...) {\n  ggplot2::scale_fill_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\n\nPython / matplotlib\nimport matplotlib as mpl\n\nFMUP_CHART = [\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n              \"#D55E00\", \"#56B4E9\", \"#CC79A7\"]\n\nmpl.rcParams.update({\n    \"axes.prop_cycle\": mpl.cycler(color=FMUP_CHART),\n    \"font.family\": \"Atkinson Hyperlegible Next\",\n    \"axes.edgecolor\": \"#1A1A1A\",\n    \"axes.labelcolor\": \"#1A1A1A\",\n    \"axes.spines.top\": False,\n    \"axes.spines.right\": False,\n    \"grid.color\": \"#E0E0E0\",\n    \"grid.linestyle\": \"--\",\n})\nE depois:\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx = np.linspace(0, 10, 100)\nfor i in range(4):\n    plt.plot(x, np.sin(x + i), label=f\"série {i+1}\")\nplt.legend()\nplt.show()\n\n\nObservable / runtime (JS)\nA paleta também é exposta como custom properties em :root:\nconst css = getComputedStyle(document.documentElement);\nconst FMUP_CHART = [1,2,3,4,5,6].map(\n  i =&gt; css.getPropertyValue(`--fmup-chart-${i}`).trim()\n);\nÚtil em widgets que usam D3, Plotly, ou Observable Inputs - a paleta adapta-se automaticamente ao light/dark toggle do Quarto.",
+    "text": "Exemplos\n\nR / ggplot2\nfmup_chart &lt;- c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n                \"#D55E00\", \"#56B4E9\", \"#CC79A7\")\n\nlibrary(ggplot2)\nggplot(mtcars, aes(mpg, hp, colour = factor(cyl))) +\n  geom_point(size = 3) +\n  scale_colour_manual(values = fmup_chart) +\n  theme_minimal(base_family = \"Inter\") +\n  theme(panel.grid.minor = element_blank())\nPara um wrapper reutilizável:\nscale_colour_fmup &lt;- function(...) {\n  ggplot2::scale_colour_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\nscale_fill_fmup &lt;- function(...) {\n  ggplot2::scale_fill_manual(\n    values = c(\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n               \"#D55E00\", \"#56B4E9\", \"#CC79A7\"),\n    ...\n  )\n}\n\n\nPython / matplotlib\nimport matplotlib as mpl\n\nFMUP_CHART = [\"#1A1A1A\", \"#FFCD00\", \"#0072B2\",\n              \"#D55E00\", \"#56B4E9\", \"#CC79A7\"]\n\nmpl.rcParams.update({\n    \"axes.prop_cycle\": mpl.cycler(color=FMUP_CHART),\n    \"font.family\": \"Inter\",\n    \"axes.edgecolor\": \"#1A1A1A\",\n    \"axes.labelcolor\": \"#1A1A1A\",\n    \"axes.spines.top\": False,\n    \"axes.spines.right\": False,\n    \"grid.color\": \"#E0E0E0\",\n    \"grid.linestyle\": \"--\",\n})\nE depois:\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nx = np.linspace(0, 10, 100)\nfor i in range(4):\n    plt.plot(x, np.sin(x + i), label=f\"série {i+1}\")\nplt.legend()\nplt.show()\n\n\nObservable / runtime (JS)\nA paleta também é exposta como custom properties em :root:\nconst css = getComputedStyle(document.documentElement);\nconst FMUP_CHART = [1,2,3,4,5,6].map(\n  i =&gt; css.getPropertyValue(`--fmup-chart-${i}`).trim()\n);\nÚtil em widgets que usam D3, Plotly, ou Observable Inputs - a paleta adapta-se automaticamente ao light/dark toggle do Quarto.",
     "crumbs": [
       "Início",
       "Avançado",
@@ -132,11 +252,83 @@
     ]
   },
   {
+    "objectID": "install.html",
+    "href": "install.html",
+    "title": "Instalação",
+    "section": "",
+    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: nenhuma fonte precisa de ser instalada. A extensão envia as TTFs estáticas do Inter + Geist Mono e declara font-paths: [fonts] para que o Typst as encontre automaticamente. Quem quiser usar Atkinson Hyperlegible Next (opt-in) também tem as TTFs incluídas.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#pré-requisitos",
+    "href": "install.html#pré-requisitos",
+    "title": "Instalação",
+    "section": "",
+    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: nenhuma fonte precisa de ser instalada. A extensão envia as TTFs estáticas do Inter + Geist Mono e declara font-paths: [fonts] para que o Typst as encontre automaticamente. Quem quiser usar Atkinson Hyperlegible Next (opt-in) também tem as TTFs incluídas.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#adicionar-ao-projeto",
+    "href": "install.html#adicionar-ao-projeto",
+    "title": "Instalação",
+    "section": "Adicionar ao projeto",
+    "text": "Adicionar ao projeto\nA partir da raiz de qualquer projeto Quarto:\nquarto add tiagojct/quarto-fmup\nResponder y quando perguntar se confia na extensão. O Quarto descarrega _extensions/fmup/ para dentro do projeto e nada mais é preciso instalar — as fontes estão embutidas no próprio tema.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#declarar-o-formato",
+    "href": "install.html#declarar-o-formato",
+    "title": "Instalação",
+    "section": "Declarar o formato",
+    "text": "Declarar o formato\n\nWebsite ou livro\n# _quarto.yml\nformat:\n  fmup-html: default\n\n\nApresentação reveal.js\n---\ntitle: \"Slides\"\nauthor: \"Autor\"\nformat:\n  fmup-revealjs:\n    footer: \"FMUP · Faculdade de Medicina da Universidade do Porto\"\n---\n\n\nPDF via Typst\nformat:\n  fmup-typst: default",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#atualizar",
+    "href": "install.html#atualizar",
+    "title": "Instalação",
+    "section": "Atualizar",
+    "text": "Atualizar\nquarto update tiagojct/quarto-fmup\nO update segue a tag mais recente no GitHub. Para fixar uma versão:\nquarto add tiagojct/quarto-fmup@v1.1.0",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
+    "objectID": "install.html#remover",
+    "href": "install.html#remover",
+    "title": "Instalação",
+    "section": "Remover",
+    "text": "Remover\nquarto remove tiagojct/quarto-fmup\nApaga _extensions/fmup/. O formato passa a falhar com “Format not found” na próxima renderização — alterar _quarto.yml para outro formato antes ou depois.",
+    "crumbs": [
+      "Início",
+      "Começar",
+      "Instalação"
+    ]
+  },
+  {
     "objectID": "formats/html.html",
     "href": "formats/html.html",
     "title": "Formato HTML (fmup-html)",
     "section": "",
-    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nInter (Atkinson Hyperlegible Next como fallback nomeado)\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
     "crumbs": [
       "Início",
       "Formatos",
@@ -148,7 +340,7 @@
     "href": "formats/html.html#defaults",
     "title": "Formato HTML (fmup-html)",
     "section": "",
-    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
+    "text": "Ao escolher fmup-html, herdam-se automaticamente:\n\n\n\n\n\n\n\nOpção\nValor\n\n\n\n\ntheme.light\ndefault + fmup.scss + fmup-variables.scss\n\n\ntheme.dark\ndefault + fmup.scss + fmup-variables-dark.scss\n\n\nmainfont\nInter (Atkinson Hyperlegible Next como fallback nomeado)\n\n\nmonofont\nGeist Mono\n\n\ntoc\ntrue\n\n\ncode-copy\ntrue\n\n\ncode-overflow\nwrap\n\n\nsmooth-scroll\ntrue\n\n\nlink-external-newwindow\ntrue\n\n\nlink-external-icon\nfalse (a distinção dos links externos faz-se pelo sublinhado amarelo + font-weight: 500)\n\n\nhighlight-style\nfmup-highlight.theme (paleta FMUP)\n\n\n\nPara sobrepor qualquer um, declarar no próprio _quarto.yml:\nformat:\n  fmup-html:\n    toc: false\n    code-overflow: scroll",
     "crumbs": [
       "Início",
       "Formatos",
@@ -208,7 +400,7 @@
     "href": "formats/html.html#acessibilidade",
     "title": "Formato HTML (fmup-html)",
     "section": "Acessibilidade",
-    "text": "Acessibilidade\n\nFoco visível: contorno 2px solid #1A1A1A + box-shadow amarelo (cumpre WCAG 1.4.11; amarelo puro contra branco fica em 1.4:1 e falha).\nLinks no corpo: font-weight: 500 + sublinhado amarelo 2.5px — segunda dimensão de distinção além da cor.\nprefers-reduced-motion: anula smooth-scroll (e o Bootstrap 5 trata o resto via $enable-reduced-motion).\nTipografia: Atkinson Hyperlegible Next foi desenhada pelo Braille Institute para utilizadores com visão reduzida.",
+    "text": "Acessibilidade\n\nFoco visível: contorno 2px solid #1A1A1A + box-shadow amarelo (cumpre WCAG 1.4.11; amarelo puro contra branco fica em 1.4:1 e falha).\nLinks no corpo: font-weight: 500 + sublinhado amarelo 2.5px — segunda dimensão de distinção além da cor.\nprefers-reduced-motion: anula smooth-scroll (e o Bootstrap 5 trata o resto via $enable-reduced-motion).\nTipografia: Inter (default; Rasmus Andersson, SIL OFL) é uma sans-serif optimizada para legibilidade em ecrãs e UIs. Para contextos de baixa visão, Atkinson Hyperlegible Next está bundled e activa-se appendendo fmup-variables-atkinson.scss à lista theme: (ver Personalizar).",
     "crumbs": [
       "Início",
       "Formatos",
@@ -216,219 +408,63 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "quarto-fmup",
+    "objectID": "formats/typst.html",
+    "href": "formats/typst.html",
+    "title": "Formato Typst (fmup-typst)",
     "section": "",
-    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Atkinson Hyperlegible Next como tipografia base.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nInter\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
     "crumbs": [
       "Início",
-      "Começar",
-      "quarto-fmup"
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
     ]
   },
   {
-    "objectID": "index.html#o-que-é",
-    "href": "index.html#o-que-é",
-    "title": "quarto-fmup",
+    "objectID": "formats/typst.html#defaults",
+    "href": "formats/typst.html#defaults",
+    "title": "Formato Typst (fmup-typst)",
     "section": "",
-    "text": "quarto-fmup é uma extensão Quarto que aplica a identidade visual da Faculdade de Medicina da Universidade do Porto a três formatos:\n\nfmup-html para websites e livros.\nfmup-revealjs para apresentações reveal.js.\nfmup-typst para PDF via Typst.\n\nO tema parte de três princípios:\n\nLegibilidade antes de estética. Atkinson Hyperlegible Next como tipografia base.\nCor como acento, não como decoração. O amarelo #FFCD00 aparece onde precisa de chamar atenção, em mais lado nenhum.\nPreto, branco e amarelo. Sem segundos amarelos, sem verdes de apoio. Vermelho #B91C1C reservado para callout-important e estados de erro.",
+    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nInter\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
     "crumbs": [
       "Início",
-      "Começar",
-      "quarto-fmup"
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
     ]
   },
   {
-    "objectID": "index.html#instalação-rápida",
-    "href": "index.html#instalação-rápida",
-    "title": "quarto-fmup",
-    "section": "Instalação rápida",
-    "text": "Instalação rápida\nquarto add tiagojct/quarto-fmup\nA partir daqui, declarar o formato em _quarto.yml ou no front matter:\nformat:\n  fmup-html: default\nPara os outros formatos e a configuração detalhada, ver Instalação.",
+    "objectID": "formats/typst.html#carregamento-das-fontes",
+    "href": "formats/typst.html#carregamento-das-fontes",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "Carregamento das fontes",
+    "text": "Carregamento das fontes\nDesde a v1.2.1 o extension envia as TTFs estáticas do Inter + Geist Mono (4 weights de cada) em _extensions/fmup/fonts/ e declara font-paths: [fonts]. O Typst resolve esta path automaticamente, mesmo com install &lt;org&gt;/&lt;name&gt;-prefixado via quarto add. Não é preciso instalar nada no sistema.\nAs mesmas TTFs do Atkinson Hyperlegible Next (Regular, Bold, Italic, BoldItalic) também ficam bundled - prontas para uso quando um QMD individual sobrepor mainfont:\nformat:\n  fmup-typst:\n    mainfont: \"Atkinson Hyperlegible Next\"\n    sansfont: \"Atkinson Hyperlegible Next\"",
     "crumbs": [
       "Início",
-      "Começar",
-      "quarto-fmup"
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
     ]
   },
   {
-    "objectID": "index.html#o-que-esta-documentação-cobre",
-    "href": "index.html#o-que-esta-documentação-cobre",
-    "title": "quarto-fmup",
-    "section": "O que esta documentação cobre",
-    "text": "O que esta documentação cobre\n\n\n\nPágina\nConteúdo\n\n\n\n\nInstalação\nquarto add, alternativas, atualizações\n\n\nFormato HTML\nOpções, dark mode, logo, navbar\n\n\nFormato Reveal.js\nSlides, footer, logo, atalhos\n\n\nFormato Typst\nPDF, fontes, limitações conhecidas\n\n\nPersonalizar\nSubstituir tokens, partials, paleta\n\n\nAcessibilidade\nWCAG, contrastes, motion-safe\n\n\nDesign scars\nBugs cicatrizados que o SCSS resolve\n\n\n\n\n\n\n\n\n\nNota\n\n\n\nEste próprio site é gerado com quarto-fmup. Cada página é uma demonstração do tema aplicado a si próprio (dogfooding).",
+    "objectID": "formats/typst.html#limitações-conhecidas",
+    "href": "formats/typst.html#limitações-conhecidas",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "Limitações conhecidas",
+    "text": "Limitações conhecidas\nTypst (até 0.14.x) não suporta fontes variáveis. As variáveis em fmup-fonts.css (Inter, Atkinson, Geist Mono) são usadas apenas no HTML/reveal. Para o Typst usam-se as TTFs estáticas - sem warnings, sem fallback.\n\n2. Callouts não estilizados\nO template Typst do Quarto gera #callout(...) com a estética default do Quarto. O fmup-typst.typ ainda não sobrescreve essa função - PR bem-vindo. Workaround: usar #admonition() próprio em documentos onde callouts apareçam frequentemente.\n\n\n3. Logo institucional\nSem hook standard. Adicionar manualmente no início do documento:\n#image(\"assets/fmup-wordmark.svg\", width: 4cm)\nou via include-in-header próprio.",
     "crumbs": [
       "Início",
-      "Começar",
-      "quarto-fmup"
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
     ]
   },
   {
-    "objectID": "install.html",
-    "href": "install.html",
-    "title": "Instalação",
-    "section": "",
-    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: a fonte Atkinson Hyperlegible Next instalada no sistema (ver Formato Typst para o motivo).",
+    "objectID": "formats/typst.html#render",
+    "href": "formats/typst.html#render",
+    "title": "Formato Typst (fmup-typst)",
+    "section": "Render",
+    "text": "Render\nquarto render documento.qmd --to fmup-typst\nGera documento.pdf no mesmo diretório.",
     "crumbs": [
       "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "install.html#pré-requisitos",
-    "href": "install.html#pré-requisitos",
-    "title": "Instalação",
-    "section": "",
-    "text": "Quarto &gt;= 1.4. Versões mais antigas não conhecem theme: com variantes light: / dark:.\nPara PDF via Typst: a fonte Atkinson Hyperlegible Next instalada no sistema (ver Formato Typst para o motivo).",
-    "crumbs": [
-      "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "install.html#adicionar-ao-projeto",
-    "href": "install.html#adicionar-ao-projeto",
-    "title": "Instalação",
-    "section": "Adicionar ao projeto",
-    "text": "Adicionar ao projeto\nA partir da raiz de qualquer projeto Quarto:\nquarto add tiagojct/quarto-fmup\nResponder y quando perguntar se confia na extensão. O Quarto descarrega _extensions/fmup/ para dentro do projeto e nada mais é preciso instalar — as fontes estão embutidas no próprio tema.",
-    "crumbs": [
-      "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "install.html#declarar-o-formato",
-    "href": "install.html#declarar-o-formato",
-    "title": "Instalação",
-    "section": "Declarar o formato",
-    "text": "Declarar o formato\n\nWebsite ou livro\n# _quarto.yml\nformat:\n  fmup-html: default\n\n\nApresentação reveal.js\n---\ntitle: \"Slides\"\nauthor: \"Autor\"\nformat:\n  fmup-revealjs:\n    footer: \"FMUP · Faculdade de Medicina da Universidade do Porto\"\n---\n\n\nPDF via Typst\nformat:\n  fmup-typst: default",
-    "crumbs": [
-      "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "install.html#atualizar",
-    "href": "install.html#atualizar",
-    "title": "Instalação",
-    "section": "Atualizar",
-    "text": "Atualizar\nquarto update tiagojct/quarto-fmup\nO update segue a tag mais recente no GitHub. Para fixar uma versão:\nquarto add tiagojct/quarto-fmup@v1.1.0",
-    "crumbs": [
-      "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "install.html#remover",
-    "href": "install.html#remover",
-    "title": "Instalação",
-    "section": "Remover",
-    "text": "Remover\nquarto remove tiagojct/quarto-fmup\nApaga _extensions/fmup/. O formato passa a falhar com “Format not found” na próxima renderização — alterar _quarto.yml para outro formato antes ou depois.",
-    "crumbs": [
-      "Início",
-      "Começar",
-      "Instalação"
-    ]
-  },
-  {
-    "objectID": "customise.html",
-    "href": "customise.html",
-    "title": "Personalizar",
-    "section": "",
-    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#tokens-de-design",
-    "href": "customise.html#tokens-de-design",
-    "title": "Personalizar",
-    "section": "",
-    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#substituir-um-partial",
-    "href": "customise.html#substituir-um-partial",
-    "title": "Personalizar",
-    "section": "Substituir um partial",
-    "text": "Substituir um partial\nO bloco mais provável de personalizar são os callouts. Vive em partials/_callouts.scss.\nPara mudar o tom da callout-note:\n/*-- scss:rules --*/\ndiv.callout.callout-note .callout-title,\ndiv.callout-note .callout-title {\n  background-color: rgba($fmup-yellow, 0.25) !important;  // mais saturado\n}\n!important é obrigatório - a CSS core do Quarto carrega DEPOIS do tema e ganharia em especificidade sem ele.",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#tipografia",
-    "href": "customise.html#tipografia",
-    "title": "Personalizar",
-    "section": "Tipografia",
-    "text": "Tipografia\nPara trocar a fonte de corpo:\n/*-- scss:defaults --*/\n$fmup-font-sans: \"IBM Plex Sans\", system-ui, sans-serif;\nSe a nova fonte não estiver no payload fmup-fonts.css (que só inclui Atkinson Hyperlegible Next e Geist Mono), ligar via include-in-header do utilizador:\nformat:\n  fmup-html:\n    include-in-header:\n      - text: |\n          &lt;link rel=\"stylesheet\" href=\"https://...\"&gt;",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#paleta-dark",
-    "href": "customise.html#paleta-dark",
-    "title": "Personalizar",
-    "section": "Paleta dark",
-    "text": "Paleta dark\nMesmo padrão, em fmup-variables-dark.scss. Para customizar só o dark mode:\ntheme:\n  dark:\n    - default\n    - fmup.scss\n    - fmup-variables-dark.scss\n    - mydark.scss\n/*-- scss:defaults --*/\n$fmup-bg: #000000;       // preto puro em vez de #0E0E0E\n$fmup-text: #FFFFFF;",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#imagem-open-graph",
-    "href": "customise.html#imagem-open-graph",
-    "title": "Personalizar",
-    "section": "Imagem Open Graph",
-    "text": "Imagem Open Graph\nA meta og:image permite que ligações partilhadas mostrem uma preview gráfica em Slack / Twitter / Facebook / Discord. Definir uma vez no front matter do projecto:\nfmup:\n  og-image: assets/og.png\nO fmup.lua injecta og:image e twitter:image automaticamente em todas as páginas. Sem og-image, o Twitter Card cai para summary (formato pequeno sem imagem) em vez do summary_large_image.\nRecomendações para a imagem:\n\nDimensões: 1200 × 630 px (rácio 1.91:1).\nFormato: PNG ou JPG. SVG é aceite pela meta mas alguns crawlers (Discord) ignoram.\nPeso: &lt; 1 MB. Twitter rejeita acima de 5 MB.\nTexto: legível à dimensão final (~600 × 315 px na preview).\nCor: usar o amarelo #FFCD00 no top stripe ou wordmark, mas não como fundo do card inteiro (cansa).\n\nO Quarto preserva o canal nativo website.open-graph.image, que o fmup.lua lê se fmup.og-image não estiver definido.",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#slides-em-dark-mode",
-    "href": "customise.html#slides-em-dark-mode",
-    "title": "Personalizar",
-    "section": "Slides em dark mode",
-    "text": "Slides em dark mode\nO reveal.js do Quarto não suporta toggle theme: { light, dark } como o HTML. Para uma apresentação inteiramente em dark, sobrepor a lista theme: para trocar fmup-variables.scss por fmup-variables-dark.scss:\nformat:\n  fmup-revealjs:\n    theme:\n      - default\n      - _extensions/fmup/fmup-revealjs.scss\n      - _extensions/fmup/fmup-variables-dark.scss\nO resto do contrato do tema (footer, callouts, tabelas, slide-number) mantém-se intacto - apenas a paleta inverte. Útil para auditórios com projecção pouco brilhante ou para decks “modo cinema”.",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
-    ]
-  },
-  {
-    "objectID": "customise.html#adicionar-logo",
-    "href": "customise.html#adicionar-logo",
-    "title": "Personalizar",
-    "section": "Adicionar logo",
-    "text": "Adicionar logo\nVer Formato HTML / Logo. Em resumo:\nfmup:\n  logo: assets/fmup-wordmark.svg",
-    "crumbs": [
-      "Início",
-      "Avançado",
-      "Personalizar"
+      "Formatos",
+      "Formato Typst (`fmup-typst`)"
     ]
   },
   {
@@ -592,7 +628,7 @@
     "href": "design-scars.html#b.-comments-in-.css-files-are-not-valid-browsers-bail.",
     "title": "Design scars",
     "section": "7b. // comments in .css files are NOT valid; browsers bail.",
-    "text": "7b. // comments in .css files are NOT valid; browsers bail.\nProblema: quando fmup-fonts.scss foi renomeado para fmup-fonts.css (para escapar ao analisador SCSS - ver scar #7), o header de comentários ficou em sintaxe SCSS (// ...). O parser CSS dos browsers não reconhece // como comentário; ao encontrar isto no topo do ficheiro, abandona silenciosamente o resto. Resultado: as declarações @font-face nunca chegavam ao registo do browser e a fonte caía para o stack de fallback (system-ui). Em slides reveal, o sintoma era especialmente visível porque a Atkinson Hyperlegible Next nunca apareceu.\nSolução: todos os comentários em .css em sintaxe /* ... */. Mesmo o comentário em multi-linha tem que abrir e fechar formalmente.\nNão fazer: copiar/colar comentários SCSS para um ficheiro .css. Se o ficheiro acabar em .css, abrir cada comentário com /* e fechar com */.",
+    "text": "7b. // comments in .css files are NOT valid; browsers bail.\nProblema: quando fmup-fonts.scss foi renomeado para fmup-fonts.css (para escapar ao analisador SCSS - ver scar #7), o header de comentários ficou em sintaxe SCSS (// ...). O parser CSS dos browsers não reconhece // como comentário; ao encontrar isto no topo do ficheiro, abandona silenciosamente o resto. Resultado: as declarações @font-face nunca chegavam ao registo do browser e a fonte caía para o stack de fallback (system-ui). Em slides reveal, o sintoma era especialmente visível porque a tipografia institucional (na altura, Atkinson Hyperlegible Next; hoje Inter por default) nunca apareceu.\nSolução: todos os comentários em .css em sintaxe /* ... */. Mesmo o comentário em multi-linha tem que abrir e fechar formalmente.\nNão fazer: copiar/colar comentários SCSS para um ficheiro .css. Se o ficheiro acabar em .css, abrir cada comentário com /* e fechar com */.",
     "crumbs": [
       "Início",
       "Avançado",
@@ -648,123 +684,111 @@
     ]
   },
   {
-    "objectID": "formats/typst.html",
-    "href": "formats/typst.html",
-    "title": "Formato Typst (fmup-typst)",
+    "objectID": "customise.html",
+    "href": "customise.html",
+    "title": "Personalizar",
     "section": "",
-    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
+    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Inter\", \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
     "crumbs": [
       "Início",
-      "Formatos",
-      "Formato Typst (`fmup-typst`)"
+      "Avançado",
+      "Personalizar"
     ]
   },
   {
-    "objectID": "formats/typst.html#defaults",
-    "href": "formats/typst.html#defaults",
-    "title": "Formato Typst (fmup-typst)",
+    "objectID": "customise.html#tokens-de-design",
+    "href": "customise.html#tokens-de-design",
+    "title": "Personalizar",
     "section": "",
-    "text": "Opção\nValor\n\n\n\n\npapersize\na4\n\n\nmainfont / sansfont\nAtkinson Hyperlegible Next\n\n\nmonofont\nGeist Mono\n\n\nfontsize\n11pt\n\n\nmargin.x / margin.y\n2.5cm / 2.5cm\n\n\nnumber-sections\ntrue\n\n\ntoc / toc-depth\ntrue / 3\n\n\n\nO ficheiro fmup-typst.typ (carregado via include-in-header) traz:\n\nH1 com regra amarela inferior (3pt + #FFCD00).\nH3 a #5B6470 (texto cinzento atenuado).\nLinks: texto a #1A1A1A com sublinhado amarelo a 1pt.\nInline code: caixa cinzenta-clara com raio 2pt.\nBlocos de código: caixa com borda cinzenta, fundo #F0F0F0.\nBlockquote: borda amarela à esquerda, fundo #F7F7F7.\nTabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).",
-    "crumbs": [
-      "Início",
-      "Formatos",
-      "Formato Typst (`fmup-typst`)"
-    ]
-  },
-  {
-    "objectID": "formats/typst.html#limitações-conhecidas",
-    "href": "formats/typst.html#limitações-conhecidas",
-    "title": "Formato Typst (fmup-typst)",
-    "section": "Limitações conhecidas",
-    "text": "Limitações conhecidas\n\n1. Fontes variáveis\nwarning: variable fonts are not currently supported and may render incorrectly\n    = hint: try installing a static version of \"atkinson hyperlegible next\" instead\nO Typst (até 0.14.x) não suporta fontes variáveis. As fontes que o tema embute para HTML/reveal são variáveis - boas para a web, más para o Typst. Soluções:\n\nInstalar a versão static no sistema que executa o quarto render. O Braille Institute distribui ficheiros TTF por peso individual (AtkinsonHyperlegibleNext-Regular.ttf, -Bold.ttf, etc.). O Typst encontra-as via fontconfig / system fonts.\nSobrepor a fonte para Typst:\nformat:\n  fmup-typst:\n    mainfont: \"Source Serif Pro\"\nEsperar pela versão Typst que suportará variáveis (issue typst/typst#185).\n\n\n\n2. Callouts não estilizados\nO template Typst do Quarto gera #callout(...) com a estética default do Quarto. O fmup-typst.typ ainda não sobrescreve essa função - PR bem-vindo. Workaround: usar #admonition() próprio em documentos onde callouts apareçam frequentemente.\n\n\n3. Logo institucional\nSem hook standard. Adicionar manualmente no início do documento:\n#image(\"assets/fmup-wordmark.svg\", width: 4cm)\nou via include-in-header próprio.",
-    "crumbs": [
-      "Início",
-      "Formatos",
-      "Formato Typst (`fmup-typst`)"
-    ]
-  },
-  {
-    "objectID": "formats/typst.html#render",
-    "href": "formats/typst.html#render",
-    "title": "Formato Typst (fmup-typst)",
-    "section": "Render",
-    "text": "Render\nquarto render documento.qmd --to fmup-typst\nGera documento.pdf no mesmo diretório.",
-    "crumbs": [
-      "Início",
-      "Formatos",
-      "Formato Typst (`fmup-typst`)"
-    ]
-  },
-  {
-    "objectID": "accessibility.html",
-    "href": "accessibility.html",
-    "title": "Acessibilidade",
-    "section": "",
-    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
+    "text": "Todos os parâmetros vivem em _extensions/fmup/fmup-variables.scss:\n$fmup-yellow:         #FFCD00 !default;\n$fmup-yellow-dark:    #E6B800 !default;\n$fmup-text:           #1A1A1A !default;\n$fmup-text-muted:     #5B6470 !default;\n$fmup-bg:             #FFFFFF !default;\n$fmup-surface:        #F7F7F7 !default;\n$fmup-surface-strong: #F0F0F0 !default;\n$fmup-border:         #E0E0E0 !default;\n$fmup-border-strong:  #B3BBC4 !default;\n$fmup-danger:         #B91C1C !default;\n\n$fmup-font-sans: \"Inter\", \"Atkinson Hyperlegible Next\", ...;\n$fmup-font-mono: \"Geist Mono\", ...;\n\n$fmup-radius-sm: 4px !default;\n$fmup-radius:    6px !default;\nTodos !default. Para sobrepor sem editar o ficheiro do tema, criar um SCSS próprio e listá-lo APÓS o tema:\nformat:\n  fmup-html:\n    theme:\n      - default\n      - fmup.scss\n      - fmup-variables.scss\n      - mytokens.scss        # &lt;- ganha\n/*-- scss:defaults --*/\n$fmup-yellow:        #E5B800;   // mais quente\n$fmup-radius:        8px;       // raios maiores\n\n\n\n\n\n\nNota\n\n\n\nO Quarto compila as defaults em ORDEM INVERSA da theme:. Por isso o ficheiro do utilizador (último na lista) é processado PRIMEIRO no output compilado - definições sem !default ficam em vigor antes do tema chegar a usar a variável.",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
     ]
   },
   {
-    "objectID": "accessibility.html#decisões-do-tema",
-    "href": "accessibility.html#decisões-do-tema",
-    "title": "Acessibilidade",
-    "section": "",
-    "text": "Decisão\nRazão\n\n\n\n\nTipografia Atkinson Hyperlegible Next\nDesenhada pelo Braille Institute para utilizadores com visão reduzida. Distingue glifos comummente confundidos (I, l, 1; O, 0).\n\n\nfont-weight: 500 em links de prosa\nSegunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).\n\n\nSublinhado amarelo a 2.5px em links\nReforço visual; mantido mesmo em renderizadores monocromáticos.\n\n\nFoco visível: 2px solid #1A1A1A + box-shadow amarelo\nCumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.\n\n\nVermelho #B91C1C reservado a callout-important\nÚnico vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para #F87171 para manter ≥4.5:1 contra fundo escuro.\n\n\nprefers-reduced-motion: reduce\nAnula smooth-scroll. Bootstrap 5 trata transições e animações via $enable-reduced-motion: true.",
+    "objectID": "customise.html#substituir-um-partial",
+    "href": "customise.html#substituir-um-partial",
+    "title": "Personalizar",
+    "section": "Substituir um partial",
+    "text": "Substituir um partial\nO bloco mais provável de personalizar são os callouts. Vive em partials/_callouts.scss.\nPara mudar o tom da callout-note:\n/*-- scss:rules --*/\ndiv.callout.callout-note .callout-title,\ndiv.callout-note .callout-title {\n  background-color: rgba($fmup-yellow, 0.25) !important;  // mais saturado\n}\n!important é obrigatório - a CSS core do Quarto carrega DEPOIS do tema e ganharia em especificidade sem ele.",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
     ]
   },
   {
-    "objectID": "accessibility.html#contrastes-light",
-    "href": "accessibility.html#contrastes-light",
-    "title": "Acessibilidade",
-    "section": "Contrastes (light)",
-    "text": "Contrastes (light)\n\n\n\n\n\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#1A1A1A em #FFFFFF\n~16:1\nAAA\n\n\n#1A1A1A em #FFCD00\n~12.6:1\nAAA\n\n\n#5B6470 em #FFFFFF\n~5.0:1\nAA\n\n\n#FFCD00 em #FFFFFF\n~1.4:1\nfalha - nunca usar amarelo como cor de texto sobre branco",
+    "objectID": "customise.html#tipografia",
+    "href": "customise.html#tipografia",
+    "title": "Personalizar",
+    "section": "Tipografia",
+    "text": "Tipografia\nPara trocar a fonte de corpo:\n/*-- scss:defaults --*/\n$fmup-font-sans: \"IBM Plex Sans\", system-ui, sans-serif;\nSe a nova fonte não estiver no payload fmup-fonts.css (que inclui Inter, Atkinson Hyperlegible Next e Geist Mono), ligar via include-in-header do utilizador:\nformat:\n  fmup-html:\n    include-in-header:\n      - text: |\n          &lt;link rel=\"stylesheet\" href=\"https://...\"&gt;",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
     ]
   },
   {
-    "objectID": "accessibility.html#contrastes-dark",
-    "href": "accessibility.html#contrastes-dark",
-    "title": "Acessibilidade",
-    "section": "Contrastes (dark)",
-    "text": "Contrastes (dark)\n\n\n\nCombinação\nRatio\nWCAG\n\n\n\n\n#F2F2F2 em #0E0E0E\n~17:1\nAAA\n\n\n#FFCD00 em #0E0E0E\n~14:1\nAAA\n\n\n#A0A8B0 em #0E0E0E\n~7:1\nAAA\n\n\n#F87171 em #1A1A1A\n~5:1\nAA (texto), AAA (componentes UI)",
+    "objectID": "customise.html#paleta-dark",
+    "href": "customise.html#paleta-dark",
+    "title": "Personalizar",
+    "section": "Paleta dark",
+    "text": "Paleta dark\nMesmo padrão, em fmup-variables-dark.scss. Para customizar só o dark mode:\ntheme:\n  dark:\n    - default\n    - fmup.scss\n    - fmup-variables-dark.scss\n    - mydark.scss\n/*-- scss:defaults --*/\n$fmup-bg: #000000;       // preto puro em vez de #0E0E0E\n$fmup-text: #FFFFFF;",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
     ]
   },
   {
-    "objectID": "accessibility.html#checklist-para-conteúdo",
-    "href": "accessibility.html#checklist-para-conteúdo",
-    "title": "Acessibilidade",
-    "section": "Checklist para conteúdo",
-    "text": "Checklist para conteúdo\nCoisas que o tema NÃO pode fazer por quem escreve:\n\nCada imagem tem alt significativo (não decorativa: descreve; decorativa: alt=\"\").\nCabeçalhos seguem hierarquia sem saltos (H2 antes de H3, não H4 logo a seguir a H2).\nLinks têm texto que faz sentido fora de contexto (evitar “clica aqui”).\nTabelas têm &lt;caption&gt; ou parágrafo descritivo se forem complexas.\nVídeos têm transcrição ou legendas.\nCores no conteúdo (gráficos, diagramas) não são o único veículo de informação.\nPDF gerado via Typst: verificar tags de acessibilidade no leitor (Typst gera PDFs com estrutura semântica básica).\nlang: declarado em _quarto.yml (não confiar no default pandoc).",
+    "objectID": "customise.html#atkinson-hyperlegible-next-opt-in",
+    "href": "customise.html#atkinson-hyperlegible-next-opt-in",
+    "title": "Personalizar",
+    "section": "Atkinson Hyperlegible Next (opt-in)",
+    "text": "Atkinson Hyperlegible Next (opt-in)\nA partir da v1.3.0 a tipografia default é Inter. Para projectos que preferem Atkinson Hyperlegible Next (a fonte do Braille Institute desenhada para utilizadores com visão reduzida), substituir a lista theme: no _quarto.yml (incluir TODOS os ficheiros, com caminho completo — sobreposição do utilizador SUBSTITUI a lista da extensão, e os caminhos são resolvidos relativos à raiz do projecto):\nformat:\n  fmup-html:\n    theme:\n      light:\n        - default\n        - _extensions/tiagojct/fmup/fmup.scss\n        - _extensions/tiagojct/fmup/fmup-variables.scss\n        - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss\n      dark:\n        - default\n        - _extensions/tiagojct/fmup/fmup.scss\n        - _extensions/tiagojct/fmup/fmup-variables-dark.scss\n        - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss\nO caminho _extensions/tiagojct/fmup/ assume install canónico via quarto add tiagojct/quarto-fmup. Substituir tiagojct se a extensão estiver noutra &lt;org&gt;. O ficheiro fmup-variables-atkinson.scss contém apenas a redefinição do token $fmup-font-sans (sem !default, propositadamente, para ganhar em qualquer posição da lista); as TTFs e o payload base64 do Atkinson já estão bundled no extension, sem necessidade de resources adicionais.\nPara Typst (que não lê SCSS), a sobreposição equivalente vai no front matter:\nformat:\n  fmup-typst:\n    mainfont: \"Atkinson Hyperlegible Next\"\n    sansfont: \"Atkinson Hyperlegible Next\"",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
     ]
   },
   {
-    "objectID": "accessibility.html#recursos",
-    "href": "accessibility.html#recursos",
-    "title": "Acessibilidade",
-    "section": "Recursos",
-    "text": "Recursos\n\nWCAG 2.2\nWebAIM contrast checker\nAtkinson Hyperlegible Next - Braille Institute",
+    "objectID": "customise.html#imagem-open-graph",
+    "href": "customise.html#imagem-open-graph",
+    "title": "Personalizar",
+    "section": "Imagem Open Graph",
+    "text": "Imagem Open Graph\nA meta og:image permite que ligações partilhadas mostrem uma preview gráfica em Slack / Twitter / Facebook / Discord. Definir uma vez no front matter do projecto:\nfmup:\n  og-image: assets/og.png\nO fmup.lua injecta og:image e twitter:image automaticamente em todas as páginas. Sem og-image, o Twitter Card cai para summary (formato pequeno sem imagem) em vez do summary_large_image.\nRecomendações para a imagem:\n\nDimensões: 1200 × 630 px (rácio 1.91:1).\nFormato: PNG ou JPG. SVG é aceite pela meta mas alguns crawlers (Discord) ignoram.\nPeso: &lt; 1 MB. Twitter rejeita acima de 5 MB.\nTexto: legível à dimensão final (~600 × 315 px na preview).\nCor: usar o amarelo #FFCD00 no top stripe ou wordmark, mas não como fundo do card inteiro (cansa).\n\nO Quarto preserva o canal nativo website.open-graph.image, que o fmup.lua lê se fmup.og-image não estiver definido.",
     "crumbs": [
       "Início",
       "Avançado",
-      "Acessibilidade"
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#slides-em-dark-mode",
+    "href": "customise.html#slides-em-dark-mode",
+    "title": "Personalizar",
+    "section": "Slides em dark mode",
+    "text": "Slides em dark mode\nO reveal.js do Quarto não suporta toggle theme: { light, dark } como o HTML. Para uma apresentação inteiramente em dark, sobrepor a lista theme: para trocar fmup-variables.scss por fmup-variables-dark.scss:\nformat:\n  fmup-revealjs:\n    theme:\n      - default\n      - _extensions/fmup/fmup-revealjs.scss\n      - _extensions/fmup/fmup-variables-dark.scss\nO resto do contrato do tema (footer, callouts, tabelas, slide-number) mantém-se intacto - apenas a paleta inverte. Útil para auditórios com projecção pouco brilhante ou para decks “modo cinema”.",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
+    ]
+  },
+  {
+    "objectID": "customise.html#adicionar-logo",
+    "href": "customise.html#adicionar-logo",
+    "title": "Personalizar",
+    "section": "Adicionar logo",
+    "text": "Adicionar logo\nVer Formato HTML / Logo. Em resumo:\nfmup:\n  logo: assets/fmup-wordmark.svg",
+    "crumbs": [
+      "Início",
+      "Avançado",
+      "Personalizar"
     ]
   }
 ]

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-PT" xml:lang="pt-PT"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.5">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,14 +74,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-09ad0a6b96af1c2df298622f3248cdd2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f769398821c0a8f170c1d75bb9b550ad.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-45fbfbf8933781464655e081d6b79ca9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-64b9b4817f7c3ade7b72ae2f7a69167a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -471,9 +471,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#defaults" id="toc-defaults" class="nav-link active" data-scroll-target="#defaults">Defaults</a></li>
+  <li><a href="#carregamento-das-fontes" id="toc-carregamento-das-fontes" class="nav-link" data-scroll-target="#carregamento-das-fontes">Carregamento das fontes</a></li>
   <li><a href="#limitações-conhecidas" id="toc-limitações-conhecidas" class="nav-link" data-scroll-target="#limitações-conhecidas">Limitações conhecidas</a>
   <ul class="collapse">
-  <li><a href="#fontes-variáveis" id="toc-fontes-variáveis" class="nav-link" data-scroll-target="#fontes-variáveis">1. Fontes variáveis</a></li>
   <li><a href="#callouts-não-estilizados" id="toc-callouts-não-estilizados" class="nav-link" data-scroll-target="#callouts-não-estilizados">2. Callouts não estilizados</a></li>
   <li><a href="#logo-institucional" id="toc-logo-institucional" class="nav-link" data-scroll-target="#logo-institucional">3. Logo institucional</a></li>
   </ul></li>
@@ -525,7 +525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><code>mainfont</code> / <code>sansfont</code></td>
-<td>Atkinson Hyperlegible Next</td>
+<td>Inter</td>
 </tr>
 <tr class="odd">
 <td><code>monofont</code></td>
@@ -560,22 +560,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Tabelas: cabeçalho com fundo preto e texto amarelo (espelha o HTML).</li>
 </ul>
 </section>
+<section id="carregamento-das-fontes" class="level2">
+<h2 class="anchored" data-anchor-id="carregamento-das-fontes">Carregamento das fontes</h2>
+<p>Desde a v1.2.1 o extension envia as TTFs estáticas do <strong>Inter</strong> + <strong>Geist Mono</strong> (4 weights de cada) em <code>_extensions/fmup/fonts/</code> e declara <code>font-paths: [fonts]</code>. O Typst resolve esta path automaticamente, mesmo com install <code>&lt;org&gt;/&lt;name&gt;</code>-prefixado via <code>quarto add</code>. Não é preciso instalar nada no sistema.</p>
+<p>As mesmas TTFs do <strong>Atkinson Hyperlegible Next</strong> (Regular, Bold, Italic, BoldItalic) também ficam bundled - prontas para uso quando um QMD individual sobrepor <code>mainfont</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fmup-typst</span><span class="kw">:</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">mainfont</span><span class="kw">:</span><span class="at"> </span><span class="st">"Atkinson Hyperlegible Next"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">sansfont</span><span class="kw">:</span><span class="at"> </span><span class="st">"Atkinson Hyperlegible Next"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 <section id="limitações-conhecidas" class="level2">
 <h2 class="anchored" data-anchor-id="limitações-conhecidas">Limitações conhecidas</h2>
-<section id="fontes-variáveis" class="level3">
-<h3 class="anchored" data-anchor-id="fontes-variáveis">1. Fontes variáveis</h3>
-<pre><code>warning: variable fonts are not currently supported and may render incorrectly
-    = hint: try installing a static version of "atkinson hyperlegible next" instead</code></pre>
-<p>O Typst (até <code>0.14.x</code>) não suporta fontes variáveis. As fontes que o tema embute para HTML/reveal são variáveis - boas para a web, más para o Typst. Soluções:</p>
-<ol type="1">
-<li><p><strong>Instalar a versão <em>static</em> no sistema</strong> que executa o <code>quarto render</code>. O Braille Institute distribui ficheiros TTF por peso individual (<code>AtkinsonHyperlegibleNext-Regular.ttf</code>, <code>-Bold.ttf</code>, etc.). O Typst encontra-as via <code>fontconfig</code> / <em>system fonts</em>.</p></li>
-<li><p><strong>Sobrepor a fonte para Typst</strong>:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">fmup-typst</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">mainfont</span><span class="kw">:</span><span class="at"> </span><span class="st">"Source Serif Pro"</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div></li>
-<li><p><strong>Esperar pela versão Typst</strong> que suportará variáveis (issue <code>typst/typst#185</code>).</p></li>
-</ol>
-</section>
+<p>Typst (até <code>0.14.x</code>) não suporta fontes variáveis. As variáveis em <code>fmup-fonts.css</code> (Inter, Atkinson, Geist Mono) são usadas apenas no HTML/reveal. Para o Typst usam-se as TTFs estáticas - sem warnings, sem fallback.</p>
 <section id="callouts-não-estilizados" class="level3">
 <h3 class="anchored" data-anchor-id="callouts-não-estilizados">2. Callouts não estilizados</h3>
 <p>O template Typst do Quarto gera <code>#callout(...)</code> com a estética default do Quarto. O <code>fmup-typst.typ</code> ainda não sobrescreve essa função - PR bem-vindo. <em>Workaround</em>: usar <code>#admonition()</code> próprio em documentos onde callouts apareçam frequentemente.</p>
@@ -583,13 +579,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="logo-institucional" class="level3">
 <h3 class="anchored" data-anchor-id="logo-institucional">3. Logo institucional</h3>
 <p>Sem hook standard. Adicionar manualmente no início do documento:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">#</span>image<span class="op">(</span><span class="st">"assets/fmup-wordmark.svg"</span><span class="op">,</span> width<span class="op">:</span> <span class="fl">4cm</span><span class="op">)</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode typst code-with-copy"><code class="sourceCode typst"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">#</span>image<span class="op">(</span><span class="st">"assets/fmup-wordmark.svg"</span><span class="op">,</span> width<span class="op">:</span> <span class="fl">4cm</span><span class="op">)</span></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ou via include-in-header próprio.</p>
 </section>
 </section>
 <section id="render" class="level2">
 <h2 class="anchored" data-anchor-id="render">Render</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render documento.qmd <span class="at">--to</span> fmup-typst</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render documento.qmd <span class="at">--to</span> fmup-typst</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Gera <code>documento.pdf</code> no mesmo diretório.</p>
 
 

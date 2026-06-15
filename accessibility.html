@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-PT" xml:lang="pt-PT"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.5">
+<meta name="generator" content="quarto-1.10.11">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,14 +39,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-09ad0a6b96af1c2df298622f3248cdd2.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-966f61b5cf2102ae600b9edcff2c23ff.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f769398821c0a8f170c1d75bb9b550ad.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dbbd9877480a4a2ace7180c952b87622.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-45fbfbf8933781464655e081d6b79ca9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-90945c953ba4143aa58cc6f2e9e14e5d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-64b9b4817f7c3ade7b72ae2f7a69167a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-36692067bb6d2db3b00aac903171d575.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -486,26 +486,30 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Tipografia Atkinson Hyperlegible Next</td>
-<td>Desenhada pelo <em>Braille Institute</em> para utilizadores com visão reduzida. Distingue glifos comummente confundidos (<code>I</code>, <code>l</code>, <code>1</code>; <code>O</code>, <code>0</code>).</td>
+<td>Tipografia Inter (default)</td>
+<td>Sans-serif desenhada por Rasmus Andersson para legibilidade em ecrãs e UIs (default em GitHub, Figma, Microsoft Edge). Eixo opsz de optical sizing; altura-x alta; aberturas abertas em <code>e</code>, <code>a</code>, <code>s</code>. SIL OFL 1.1.</td>
 </tr>
 <tr class="even">
+<td>Atkinson Hyperlegible Next (opt-in)</td>
+<td>Desenhada pelo <em>Braille Institute</em> para utilizadores com visão reduzida. Distingue glifos comummente confundidos (<code>I</code>, <code>l</code>, <code>1</code>; <code>O</code>, <code>0</code>). Bundled na extensão; appender <code>fmup-variables-atkinson.scss</code> à lista <code>theme:</code> para reverter o default.</td>
+</tr>
+<tr class="odd">
 <td><code>font-weight: 500</code> em links de prosa</td>
 <td>Segunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo).</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Sublinhado amarelo a <code>2.5px</code> em links</td>
 <td>Reforço visual; mantido mesmo em renderizadores monocromáticos.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Foco visível: <code>2px solid #1A1A1A</code> + <code>box-shadow</code> amarelo</td>
 <td>Cumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Vermelho <code>#B91C1C</code> reservado a <code>callout-important</code></td>
 <td>Único vermelho na paleta; reconhecido universalmente como “parar”. Na dark mode clareia para <code>#F87171</code> para manter ≥4.5:1 contra fundo escuro.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>prefers-reduced-motion: reduce</code></td>
 <td>Anula <code>smooth-scroll</code>. Bootstrap 5 trata transições e animações via <code>$enable-reduced-motion: true</code>.</td>
 </tr>
@@ -604,7 +608,8 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2</a></li>
 <li><a href="https://webaim.org/resources/contrastchecker/">WebAIM contrast checker</a></li>
-<li><a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible Next - Braille Institute</a></li>
+<li><a href="https://rsms.me/inter/">Inter</a> - tipografia base do tema</li>
+<li><a href="https://www.brailleinstitute.org/freefont">Atkinson Hyperlegible Next - Braille Institute</a> - alternativa opt-in para baixa visão</li>
 </ul>
 
 
