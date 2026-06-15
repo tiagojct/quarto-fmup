@@ -11,9 +11,11 @@ empacotado como extensão Quarto independente.
 
 O tema parte de três princípios:
 
-1. **Legibilidade primeiro.** A escolha de Atkinson Hyperlegible Next,
-   uma família tipográfica desenhada pelo Braille Institute para máxima
-   legibilidade, vem antes de qualquer outra decisão estética.
+1. **Legibilidade primeiro.** O default é Inter (Rasmus Andersson) -
+   uma sans-serif optimizada para UIs em ecrãs de alta densidade.
+   Atkinson Hyperlegible Next (Braille Institute) permanece bundled
+   como opt-in para contextos de baixa visão; ambas as escolhas vêm
+   antes de qualquer outra decisão estética.
 2. **Cor como acento, não como decoração.** O amarelo institucional
    `#FFCD00` aparece apenas em sítios funcionais — sublinhar uma
    ligação, marcar uma _hover state_, identificar uma navbar. Nunca

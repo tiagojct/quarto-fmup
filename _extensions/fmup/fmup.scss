@@ -33,7 +33,7 @@ $input-focus-box-shadow:     0 0 0 0.2rem rgba($fmup-yellow, 0.4) !default;
 // ---- Global ----
 
 body {
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: $fmup-font-sans;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -126,7 +126,7 @@ nav.toc-active a,
 // ---- Headings ----
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, sans-serif;
+  font-family: $fmup-font-sans;
   letter-spacing: -0.005em;
 }
 
@@ -138,7 +138,7 @@ h1 { font-weight: 800; }
   background: $fmup-bg !important;
   border-bottom: 4px solid $fmup-yellow;
   padding: 0.5rem 1rem;
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-family: $fmup-font-sans;
   font-size: 0.9rem;
 
   .navbar-brand {
@@ -180,7 +180,7 @@ h1 { font-weight: 800; }
 
 .sidebar {
   background: $fmup-surface;
-  font-family: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-family: $fmup-font-sans;
 
   .sidebar-title {
     font-weight: 800;

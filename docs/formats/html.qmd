@@ -11,7 +11,7 @@ Ao escolher `fmup-html`, herdam-se automaticamente:
 |---|---|
 | `theme.light` | `default + fmup.scss + fmup-variables.scss` |
 | `theme.dark` | `default + fmup.scss + fmup-variables-dark.scss` |
-| `mainfont` | Atkinson Hyperlegible Next |
+| `mainfont` | Inter (Atkinson Hyperlegible Next como fallback nomeado) |
 | `monofont` | Geist Mono |
 | `toc` | `true` |
 | `code-copy` | `true` |
@@ -117,5 +117,8 @@ $fmup-yellow: #E5B800;   // amarelo mais quente
   segunda dimensão de distinção além da cor.
 - `prefers-reduced-motion`: anula `smooth-scroll` (e o Bootstrap 5
   trata o resto via `$enable-reduced-motion`).
-- Tipografia: Atkinson Hyperlegible Next foi desenhada pelo
-  *Braille Institute* para utilizadores com visão reduzida.
+- Tipografia: Inter (default; Rasmus Andersson, SIL OFL) é uma
+  sans-serif optimizada para legibilidade em ecrãs e UIs. Para
+  contextos de baixa visão, **Atkinson Hyperlegible Next** está
+  bundled e activa-se appendendo `fmup-variables-atkinson.scss` à
+  lista `theme:` (ver Personalizar).

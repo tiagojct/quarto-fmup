@@ -20,11 +20,13 @@ derivados, usados para superfícies, fronteiras e texto auxiliar.
 
 | Família | Uso |
 |---------|-----|
-| Atkinson Hyperlegible Next | Corpo, títulos, navegação |
+| Inter | Corpo, títulos, navegação (default) |
+| Atkinson Hyperlegible Next | Opt-in para contextos de baixa visão |
 | Geist Mono | Código, _slide numbers_ |
 
-Ambas são _open-source_ e carregadas a partir do Google Fonts via
-`@import` no SCSS — não há passo de _build_ adicional.
+Todas são _open-source_ (SIL OFL 1.1) e ficam embutidas em base64 no
+ficheiro `fmup-fonts.css` da extensão — não há _request_ a serviços
+externos nem passo de _build_ adicional.
 
 ## Como instalar
 

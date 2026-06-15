@@ -34,7 +34,8 @@ $fmup-ink-on-yellow:  #1A1A1A !default;
 $fmup-ink-on-danger:  #FFFFFF !default;
 
 // ---- Typography ----
-$fmup-font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+// Same stack as fmup-variables.scss (light). See comments there.
+$fmup-font-sans: "Inter", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
 $fmup-font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 
 // ---- Radii ----

@@ -1,16 +1,29 @@
 # Tipografia
 
-## Atkinson Hyperlegible Next
+## Inter (default)
 
-A família tipográfica principal foi desenhada pelo Braille Institute para
-maximizar a legibilidade junto de leitores com baixa visão. As suas
-formas distintivas — o `g` aberto, o `Q` com cauda longa, os algarismos
-com proporções diferenciadas — são igualmente úteis em texto académico
-denso.
+Desde a v1.3.0 a família tipográfica principal é **Inter**, desenhada
+por Rasmus Andersson e adoptada como default por Microsoft, GitHub,
+Figma, Mozilla e dezenas de outras organizações. Sans-serif neutra,
+com eixo `opsz` de optical sizing, altura-x alta e aberturas abertas
+em `e`, `a`, `s` — optimizada para leitura em ecrãs de qualquer
+densidade.
 
-Pesos disponíveis: 300 (Light), 400 (Regular), 500 (Medium), 600
-(SemiBold), 700 (Bold), 800 (ExtraBold), 900 (Black). Todos com a
+Pesos disponíveis no payload bundled: 400 a 900 (variável). Todas com
 variante itálica.
+
+## Atkinson Hyperlegible Next (opt-in)
+
+Continua bundled como alternativa. Foi desenhada pelo Braille
+Institute para maximizar a legibilidade junto de leitores com baixa
+visão; as suas formas distintivas — o `g` aberto, o `Q` com cauda
+longa, os algarismos com proporções diferenciadas — também são úteis
+em texto académico denso.
+
+Para a activar num projecto, appender `fmup-variables-atkinson.scss`
+à lista `theme:` (HTML/reveal) ou definir `mainfont: "Atkinson
+Hyperlegible Next"` no front matter (Typst). Ver a página
+[Personalizar] da documentação.
 
 ## Geist Mono
 

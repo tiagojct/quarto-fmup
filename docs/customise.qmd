@@ -20,7 +20,7 @@ $fmup-border:         #E0E0E0 !default;
 $fmup-border-strong:  #B3BBC4 !default;
 $fmup-danger:         #B91C1C !default;
 
-$fmup-font-sans: "Atkinson Hyperlegible Next", ...;
+$fmup-font-sans: "Inter", "Atkinson Hyperlegible Next", ...;
 $fmup-font-mono: "Geist Mono", ...;
 
 $fmup-radius-sm: 4px !default;
@@ -80,9 +80,9 @@ Para trocar a fonte de corpo:
 $fmup-font-sans: "IBM Plex Sans", system-ui, sans-serif;
 ```
 
-Se a nova fonte não estiver no payload `fmup-fonts.css` (que só inclui
-Atkinson Hyperlegible Next e Geist Mono), ligar via `include-in-header`
-do utilizador:
+Se a nova fonte não estiver no payload `fmup-fonts.css` (que inclui
+Inter, Atkinson Hyperlegible Next e Geist Mono), ligar via
+`include-in-header` do utilizador:
 
 ```yaml
 format:
@@ -110,6 +110,49 @@ theme:
 /*-- scss:defaults --*/
 $fmup-bg: #000000;       // preto puro em vez de #0E0E0E
 $fmup-text: #FFFFFF;
+```
+
+## Atkinson Hyperlegible Next (opt-in)
+
+A partir da v1.3.0 a tipografia default é Inter. Para projectos que
+preferem **Atkinson Hyperlegible Next** (a fonte do Braille Institute
+desenhada para utilizadores com visão reduzida), substituir a lista
+`theme:` no `_quarto.yml` (incluir TODOS os ficheiros, com caminho
+completo — sobreposição do utilizador SUBSTITUI a lista da extensão,
+e os caminhos são resolvidos relativos à raiz do projecto):
+
+```yaml
+format:
+  fmup-html:
+    theme:
+      light:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables.scss
+        - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss
+      dark:
+        - default
+        - _extensions/tiagojct/fmup/fmup.scss
+        - _extensions/tiagojct/fmup/fmup-variables-dark.scss
+        - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss
+```
+
+O caminho `_extensions/tiagojct/fmup/` assume install canónico via
+`quarto add tiagojct/quarto-fmup`. Substituir `tiagojct` se a
+extensão estiver noutra `<org>`. O ficheiro `fmup-variables-atkinson.scss`
+contém apenas a redefinição do token `$fmup-font-sans` (sem
+`!default`, propositadamente, para ganhar em qualquer posição da
+lista); as TTFs e o payload base64 do Atkinson já estão bundled no
+extension, sem necessidade de resources adicionais.
+
+Para Typst (que não lê SCSS), a sobreposição equivalente vai no
+front matter:
+
+```yaml
+format:
+  fmup-typst:
+    mainfont: "Atkinson Hyperlegible Next"
+    sansfont: "Atkinson Hyperlegible Next"
 ```
 
 ## Imagem Open Graph

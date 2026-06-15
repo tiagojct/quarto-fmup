@@ -37,13 +37,15 @@ format:
 
 ## Tipografia
 
-Corpo em **Atkinson Hyperlegible Next**, código em **Geist Mono**.
+Corpo em **Inter** (default), código em **Geist Mono**. Atkinson
+Hyperlegible Next continua bundled como opt-in para baixa visão.
 
 A escolha tipográfica é a única decisão estética que se faz **antes** de
 desenhar slides. Tudo o resto deriva.
 
-Veja [a página oficial da Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont)
-para detalhes sobre o desenho.
+Veja [Inter](https://rsms.me/inter/) ou
+[Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont)
+para detalhes sobre cada desenho.
 
 ## Cabeçalhos
 

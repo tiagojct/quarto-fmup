@@ -2,7 +2,7 @@
 
 Este livro demonstra o tema **quarto-fmup** aplicado a um livro Quarto
 de três capítulos. Renderiza-se simultaneamente em HTML (sítio com
-sidebar) e em PDF (Typst, A4, Atkinson Hyperlegible Next).
+sidebar) e em PDF (Typst, A4, Inter por default).
 
 A estrutura é deliberadamente mínima — um preâmbulo, uma introdução, um
 capítulo sobre tipografia. Use-a como esqueleto de partida para os seus

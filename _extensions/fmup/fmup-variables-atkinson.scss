@@ -1,0 +1,59 @@
+// FMUP design tokens - Atkinson Hyperlegible Next opt-in.
+//
+// Since v1.3.0 the default body font is Inter. Append this partial
+// to the theme: chain to flip the default back to Atkinson
+// Hyperlegible Next - the typeface designed by the Braille Institute
+// for users with low vision.
+//
+// Atkinson Hyperlegible Next TTFs ship in _extensions/<org>/fmup/fonts/
+// and the variable woff2 payload is embedded in fmup-fonts.css, so
+// no extra resources need to be added; only the SCSS variable
+// changes.
+//
+// Quarto resolves user-side theme: paths relative to PROJECT root
+// (not the extension dir), and the user-side theme: REPLACES the
+// extension's default theme list (it does not merge). The
+// `<org>/fmup/...` path below assumes a `quarto add` install at
+// `_extensions/<org>/fmup/`; downstream users substitute their org
+// (typically `tiagojct`).
+//
+// HTML / reveal recipe (full paths required):
+//
+//   format:
+//     fmup-html:
+//       theme:
+//         light:
+//           - default
+//           - _extensions/tiagojct/fmup/fmup.scss
+//           - _extensions/tiagojct/fmup/fmup-variables.scss
+//           - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss
+//         dark:
+//           - default
+//           - _extensions/tiagojct/fmup/fmup.scss
+//           - _extensions/tiagojct/fmup/fmup-variables-dark.scss
+//           - _extensions/tiagojct/fmup/fmup-variables-atkinson.scss
+//
+// Typst recipe (override mainfont in the QMD - Typst does not read
+// SCSS):
+//
+//   format:
+//     fmup-typst:
+//       mainfont: "Atkinson Hyperlegible Next"
+//       sansfont: "Atkinson Hyperlegible Next"
+
+/*-- scss:defaults --*/
+
+// Hard override (NO `!default`). Quarto compiles theme: defaults in
+// LISTED order, and the upstream fmup-variables.scss sets
+// $fmup-font-sans = Inter stack with `!default`. With `!default` on
+// the atkinson partial too, the first-listed wins; users could not
+// override by appending. A plain (non-`!default`) reassignment makes
+// this file always win regardless of order.
+$fmup-font-sans:
+  "Atkinson Hyperlegible Next",
+  "Atkinson Hyperlegible",
+  system-ui,
+  -apple-system,
+  "Segoe UI",
+  Roboto,
+  sans-serif;

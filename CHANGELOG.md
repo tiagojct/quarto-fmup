@@ -5,7 +5,57 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.2.3
+## [Unreleased] - 1.3.0
+
+### Changed (visible behaviour)
+
+- **Default body font swapped from Atkinson Hyperlegible Next to
+  Inter.** Inter (Rasmus Andersson, SIL OFL) is now the default
+  sans-serif across `fmup-html`, `fmup-revealjs`, and `fmup-typst`.
+  Every existing site / deck / PDF re-rendered with v1.3.0 will look
+  different — the body, headings, navbar, sidebar, slide chrome, and
+  PDF text all switch typeface. This is the visible-change
+  justification for the minor version bump rather than a patch.
+
+### Added
+
+- **Inter font payload** bundled in the extension:
+  - `Inter-Variable-Latin.woff2` (~47 KB)
+  - `Inter-Variable-Italic-Latin.woff2` (~50 KB)
+  - 4 Inter static TTFs (Regular / Italic / Bold / BoldItalic) under
+    `_extensions/fmup/fonts/` for Typst (~1.6 MB total).
+  - Two new `@font-face` blocks prepended to `fmup-fonts.css` (and
+    its `<style>`-wrapped counterpart `fmup-fonts.html`); base64
+    payload grows ~130 KB.
+- **`fmup-variables-atkinson.scss`** opt-in partial. Appending it to
+  the `theme:` chain after `fmup-variables.scss` flips
+  `$fmup-font-sans` back to the Atkinson stack. Atkinson Hyperlegible
+  Next TTFs and `@font-face` blocks stay bundled — no extra
+  resources needed to opt back in.
+
+### Fixed (latent bug)
+
+- **Four hardcoded `font-family` declarations in `fmup.scss`**
+  (`body`, `h1..h6`, `.navbar`, `.sidebar`) had literal `"Atkinson
+  Hyperlegible Next", ...` strings instead of the `$fmup-font-sans`
+  token. Without that fix the default-font swap would not propagate
+  to those selectors. All four now reference the token, so any
+  downstream override of `$fmup-font-sans` flows through correctly.
+
+### Documented
+
+- `docs/customise.qmd` gained an "Atkinson Hyperlegible Next
+  (opt-in)" section with the recipe for HTML/reveal and Typst.
+- `docs/accessibility.qmd` now lists Inter as the default
+  typeface rationale and Atkinson as the opt-in row, with the link
+  in the "Recursos" section split between the two.
+- `docs/formats/typst.qmd` simplified: the "variable fonts not
+  supported" workaround no longer applies because the extension
+  ships static-weight TTFs and declares `font-paths: [fonts]`.
+- README, CLAUDE.md, example projects all updated to reflect Inter
+  as the default and Atkinson as the opt-in.
+
+## [1.2.3] - 2026-05-22
 
 ### Fixed (CRITICAL)
 

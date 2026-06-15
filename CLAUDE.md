@@ -129,9 +129,17 @@ Two responsibilities, both gated on user opt-in:
 
 ## Fonts
 
-Atkinson Hyperlegible Next (Braille Institute, SIL OFL 1.1) and Geist Mono (Vercel, SIL OFL 1.1). Both shipped as base64 woff2 inside `fmup-fonts.css`. Variable axes; latin + latin-ext subsets; cyrillic / vietnamese / symbols stripped because the theme targets pt-PT and en. Raw woff2 in `_extensions/fmup/fonts/` for provenance.
+Three families ship inside the extension, all SIL OFL 1.1:
 
-For Typst output, Typst <= 0.14 does not support variable fonts and will warn. Users who want institutional fonts in PDF must install static-weight TTFs system-wide or override `mainfont` in their Typst block.
+- **Inter** (Rasmus Andersson) — default body / heading font since v1.3.0.
+- **Atkinson Hyperlegible Next** (Braille Institute) — bundled as a low-vision opt-in. Activate via `fmup-variables-atkinson.scss` (HTML/reveal) or `mainfont: "Atkinson Hyperlegible Next"` (Typst).
+- **Geist Mono** (Vercel) — monospace for code, slide numbers, footer.
+
+For HTML/reveal: base64 variable woff2 inlined in `fmup-fonts.css` (latin subset only; pt-PT + en covered by U+0000-00FF). Five `@font-face` blocks: Inter normal + italic, Atkinson normal + italic, Geist Mono.
+
+For Typst: static-weight TTFs under `_extensions/fmup/fonts/` (Inter + Atkinson Regular/Italic/Bold/BoldItalic; Geist Mono Regular/Medium/Bold/Italic). `font-paths: [fonts]` in the typst contribution; Quarto resolves the relative path to the extension dir regardless of `<org>/<name>`-prefixed install.
+
+`codefont: "Geist Mono"` is set explicitly in the typst contribution — Quarto's Typst template reads `codefont:`, not `monofont:`.
 
 ## License note
 

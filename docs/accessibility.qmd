@@ -7,7 +7,8 @@ description: "Decisões WCAG-baseadas e checklist para conteúdo."
 
 | Decisão | Razão |
 |---|---|
-| Tipografia Atkinson Hyperlegible Next | Desenhada pelo *Braille Institute* para utilizadores com visão reduzida. Distingue glifos comummente confundidos (`I`, `l`, `1`; `O`, `0`). |
+| Tipografia Inter (default) | Sans-serif desenhada por Rasmus Andersson para legibilidade em ecrãs e UIs (default em GitHub, Figma, Microsoft Edge). Eixo opsz de optical sizing; altura-x alta; aberturas abertas em `e`, `a`, `s`. SIL OFL 1.1. |
+| Atkinson Hyperlegible Next (opt-in) | Desenhada pelo *Braille Institute* para utilizadores com visão reduzida. Distingue glifos comummente confundidos (`I`, `l`, `1`; `O`, `0`). Bundled na extensão; appender `fmup-variables-atkinson.scss` à lista `theme:` para reverter o default. |
 | `font-weight: 500` em links de prosa | Segunda dimensão de distinção além da cor (cumpre WCAG 1.4.1: cor não é único veículo). |
 | Sublinhado amarelo a `2.5px` em links | Reforço visual; mantido mesmo em renderizadores monocromáticos. |
 | Foco visível: `2px solid #1A1A1A` + `box-shadow` amarelo | Cumpre WCAG 1.4.11 (contraste não-texto ≥ 3:1). Amarelo puro contra branco fica em 1.4:1 e falharia. |
@@ -49,4 +50,5 @@ Coisas que o tema NÃO pode fazer por quem escreve:
 
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 - [WebAIM contrast checker](https://webaim.org/resources/contrastchecker/)
-- [Atkinson Hyperlegible Next - Braille Institute](https://www.brailleinstitute.org/freefont)
+- [Inter](https://rsms.me/inter/) - tipografia base do tema
+- [Atkinson Hyperlegible Next - Braille Institute](https://www.brailleinstitute.org/freefont) - alternativa opt-in para baixa visão

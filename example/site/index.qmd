@@ -10,10 +10,11 @@ Faculdade.
 
 ## Texto e ligações
 
-O corpo do texto é em [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont),
-uma família tipográfica desenhada pelo Braille Institute para máxima
-legibilidade. O acento amarelo aparece como sublinhado das ligações e
-preenche-as no _hover_.
+O corpo do texto é em [Inter](https://rsms.me/inter/), uma sans-serif
+optimizada para legibilidade em ecrãs e UIs. Atkinson Hyperlegible
+Next continua bundled como opt-in para contextos de baixa visão. O
+acento amarelo aparece como sublinhado das ligações e preenche-as no
+_hover_.
 
 Veja a [página Sobre](sobre.qmd) para mais detalhes.
 

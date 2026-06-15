@@ -1,7 +1,8 @@
 # quarto-fmup
 
 The Faculty of Medicine of the University of Porto (FMUP) visual identity
-for Quarto — yellow `#FFCD00` + black + Atkinson Hyperlegible Next, ready
+for Quarto — yellow `#FFCD00` + black + Inter (with Atkinson
+Hyperlegible Next bundled as an opt-in for low-vision contexts), ready
 for **websites**, **books**, and **reveal.js presentations**.
 
 <!-- screenshots: add after the next render -->
@@ -24,9 +25,9 @@ quarto add tiagojct/quarto-fmup
 ```
 
 When prompted, type `y` to trust the extension. That's it. The
-fonts (Atkinson Hyperlegible Next + Geist Mono) ship embedded
-inside the extension — no Google Fonts request, no system install
-needed.
+fonts (Inter + Geist Mono by default; Atkinson Hyperlegible Next
+bundled as an opt-in) ship embedded inside the extension — no
+Google Fonts request, no system install needed.
 
 ## Use
 
@@ -140,6 +141,7 @@ Theme by **Tiago Jacinto**, Faculdade de Medicina da Universidade do
 Porto. Extracted from
 [`tiagojct/fmup-ia`](https://github.com/tiagojct/fmup-ia).
 
+- [Inter](https://rsms.me/inter/) © Rasmus Andersson (SIL Open Font License) — default body font.
 - [Atkinson Hyperlegible Next](https://www.brailleinstitute.org/freefont)
-  © Braille Institute (SIL Open Font License).
+  © Braille Institute (SIL Open Font License) — bundled as a low-vision opt-in.
 - [Geist Mono](https://vercel.com/font) © Vercel (SIL Open Font License).

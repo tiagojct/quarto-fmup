@@ -36,7 +36,7 @@ library(ggplot2)
 ggplot(mtcars, aes(mpg, hp, colour = factor(cyl))) +
   geom_point(size = 3) +
   scale_colour_manual(values = fmup_chart) +
-  theme_minimal(base_family = "Atkinson Hyperlegible Next") +
+  theme_minimal(base_family = "Inter") +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -70,7 +70,7 @@ FMUP_CHART = ["#1A1A1A", "#FFCD00", "#0072B2",
 
 mpl.rcParams.update({
     "axes.prop_cycle": mpl.cycler(color=FMUP_CHART),
-    "font.family": "Atkinson Hyperlegible Next",
+    "font.family": "Inter",
     "axes.edgecolor": "#1A1A1A",
     "axes.labelcolor": "#1A1A1A",
     "axes.spines.top": False,

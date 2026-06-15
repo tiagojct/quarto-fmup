@@ -16,8 +16,9 @@ author: "Tiago Jacinto"
 
 O tema parte de três princípios:
 
-1. **Legibilidade** antes de estética. Atkinson Hyperlegible Next como
-   tipografia base.
+1. **Legibilidade** antes de estética. Inter como tipografia base
+   (default); Atkinson Hyperlegible Next disponível como opt-in para
+   contextos de baixa visão.
 2. **Cor como acento**, não como decoração. O amarelo `#FFCD00` aparece
    onde precisa de chamar atenção, em mais lado nenhum.
 3. **Preto, branco e amarelo**. Sem segundos amarelos, sem verdes de

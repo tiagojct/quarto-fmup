@@ -31,7 +31,14 @@ $fmup-ink-on-yellow:  #1A1A1A !default;
 $fmup-ink-on-danger:  #FFFFFF !default;
 
 // ---- Typography ----
-$fmup-font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
+// Default body / heading font. Inter (Rasmus Andersson, SIL OFL) -
+// a general-purpose UI sans with optical-sizing axis, used by
+// GitHub, Figma, Mozilla and others. Atkinson Hyperlegible Next
+// stays in the stack as a named fallback so users who installed
+// it system-wide still get it. To swap the default back to
+// Atkinson, append `fmup-variables-atkinson.scss` to the theme
+// chain (see docs/customise.qmd).
+$fmup-font-sans: "Inter", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;
 $fmup-font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace !default;
 
 // ---- Radii ----

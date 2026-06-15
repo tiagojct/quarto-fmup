@@ -193,7 +193,8 @@ dos browsers não reconhece `//` como comentário; ao encontrar isto no
 topo do ficheiro, abandona silenciosamente o resto. Resultado: as
 declarações `@font-face` nunca chegavam ao registo do browser e a
 fonte caía para o stack de fallback (system-ui). Em slides reveal, o
-sintoma era especialmente visível porque a Atkinson Hyperlegible Next
+sintoma era especialmente visível porque a tipografia institucional
+(na altura, Atkinson Hyperlegible Next; hoje Inter por default)
 nunca apareceu.
 
 **Solução:** todos os comentários em `.css` em sintaxe `/* ... */`.
