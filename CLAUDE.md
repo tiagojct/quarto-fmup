@@ -137,7 +137,7 @@ Three families ship inside the extension, all SIL OFL 1.1:
 
 For HTML/reveal: base64 variable woff2 inlined in `fmup-fonts.css` (latin subset only; pt-PT + en covered by U+0000-00FF). Five `@font-face` blocks: Inter normal + italic, Atkinson normal + italic, Geist Mono.
 
-For Typst: static-weight TTFs under `_extensions/fmup/fonts/` (Inter + Atkinson Regular/Italic/Bold/BoldItalic; Geist Mono Regular/Medium/Bold/Italic). `font-paths: [fonts]` in the typst contribution; Quarto resolves the relative path to the extension dir regardless of `<org>/<name>`-prefixed install.
+For Typst: static-weight TTFs under `_extensions/fmup/fonts/` (Inter + Atkinson Regular/Italic/Bold/BoldItalic; Geist Mono Regular/Medium/Bold). `font-paths: [fonts]` in the typst contribution; Quarto resolves the relative path to the extension dir regardless of `<org>/<name>`-prefixed install.
 
 `codefont: "Geist Mono"` is set explicitly in the typst contribution — Quarto's Typst template reads `codefont:`, not `monofont:`.
 

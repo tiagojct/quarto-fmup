@@ -17,8 +17,8 @@ O tema parte de três princípios:
    como opt-in para contextos de baixa visão; ambas as escolhas vêm
    antes de qualquer outra decisão estética.
 2. **Cor como acento, não como decoração.** O amarelo institucional
-   `#FFCD00` aparece apenas em sítios funcionais — sublinhar uma
-   ligação, marcar uma _hover state_, identificar uma navbar. Nunca
+   `#FFCD00` aparece apenas em sítios funcionais — marcar uma
+   _hover state_, identificar uma navbar ou barra de destaque. Nunca
    como fundo de bloco extenso.
 3. **Composição em preto e branco com acentos.** A paleta tem três
    cores apenas; tudo o resto é cinzento derivado.

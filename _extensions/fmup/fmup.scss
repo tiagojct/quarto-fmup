@@ -39,11 +39,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-// Prose links: yellow underline + yellow background on hover. Scoped to
+// Prose links: black underline + yellow background on hover. Scoped to
 // article/main content so it does not cascade into navbar, sidebar, page
 // TOC, footer, or repo-action links.
 //
-// font-weight: 500 + a 2.5px yellow underline gives a second-channel
+// font-weight: 500 + a 2.5px underline gives a second-channel
 // distinction from body text beyond colour, so users on monochrome
 // renderers and high-contrast modes still read links as links.
 main a:not(.citation):not(.no-underline),
@@ -52,14 +52,15 @@ article a:not(.citation):not(.no-underline),
 .quarto-document-content a:not(.citation):not(.no-underline) {
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: $fmup-yellow;
+  text-decoration-color: $fmup-link-underline;
   text-decoration-thickness: 2.5px;
   text-underline-offset: 3px;
+  transition: background 120ms, text-decoration-color 120ms;
 
   &:hover {
     background: $fmup-yellow;
     color: $fmup-ink-on-yellow;
-    text-decoration-color: $fmup-ink-on-yellow;
+    text-decoration-color: $fmup-link-underline-hover;
   }
 }
 

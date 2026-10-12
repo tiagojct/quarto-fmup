@@ -18,7 +18,7 @@ Ao escolher `fmup-html`, herdam-se automaticamente:
 | `code-overflow` | `wrap` |
 | `smooth-scroll` | `true` |
 | `link-external-newwindow` | `true` |
-| `link-external-icon` | `false` (a distinção dos links externos faz-se pelo sublinhado amarelo + `font-weight: 500`) |
+| `link-external-icon` | `false` (a distinção dos links externos faz-se pelo sublinhado preto + `font-weight: 500`, com hover a amarelo) |
 | `highlight-style` | `fmup-highlight.theme` (paleta FMUP) |
 
 Para sobrepor qualquer um, declarar no próprio `_quarto.yml`:
@@ -113,7 +113,7 @@ $fmup-yellow: #E5B800;   // amarelo mais quente
 - Foco visível: contorno `2px solid #1A1A1A` + `box-shadow` amarelo
   (cumpre WCAG 1.4.11; amarelo puro contra branco fica em 1.4:1 e
   falha).
-- Links no corpo: `font-weight: 500` + sublinhado amarelo `2.5px` —
+- Links no corpo: `font-weight: 500` + sublinhado a `2.5px` (preto em repouso, amarelo no hover) —
   segunda dimensão de distinção além da cor.
 - `prefers-reduced-motion`: anula `smooth-scroll` (e o Bootstrap 5
   trata o resto via `$enable-reduced-motion`).

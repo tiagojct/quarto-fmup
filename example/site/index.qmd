@@ -12,8 +12,8 @@ Faculdade.
 
 O corpo do texto é em [Inter](https://rsms.me/inter/), uma sans-serif
 optimizada para legibilidade em ecrãs e UIs. Atkinson Hyperlegible
-Next continua bundled como opt-in para contextos de baixa visão. O
-acento amarelo aparece como sublinhado das ligações e preenche-as no
+Next continua bundled como opt-in para contextos de baixa visão. As
+ligações apresentam sublinhado neutro em repouso e preenchimento a amarelo no
 _hover_.
 
 Veja a [página Sobre](sobre.qmd) para mais detalhes.
@@ -57,11 +57,11 @@ Nota institucional. O acento amarelo identifica o nível neutro.
 
 ::: {.callout-tip}
 ## Dica
-Verde para uma sugestão prática.
+Borda preta sobre fundo neutro para uma sugestão prática.
 :::
 
 ::: {.callout-warning}
-Amarelo escuro para um aviso.
+Cinzento médio para um aviso sem ruído semafórico.
 :::
 
 ::: {.callout-important}

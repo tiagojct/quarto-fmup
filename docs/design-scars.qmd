@@ -136,7 +136,7 @@ no projecto-cliente, não no tema.
 
 ## 6. Estilos de prosa fora do prose
 
-**Problema:** o sublinhado amarelo + hover amarelo dos links de prosa
+**Problema:** o sublinhado + hover amarelo dos links de prosa
 fugia para a navbar, sidebar, footer, page TOC, e *repo actions*.
 
 **Solução:** prefixar todos os selectors com

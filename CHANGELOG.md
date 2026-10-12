@@ -5,7 +5,39 @@ All notable changes to `quarto-fmup` are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 1.3.0
+## [Unreleased]
+
+## [1.4.0] - 2026-10-12
+
+### Changed (visible behaviour)
+
+- **Link underline colour updated to black, retaining yellow on hover.**
+  Underline is styled via `$fmup-link-underline` (`$fmup-text`: `#1A1A1A`
+  in light mode, `#F2F2F2` in dark mode) in rest state, and highlights
+  yellow on `:hover` in `fmup-html` and `fmup-revealjs`. `fmup-typst`
+  uses the same dark underline (no hover in PDF).
+
+### Added
+
+- **Design tokens `$fmup-link-underline`, `$fmup-link-underline-hover`
+  and `$fmup-callout-icon-fill`** in `fmup-variables.scss` and
+  `fmup-variables-dark.scss`.
+- **Standard `npm test` script** in `tests/visual/package.json`.
+
+### Fixed
+
+- **Removed corrupted `GeistMono-Italic.ttf` asset:** Removed an errant
+  GitHub 404 HTML file that was accidentally bundled in `fonts/`.
+- **Sanitised `<` and `>` in author metadata (`fmup.lua`):** Ensures
+  author attributes formatted as `Name <email>` produce valid HTML meta tags.
+- **Dark mode contrast on `callout-note` icon:** the icon fill now comes
+  from `$fmup-callout-icon-fill` (`#1A1A1A` light, `#F2F2F2` dark). A
+  `[data-bs-theme="dark"]` selector cannot work here because Quarto swaps
+  a separate dark stylesheet and sets no ancestor attribute.
+- **`callout-tip` icon no longer green:** desaturated with
+  `filter: grayscale(1)` to follow the neutral callout scheme.
+
+## [1.3.0]
 
 ### Changed (visible behaviour)
 
@@ -16,7 +48,6 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
   different — the body, headings, navbar, sidebar, slide chrome, and
   PDF text all switch typeface. This is the visible-change
   justification for the minor version bump rather than a patch.
-
 ### Added
 
 - **Inter font payload** bundled in the extension:
@@ -32,7 +63,6 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
   `$fmup-font-sans` back to the Atkinson stack. Atkinson Hyperlegible
   Next TTFs and `@font-face` blocks stay bundled — no extra
   resources needed to opt back in.
-
 ### Fixed (latent bug)
 
 - **Four hardcoded `font-family` declarations in `fmup.scss`**
@@ -41,7 +71,6 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
   token. Without that fix the default-font swap would not propagate
   to those selectors. All four now reference the token, so any
   downstream override of `$fmup-font-sans` flows through correctly.
-
 ### Documented
 
 - `docs/customise.qmd` gained an "Atkinson Hyperlegible Next

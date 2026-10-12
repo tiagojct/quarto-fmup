@@ -30,6 +30,13 @@ $fmup-danger:         #B91C1C !default;
 $fmup-ink-on-yellow:  #1A1A1A !default;
 $fmup-ink-on-danger:  #FFFFFF !default;
 
+// ---- Links ----
+$fmup-link-underline:       $fmup-text !default;    // #1A1A1A (preto institucional)
+$fmup-link-underline-hover: $fmup-ink-on-yellow !default;  // #1A1A1A (visivel sobre o fundo amarelo do hover)
+
+// Callout icon fill, URL-encoded for use inside SVG data URIs.
+$fmup-callout-icon-fill: "%231A1A1A" !default;
+
 // ---- Typography ----
 // Default body / heading font. Inter (Rasmus Andersson, SIL OFL) -
 // a general-purpose UI sans with optical-sizing axis, used by

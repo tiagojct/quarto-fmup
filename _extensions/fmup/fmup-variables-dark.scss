@@ -33,6 +33,13 @@ $fmup-danger:         #F87171 !default;
 $fmup-ink-on-yellow:  #1A1A1A !default;
 $fmup-ink-on-danger:  #FFFFFF !default;
 
+// ---- Links (dark) ----
+$fmup-link-underline:       $fmup-text !default;    // #F2F2F2 (preserva contraste WCAG em fundo escuro)
+$fmup-link-underline-hover: $fmup-ink-on-yellow !default;  // #1A1A1A (visivel sobre o fundo amarelo do hover)
+
+// Callout icon fill, URL-encoded for use inside SVG data URIs.
+$fmup-callout-icon-fill: "%23F2F2F2" !default;
+
 // ---- Typography ----
 // Same stack as fmup-variables.scss (light). See comments there.
 $fmup-font-sans: "Inter", "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif !default;

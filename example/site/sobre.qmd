@@ -7,7 +7,7 @@ toc: true
 
 A paleta institucional FMUP combina três cores apenas:
 
-- **Amarelo `#FFCD00`** — acento. Aparece no sublinhado das ligações, na
+- **Amarelo `#FFCD00`** — acento. Aparece no _hover_ das ligações, na
   borda inferior da navbar, na barra de progresso, nos cabeçalhos de
   tabela e como _hover state_ de elementos clicáveis.
 - **Preto `#1A1A1A`** — texto e estrutura.

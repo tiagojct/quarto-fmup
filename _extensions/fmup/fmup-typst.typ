@@ -36,9 +36,9 @@
 #show heading.where(level: 3): set text(weight: 700, fill: fmup-text-muted)
 
 // ---- Links ----
-// Dark link colour + yellow underline mirrors the HTML/reveal theme.
+// Dark link colour + dark underline mirrors the HTML/reveal theme.
 #show link: set text(fill: fmup-text)
-#show link: it => underline(stroke: 1pt + fmup-yellow, offset: 2pt, it)
+#show link: it => underline(stroke: 1pt + fmup-text, offset: 2pt, it)
 
 // ---- Inline code ----
 #show raw.where(block: false): box.with(

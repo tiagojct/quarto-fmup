@@ -129,7 +129,7 @@ local function emit_social_meta(meta)
   if lang        then table.insert(lines, '<meta property="og:locale" content="'      .. lang        .. '">') end
   if author      then
     -- Escape author the same way as the other attributes.
-    local safe_author = author:gsub('&', '&amp;'):gsub('"', '&quot;')
+    local safe_author = author:gsub('&', '&amp;'):gsub('"', '&quot;'):gsub('<', '&lt;'):gsub('>', '&gt;')
     table.insert(lines, '<meta property="article:author" content="' .. safe_author .. '">')
   end
   if og_image    then table.insert(lines, '<meta property="og:image" content="'       .. og_image    .. '">') end

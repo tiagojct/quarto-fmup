@@ -3,6 +3,7 @@
   "private": true,
   "description": "Playwright visual-regression scaffold for the quarto-fmup theme. Not published to npm; lives alongside the theme so first-time contributors can `npx playwright test` without leaving the repo.",
   "scripts": {
+    "test": "playwright test",
     "test:visual": "playwright test",
     "test:visual:update": "playwright test --update-snapshots"
   },

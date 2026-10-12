@@ -19,7 +19,7 @@ O ficheiro `fmup-typst.typ` (carregado via `include-in-header`) traz:
 
 - H1 com regra amarela inferior (3pt + `#FFCD00`).
 - H3 a `#5B6470` (texto cinzento atenuado).
-- Links: texto a `#1A1A1A` com sublinhado amarelo a 1pt.
+- Links: texto a `#1A1A1A` com sublinhado a 1pt (`#1A1A1A`).
 - Inline code: caixa cinzenta-clara com raio 2pt.
 - Blocos de código: caixa com borda cinzenta, fundo `#F0F0F0`.
 - Blockquote: borda amarela à esquerda, fundo `#F7F7F7`.

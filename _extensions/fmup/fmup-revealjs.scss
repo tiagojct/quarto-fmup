@@ -132,16 +132,16 @@ $code-block-font-size:          0.7em;
 .reveal .slides a:not(.no-underline) {
   color: $fmup-text;
   text-decoration: underline;
-  text-decoration-color: $fmup-yellow;
+  text-decoration-color: $fmup-link-underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 4px;
-  transition: background 120ms;
+  transition: background 120ms, text-decoration-color 120ms;
 }
 
 .reveal .slides a:not(.no-underline):hover {
   background: $fmup-yellow;
   color: $fmup-ink-on-yellow;
-  text-decoration-color: $fmup-ink-on-yellow;
+  text-decoration-color: $fmup-link-underline-hover;
 }
 
 .reveal .slides a.citation,
