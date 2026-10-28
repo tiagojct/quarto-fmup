@@ -1,0 +1,15 @@
+# Quarterdeck project metadata. See ~/quarterdeck/templates/project/workspace.yml for the fields.
+name: quarto-fmup
+category: tools
+type: other
+status: active
+build: actions
+deploy_target: external
+deploy_method: GitHub Pages
+url: ""
+host: ""
+build_command: ""
+artifact: static
+remote_path: ""
+service: ""
+checks: []
