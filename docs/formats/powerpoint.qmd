@@ -1,0 +1,77 @@
+---
+title: "Modelo PowerPoint"
+description: "Ficheiro .potx com as cores e as fontes do tema FMUP."
+---
+
+O modelo PowerPoint usa a mesma paleta e as mesmas fontes que os formatos Quarto. Está na pasta `pptx/` do repositório.
+
+## Ficheiros
+
+| Ficheiro | Conteúdo |
+|---|---|
+| `pptx/fmup-modelo.potx` | Modelo com 16 esquemas, formato 16:9, sem diapositivos |
+| `pptx/fmup-exemplo.pptx` | Apresentação de exemplo que usa todos os esquemas |
+| `pptx/build.mjs` | Programa que gera os dois ficheiros |
+| `logos/` | Logótipos oficiais da FMUP, usados pelo programa |
+
+## Instalar as fontes
+
+1. Abra a pasta `_extensions/fmup/fonts/`.
+2. Instale `Inter-Regular.ttf`, `Inter-Bold.ttf`, `Inter-Italic.ttf` e `Inter-BoldItalic.ttf`.
+3. Instale `GeistMono-Regular.ttf`.
+4. Reinicie o PowerPoint.
+
+Sem as fontes, o PowerPoint troca-as por outra fonte e o texto muda de largura.
+
+## Usar o modelo
+
+1. Faça duplo clique em `fmup-modelo.potx`. O PowerPoint abre um ficheiro novo.
+2. Escolha **Novo diapositivo** e selecione um esquema.
+3. Para trocar o esquema, use **Esquema** no separador **Base**.
+4. Não mude os logótipos. Os esquemas escuros usam a versão branca. Os esquemas claros usam a versão a cores, no canto inferior direito.
+
+## Esquemas
+
+| Esquema | Uso |
+|---|---|
+| Título | Abertura. Fundo escuro, logótipo branco, bloco amarelo no canto |
+| Secção | Divisor com número grande a amarelo |
+| Título e conteúdo | Texto e listas |
+| Só título | Tabelas, gráficos e figuras |
+| Dois conteúdos | Duas colunas |
+| Conteúdo e imagem | Texto à esquerda, imagem à direita |
+| Número em destaque | Um resultado em tamanho grande |
+| Comparação | Duas opções em cartões |
+| Três colunas | Três cartões com título e lista |
+| Passos | Três passos numerados |
+| Referências | Lista de referências em tamanho pequeno |
+| Código | Bloco em Geist Mono |
+| Frase em destaque | Uma mensagem por diapositivo |
+| Imagem total | Fotografia de página inteira com título |
+| Final | Agradecimento e contactos |
+| Em branco | Livre |
+
+O modelo inclui também um esquema vazio, chamado `FMUP Vazio`. Ignore-o: é um resíduo da ferramenta que gera o ficheiro.
+
+## Cores e tema
+
+O esquema de cores do PowerPoint segue o tema Quarto:
+
+| Posição | Cor | Uso |
+|---|---|---|
+| Texto 1 | `#1A1A1A` | Texto e fundos escuros |
+| Texto 2 | `#5B6470` | Texto secundário |
+| Fundo 2 | `#F7F7F7` | Superfícies |
+| Destaque 1 a 6 | `#1A1A1A`, `#FFCD00`, `#0072B2`, `#D55E00`, `#56B4E9`, `#CC79A7` | Gráficos, por esta ordem |
+
+O amarelo é um acento. Não o use como fundo de um diapositivo inteiro nem como cor de texto sobre branco.
+
+## Regenerar o modelo
+
+```sh
+cd pptx
+npm install
+npm run build
+```
+
+Se mudar uma cor em `fmup-variables.scss`, mude a mesma cor em `build.mjs`. O programa lê os logótipos da pasta `logos/`.

@@ -29,6 +29,8 @@ website:
             text: Reveal.js
           - href: formats/typst.qmd
             text: Typst
+          - href: formats/powerpoint.qmd
+            text: PowerPoint
       - href: customise.qmd
         text: Personalizar
       - href: accessibility.qmd
@@ -49,6 +51,7 @@ website:
           - formats/html.qmd
           - formats/revealjs.qmd
           - formats/typst.qmd
+          - formats/powerpoint.qmd
       - section: "Avançado"
         contents:
           - customise.qmd

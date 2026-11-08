@@ -77,6 +77,26 @@ $code-block-font-size:          0.7em;
   font-weight: 800;
 }
 
+// Yellow tile before each slide title: the FMUP mark scaled to the
+// heading. Paint only (inline-block pseudo-element, no layout change).
+// Only level-2 headings get it. Section dividers are level-1 headings
+// (`# Title`), so they stay clean. Do not key this off `.center`:
+// with the deck-level `center: true` every slide carries that class.
+// Opt out per slide with `## Title {.no-tile}`.
+.reveal h2::before {
+  content: "";
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-right: 0.45em;
+  background: $fmup-yellow;
+  vertical-align: 0.02em;
+}
+
+.reveal section.no-tile h2::before {
+  display: none;
+}
+
 .reveal h3 {
   font-weight: 700;
   color: $fmup-text-muted;
@@ -96,6 +116,15 @@ $code-block-font-size:          0.7em;
   letter-spacing: -0.015em;
   border-bottom: none;
   margin-bottom: 0.4em;
+}
+
+#title-slide .title::before {
+  content: "";
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  margin: 0 auto 0.6em;
+  background: $fmup-yellow;
 }
 
 #title-slide .subtitle {
@@ -209,7 +238,7 @@ $code-block-font-size:          0.7em;
 .reveal table {
   margin: 0.5em 0;
   border-collapse: collapse;
-  font-size: 0.75em;
+  font-size: 0.85em;
 }
 
 .reveal table thead th {
@@ -413,6 +442,67 @@ $code-block-font-size:          0.7em;
 .reveal:has(#title-slide.present) .reveal-logo,
 .reveal:has(#title-slide.present) img.logo {
   display: none !important;
+}
+
+// ---- Utilities ----
+// Opt-in classes, paint only. They mirror the PowerPoint template layouts.
+
+// Big number on a yellow block: `[72%]{.stat}`.
+.reveal .stat {
+  display: inline-block;
+  margin: 0;
+  padding: 0.1em 0.25em;
+  background: $fmup-yellow;
+  color: $fmup-ink-on-yellow;
+  font-weight: 800;
+  font-size: 3.2em;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+// Surface card, for use inside `.columns` / `.column`.
+.reveal .card {
+  background: $fmup-surface;
+  border: 1px solid $fmup-border;
+  border-radius: $fmup-radius;
+  padding: 0.6em 0.9em;
+}
+
+.reveal .card > :first-child { margin-top: 0; }
+.reveal .card > :last-child  { margin-bottom: 0; }
+
+// Dark slide. The slide background comes from reveal, so set both:
+//   # Title {.fmup-dark background-color="#1A1A1A"}
+// Colours are pinned literals (like the table header), so the slide
+// stays identity-preserving if a future palette changes $fmup-bg.
+.reveal section.fmup-dark,
+.reveal section.fmup-dark h1,
+.reveal section.fmup-dark h2,
+.reveal section.fmup-dark h3,
+.reveal section.fmup-dark p,
+.reveal section.fmup-dark li,
+.reveal section.fmup-dark strong,
+.reveal section.fmup-dark em {
+  color: #FFFFFF;
+}
+
+.reveal section.fmup-dark h3,
+.reveal section.fmup-dark .subtitle {
+  color: #A0A8B0;
+}
+
+.reveal section.fmup-dark :not(pre) > code {
+  background: #242424;
+  color: $fmup-yellow;
+}
+
+.reveal section.fmup-dark a:not(.no-underline) {
+  color: #FFFFFF;
+  text-decoration-color: #FFFFFF;
+}
+
+.reveal section.fmup-dark a:not(.no-underline):hover {
+  color: $fmup-ink-on-yellow;
 }
 
 // ---- Reduced motion ----

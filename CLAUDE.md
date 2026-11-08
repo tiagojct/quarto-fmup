@@ -23,6 +23,7 @@ _extensions/fmup/
   partials/_callouts-revealjs.scss Reveal callouts mirror
   fonts/                          Raw woff2 (provenance for the inlined base64)
 
+pptx/                             PowerPoint template: build.mjs (pptxgenjs) -> fmup-modelo.potx, fmup-exemplo.pptx
 docs/                             Dogfooded documentation site (renders with fmup-html)
 example/{site,book,slides}/       Reference projects + manual test bed
 tests/visual/                     Playwright visual-regression scaffold
@@ -54,6 +55,10 @@ npx playwright test --update-snapshots    # accept new baselines
 ```
 
 CI workflow `render-examples` matrix-renders all three examples on push / PR; `visual-regression` runs the Playwright suite; `publish-docs` deploys `docs/_site` to `gh-pages` when files under `docs/` or `_extensions/` change.
+
+## PowerPoint template
+
+`cd pptx && npm install && npm run build` rebuilds `fmup-modelo.potx` and `fmup-exemplo.pptx`. Tokens in `build.mjs` mirror `fmup-variables.scss`: change both together. pptxgenjs writes every unused layout placeholder onto the slide, so a placeholder must never carry a fill unless it is always used. Validate with the pptx skill (`scripts/office/validate.py`).
 
 ## Theme stack layering
 

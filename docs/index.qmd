@@ -49,6 +49,7 @@ Para os outros formatos e a configuração detalhada, ver
 | [Formato HTML](formats/html.qmd) | Opções, dark mode, logo, navbar |
 | [Formato Reveal.js](formats/revealjs.qmd) | Slides, footer, logo, atalhos |
 | [Formato Typst](formats/typst.qmd) | PDF, fontes, limitações conhecidas |
+| [Modelo PowerPoint](formats/powerpoint.qmd) | Ficheiro `.potx` com as mesmas cores e fontes |
 | [Personalizar](customise.qmd) | Substituir tokens, partials, paleta |
 | [Acessibilidade](accessibility.qmd) | WCAG, contrastes, motion-safe |
 | [Design scars](design-scars.qmd) | Bugs cicatrizados que o SCSS resolve |

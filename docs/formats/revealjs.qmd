@@ -69,15 +69,28 @@ fmup:
 
 ## Divisores de secção
 
-Para criar um slide divisor centrado verticalmente:
+Um divisor é um cabeçalho de nível 1. Fica centrado e sem o bloco amarelo dos cabeçalhos de nível 2.
 
 ```markdown
-## Parte 2 {.center}
+# Parte 2
 ```
 
-A classe `.center` é interpretada pelo plugin de centragem do reveal.
-Não tentar centrar via CSS no tema - dá conflito com o
-posicionamento que o reveal aplica nativamente.
+Para um divisor escuro, junte a classe `.fmup-dark` e o fundo:
+
+```markdown
+# Parte 2 {.fmup-dark background-color="#1A1A1A"}
+```
+
+Com `center: true` (valor por omissão), todos os slides têm a classe `.center`. Por isso o tema não usa essa classe para distinguir divisores. Não centre via CSS no tema: dá conflito com o posicionamento do reveal.
+
+## Utilitários
+
+| Classe | Efeito |
+|---|---|
+| `.stat` | Número grande num bloco amarelo: `[72%]{.stat}` |
+| `.card` | Cartão com fundo cinzento, dentro de `.column` |
+| `.fmup-dark` | Slide escuro. Use com `background-color="#1A1A1A"` |
+| `.no-tile` | Tira o bloco amarelo do título: `## Título {.no-tile}` |
 
 ::: {.callout-warning}
 **Não sobrepor `display`, `position` ou `height` em `#title-slide` ou

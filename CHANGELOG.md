@@ -7,6 +7,30 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.5.0] - 2026-11-08
+
+### Added
+
+- **PowerPoint template** in `pptx/`: `fmup-modelo.potx` (16 layouts, FMUP
+  colour scheme, Inter as theme font, official logos from `logos/`) and `fmup-exemplo.pptx`. Built by
+  `pptx/build.mjs` from the same tokens as `fmup-variables.scss`.
+- **Docs page** `formats/powerpoint.qmd`.
+- **Official FMUP logos** in `logos/` (horizontal and vertical lockups in colour, black and white).
+- **Reveal utilities** `.stat` (big number on a yellow block), `.card` (surface card) and `.fmup-dark` (dark slide).
+- **Yellow tile before each level-2 slide title** in `fmup-revealjs`, and a
+  larger tile above the deck title. The docs and the example already
+  described the H2 tile, but the SCSS did not implement it. Opt out per
+  slide with `## Title {.no-tile}`.
+
+### Changed
+
+- Reveal tables: font size 0.75em to 0.85em for room-distance reading.
+- Example deck: divider slide uses a level-1 heading, image slide no longer
+  overflows into the footer.
+- Visual regression: the callouts test now opens slide 12 (the deck uses
+  one-based hashes, so `#/10` showed the image slide) and its two baselines
+  are regenerated.
+
 ## [1.4.0] - 2026-10-12
 
 ### Changed (visible behaviour)
@@ -451,7 +475,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2025
 - Initial release: `fmup-html`, `fmup-revealjs`, `fmup-typst` formats.
 
-[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.0.14...HEAD
+[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.5.0...HEAD
+[1.5.0]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.0
 [1.0.14]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.14
 [1.0.13]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.13
 [1.0.12]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.12

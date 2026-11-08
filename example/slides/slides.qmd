@@ -26,6 +26,7 @@ format:
 - Imagem
 - Duas colunas
 - Callouts
+- Número em destaque e cartões
 - Divisor de secção
 - Referências e fim
 
@@ -98,7 +99,7 @@ sala de aula sem sacrificar muitas linhas.
 
 ## Imagem
 
-![Foto demonstrativa (placeholder)](https://placehold.co/1280x500/FFCD00/1A1A1A?text=FMUP){fig-align="center"}
+![Foto demonstrativa (placeholder)](https://placehold.co/1280x420/FFCD00/1A1A1A?text=FMUP){fig-align="center" width="80%"}
 
 Uma legenda discreta em cinzento, abaixo. As figuras ocupam toda a
 largura por defeito; centra-se com `{fig-align="center"}`.
@@ -146,10 +147,43 @@ Os callouts do Quarto funcionam tal-qual em reveal.js.
 Use-os com moderação — três callouts por slide já é demasiado.
 :::
 
-# Divisor de secção {.center}
+## Número em destaque
 
-Para um slide de divisão (capítulo, secção), aplique a classe `.center`
-ao slide. O cabeçalho fica centrado e sem o pequeno bloco amarelo.
+[72%]{.stat}
+
+dos doentes tiveram alta em menos de 48 horas. A classe `.stat` põe o
+número num bloco amarelo.
+
+## Cartões
+
+::: {.columns}
+::: {.column width="33%"}
+::: {.card}
+### Problema
+
+Falta de tempo e dados dispersos.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+### Método
+
+Revisão rápida com critérios claros.
+:::
+:::
+::: {.column width="33%"}
+::: {.card}
+### Resultado
+
+Menos erros e decisão mais rápida.
+:::
+:::
+:::
+
+# Divisor de secção {.center .fmup-dark background-color="#1A1A1A"}
+
+Um divisor usa um cabeçalho de nível 1 (`#`). Com `.fmup-dark` e
+`background-color="#1A1A1A"` fica escuro.
 
 ## Referências
 
