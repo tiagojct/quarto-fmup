@@ -487,6 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#instalar-as-fontes" id="toc-instalar-as-fontes" class="nav-link" data-scroll-target="#instalar-as-fontes">Instalar as fontes</a></li>
   <li><a href="#usar-o-modelo" id="toc-usar-o-modelo" class="nav-link" data-scroll-target="#usar-o-modelo">Usar o modelo</a></li>
   <li><a href="#estrutura-visual" id="toc-estrutura-visual" class="nav-link" data-scroll-target="#estrutura-visual">Estrutura visual</a></li>
+  <li><a href="#regras-de-uso" id="toc-regras-de-uso" class="nav-link" data-scroll-target="#regras-de-uso">Regras de uso</a></li>
   <li><a href="#esquemas" id="toc-esquemas" class="nav-link" data-scroll-target="#esquemas">Esquemas</a></li>
   <li><a href="#cores-e-tema" id="toc-cores-e-tema" class="nav-link" data-scroll-target="#cores-e-tema">Cores e tema</a></li>
   <li><a href="#regenerar-o-modelo" id="toc-regenerar-o-modelo" class="nav-link" data-scroll-target="#regenerar-o-modelo">Regenerar o modelo</a></li>
@@ -538,11 +539,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td><code>pptx/fmup-modelo.potx</code></td>
-<td>Modelo com 16 esquemas, formato 16:9, sem diapositivos</td>
+<td>Modelo com 22 esquemas, formato 16:9, sem diapositivos</td>
 </tr>
 <tr class="even">
 <td><code>pptx/fmup-exemplo.pptx</code></td>
-<td>Apresentação de exemplo que usa todos os esquemas</td>
+<td>Apresentação de exemplo com notas do orador, que usa quase todos os esquemas</td>
 </tr>
 <tr class="odd">
 <td><code>pptx/build.mjs</code></td>
@@ -583,6 +584,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>O esquema Final mostra a morada e o sítio da faculdade.</li>
 </ul>
 </section>
+<section id="regras-de-uso" class="level2">
+<h2 class="anchored" data-anchor-id="regras-de-uso">Regras de uso</h2>
+<ul>
+<li>Escreva o título como conclusão, em uma frase: “A DPOC reduz o FEV1 em 37 pontos”, não “Resultados”.</li>
+<li>Use um tema por diapositivo e uma mensagem-chave por apresentação.</li>
+<li>Mantenha o texto em 20 pt ou mais. Corte linhas em vez de reduzir a letra.</li>
+<li>Use o preto para a referência e o amarelo para o que interessa no gráfico.</li>
+<li>A apresentação de exemplo tem notas do orador em cada slide.</li>
+</ul>
+</section>
 <section id="esquemas" class="level2">
 <h2 class="anchored" data-anchor-id="esquemas">Esquemas</h2>
 <table class="caption-top table">
@@ -602,52 +613,76 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Abertura. Fundo escuro, logótipo branco, bloco amarelo no canto</td>
 </tr>
 <tr class="even">
+<td>Título claro</td>
+<td>Abertura em fundo branco, para impressão e PDF</td>
+</tr>
+<tr class="odd">
 <td>Secção</td>
 <td>Divisor com número grande a amarelo</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Título e conteúdo</td>
 <td>Texto e listas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Só título</td>
 <td>Tabelas, gráficos e figuras</td>
 </tr>
+<tr class="even">
+<td>Orador</td>
+<td>Fotografia, nome, cargo e percurso</td>
+</tr>
 <tr class="odd">
+<td>Pergunta</td>
+<td>Pergunta à audiência com quatro opções (A a D)</td>
+</tr>
+<tr class="even">
 <td>Dois conteúdos</td>
 <td>Duas colunas</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Conteúdo e imagem</td>
 <td>Texto à esquerda, imagem à direita</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Número em destaque</td>
 <td>Um resultado em tamanho grande</td>
 </tr>
+<tr class="odd">
+<td>Três números</td>
+<td>Três indicadores em cartões</td>
+</tr>
 <tr class="even">
+<td>Linha temporal</td>
+<td>Quatro marcos numa linha</td>
+</tr>
+<tr class="odd">
 <td>Comparação</td>
 <td>Duas opções em cartões</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Três colunas</td>
 <td>Três cartões com título e lista</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Passos</td>
 <td>Três passos numerados</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Referências</td>
 <td>Lista de referências em tamanho pequeno</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Código</td>
 <td>Bloco em Geist Mono</td>
 </tr>
+<tr class="even">
+<td>Mensagem-chave</td>
+<td>A ideia a reter, em fundo escuro</td>
+</tr>
 <tr class="odd">
 <td>Frase em destaque</td>
-<td>Uma mensagem por diapositivo</td>
+<td>Citação ou regra, com a fonte</td>
 </tr>
 <tr class="even">
 <td>Imagem total</td>

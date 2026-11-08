@@ -268,7 +268,7 @@
     "href": "formats/powerpoint.html#ficheiros",
     "title": "Modelo PowerPoint",
     "section": "Ficheiros",
-    "text": "Ficheiros\n\n\n\n\n\n\n\nFicheiro\nConteúdo\n\n\n\n\npptx/fmup-modelo.potx\nModelo com 16 esquemas, formato 16:9, sem diapositivos\n\n\npptx/fmup-exemplo.pptx\nApresentação de exemplo que usa todos os esquemas\n\n\npptx/build.mjs\nPrograma que gera os dois ficheiros\n\n\nlogos/\nLogótipos oficiais da FMUP, usados pelo programa",
+    "text": "Ficheiros\n\n\n\n\n\n\n\nFicheiro\nConteúdo\n\n\n\n\npptx/fmup-modelo.potx\nModelo com 22 esquemas, formato 16:9, sem diapositivos\n\n\npptx/fmup-exemplo.pptx\nApresentação de exemplo com notas do orador, que usa quase todos os esquemas\n\n\npptx/build.mjs\nPrograma que gera os dois ficheiros\n\n\nlogos/\nLogótipos oficiais da FMUP, usados pelo programa",
     "crumbs": [
       "Início",
       "Formatos",
@@ -312,11 +312,23 @@
     ]
   },
   {
+    "objectID": "formats/powerpoint.html#regras-de-uso",
+    "href": "formats/powerpoint.html#regras-de-uso",
+    "title": "Modelo PowerPoint",
+    "section": "Regras de uso",
+    "text": "Regras de uso\n\nEscreva o título como conclusão, em uma frase: “A DPOC reduz o FEV1 em 37 pontos”, não “Resultados”.\nUse um tema por diapositivo e uma mensagem-chave por apresentação.\nMantenha o texto em 20 pt ou mais. Corte linhas em vez de reduzir a letra.\nUse o preto para a referência e o amarelo para o que interessa no gráfico.\nA apresentação de exemplo tem notas do orador em cada slide.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Modelo PowerPoint"
+    ]
+  },
+  {
     "objectID": "formats/powerpoint.html#esquemas",
     "href": "formats/powerpoint.html#esquemas",
     "title": "Modelo PowerPoint",
     "section": "Esquemas",
-    "text": "Esquemas\n\n\n\n\n\n\n\nEsquema\nUso\n\n\n\n\nTítulo\nAbertura. Fundo escuro, logótipo branco, bloco amarelo no canto\n\n\nSecção\nDivisor com número grande a amarelo\n\n\nTítulo e conteúdo\nTexto e listas\n\n\nSó título\nTabelas, gráficos e figuras\n\n\nDois conteúdos\nDuas colunas\n\n\nConteúdo e imagem\nTexto à esquerda, imagem à direita\n\n\nNúmero em destaque\nUm resultado em tamanho grande\n\n\nComparação\nDuas opções em cartões\n\n\nTrês colunas\nTrês cartões com título e lista\n\n\nPassos\nTrês passos numerados\n\n\nReferências\nLista de referências em tamanho pequeno\n\n\nCódigo\nBloco em Geist Mono\n\n\nFrase em destaque\nUma mensagem por diapositivo\n\n\nImagem total\nFotografia de página inteira com título\n\n\nFinal\nAgradecimento e contactos\n\n\nEm branco\nLivre\n\n\n\nO modelo inclui também um esquema vazio, chamado FMUP Vazio. Ignore-o: é um resíduo da ferramenta que gera o ficheiro.",
+    "text": "Esquemas\n\n\n\n\n\n\n\nEsquema\nUso\n\n\n\n\nTítulo\nAbertura. Fundo escuro, logótipo branco, bloco amarelo no canto\n\n\nTítulo claro\nAbertura em fundo branco, para impressão e PDF\n\n\nSecção\nDivisor com número grande a amarelo\n\n\nTítulo e conteúdo\nTexto e listas\n\n\nSó título\nTabelas, gráficos e figuras\n\n\nOrador\nFotografia, nome, cargo e percurso\n\n\nPergunta\nPergunta à audiência com quatro opções (A a D)\n\n\nDois conteúdos\nDuas colunas\n\n\nConteúdo e imagem\nTexto à esquerda, imagem à direita\n\n\nNúmero em destaque\nUm resultado em tamanho grande\n\n\nTrês números\nTrês indicadores em cartões\n\n\nLinha temporal\nQuatro marcos numa linha\n\n\nComparação\nDuas opções em cartões\n\n\nTrês colunas\nTrês cartões com título e lista\n\n\nPassos\nTrês passos numerados\n\n\nReferências\nLista de referências em tamanho pequeno\n\n\nCódigo\nBloco em Geist Mono\n\n\nMensagem-chave\nA ideia a reter, em fundo escuro\n\n\nFrase em destaque\nCitação ou regra, com a fonte\n\n\nImagem total\nFotografia de página inteira com título\n\n\nFinal\nAgradecimento e contactos\n\n\nEm branco\nLivre\n\n\n\nO modelo inclui também um esquema vazio, chamado FMUP Vazio. Ignore-o: é um resíduo da ferramenta que gera o ficheiro.",
     "crumbs": [
       "Início",
       "Formatos",
