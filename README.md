@@ -72,7 +72,7 @@ format:
 
 A PowerPoint template with the same palette and fonts lives in `pptx/`:
 
-- `pptx/fmup-modelo.potx`: the template (16 layouts, 16:9, no slides, official logos from `logos/`).
+- `pptx/fmup-modelo.potx`: the template (22 layouts, 16:9, no slides, official logos from `logos/`).
 - `pptx/fmup-exemplo.pptx`: an example deck that uses every layout.
 
 Install Inter and Geist Mono before you open it (the TTF files are in

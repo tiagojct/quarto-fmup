@@ -7,6 +7,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.5.2] - 2026-11-08
+
+### Added
+
+- **Six PowerPoint layouts**: Título claro, Orador, Pergunta (audience vote, A to D), Três números, Linha temporal and Mensagem-chave. The template has 22 layouts.
+- The example deck is now a short story with conclusion titles and speaker notes on every slide.
+- Usage rules in `docs/formats/powerpoint.qmd`.
+
 ## [1.5.1] - 2026-11-08
 
 ### Changed
@@ -484,7 +492,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2025
 - Initial release: `fmup-html`, `fmup-revealjs`, `fmup-typst` formats.
 
-[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.5.1...HEAD
+[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.5.2...HEAD
+[1.5.2]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.2
 [1.5.1]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.1
 [1.5.0]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.0
 [1.0.14]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.14

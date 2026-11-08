@@ -9,8 +9,8 @@ O modelo PowerPoint usa a mesma paleta e as mesmas fontes que os formatos Quarto
 
 | Ficheiro | Conteúdo |
 |---|---|
-| `pptx/fmup-modelo.potx` | Modelo com 16 esquemas, formato 16:9, sem diapositivos |
-| `pptx/fmup-exemplo.pptx` | Apresentação de exemplo que usa todos os esquemas |
+| `pptx/fmup-modelo.potx` | Modelo com 22 esquemas, formato 16:9, sem diapositivos |
+| `pptx/fmup-exemplo.pptx` | Apresentação de exemplo com notas do orador, que usa quase todos os esquemas |
 | `pptx/build.mjs` | Programa que gera os dois ficheiros |
 | `logos/` | Logótipos oficiais da FMUP, usados pelo programa |
 
@@ -37,23 +37,37 @@ Sem as fontes, o PowerPoint troca-as por outra fonte e o texto muda de largura.
 - O amarelo é só acento. Nenhum esquema usa o amarelo como fundo de página.
 - O esquema Final mostra a morada e o sítio da faculdade.
 
+## Regras de uso
+
+- Escreva o título como conclusão, em uma frase: "A DPOC reduz o FEV1 em 37 pontos", não "Resultados".
+- Use um tema por diapositivo e uma mensagem-chave por apresentação.
+- Mantenha o texto em 20 pt ou mais. Corte linhas em vez de reduzir a letra.
+- Use o preto para a referência e o amarelo para o que interessa no gráfico.
+- A apresentação de exemplo tem notas do orador em cada slide.
+
 ## Esquemas
 
 | Esquema | Uso |
 |---|---|
 | Título | Abertura. Fundo escuro, logótipo branco, bloco amarelo no canto |
+| Título claro | Abertura em fundo branco, para impressão e PDF |
 | Secção | Divisor com número grande a amarelo |
 | Título e conteúdo | Texto e listas |
 | Só título | Tabelas, gráficos e figuras |
+| Orador | Fotografia, nome, cargo e percurso |
+| Pergunta | Pergunta à audiência com quatro opções (A a D) |
 | Dois conteúdos | Duas colunas |
 | Conteúdo e imagem | Texto à esquerda, imagem à direita |
 | Número em destaque | Um resultado em tamanho grande |
+| Três números | Três indicadores em cartões |
+| Linha temporal | Quatro marcos numa linha |
 | Comparação | Duas opções em cartões |
 | Três colunas | Três cartões com título e lista |
 | Passos | Três passos numerados |
 | Referências | Lista de referências em tamanho pequeno |
 | Código | Bloco em Geist Mono |
-| Frase em destaque | Uma mensagem por diapositivo |
+| Mensagem-chave | A ideia a reter, em fundo escuro |
+| Frase em destaque | Citação ou regra, com a fonte |
 | Imagem total | Fotografia de página inteira com título |
 | Final | Agradecimento e contactos |
 | Em branco | Livre |

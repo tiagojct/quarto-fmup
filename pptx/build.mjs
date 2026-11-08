@@ -132,6 +132,18 @@ function defineMasters(pres) {
   });
 
   pres.defineSlideMaster({
+    title: "FMUP Título claro",
+    background: { color: C.bg },
+    objects: [
+      { image: { path: LOGO("logoFMUP_UP.png"), x: M, y: 0.6, w: 1.2 * LOGO_RATIO, h: 1.2, altText: LOGO_ALT } },
+      bleedTile(),
+      title({ y: 2.3, h: 2.5, fontSize: 54, valign: "bottom", w: 10.8 }),
+      body("subtitle", "Subtítulo", { y: 5.0, h: 0.9, w: 9.4, fontSize: 22, color: C.muted }),
+      body("author", "Autor e data", { y: 6.3, h: 0.6, w: 9.4, fontSize: 14 }),
+    ],
+  });
+
+  pres.defineSlideMaster({
     title: "FMUP Secção",
     background: { color: C.ink },
     slideNumber: slideNo,
@@ -218,7 +230,7 @@ function defineMasters(pres) {
     objects: [
       ...footer(), ...heading(),
       { rect: { x: M, y: 1.8, w: CW, h: 4.6, fill: { color: C.surfaceStrong }, line: { color: C.border, width: 0.75 }, rectRadius: 0.08 } },
-      body("code", "Cole o código aqui", { x: M + 0.35, y: 2.05, w: CW - 0.7, h: 4.1, fontFace: MONO, fontSize: 18 }),
+      body("code", "Cole o código aqui", { x: M + 0.35, y: 2.05, w: CW - 0.7, h: 4.1, fontFace: MONO, fontSize: 20 }),
     ],
   });
 
@@ -260,6 +272,87 @@ function defineMasters(pres) {
     objects: [
       ...footer(), ...heading(),
       body("refs", "Autor, A. (ano). Título. Revista, volume(número), páginas.", { y: 1.7, h: 4.8, fontSize: 14, color: C.ink }),
+    ],
+  });
+
+  // Audience question (voting, quiz): four lettered options.
+  const optW = (CW - 0.4) / 2;
+  const optH = 1.6;
+  const optPos = [[M, 2.7], [M + optW + 0.4, 2.7], [M, 2.7 + optH + 0.2], [M + optW + 0.4, 2.7 + optH + 0.2]];
+  pres.defineSlideMaster({
+    title: "FMUP Pergunta",
+    background: { color: C.bg },
+    slideNumber: slideNo,
+    objects: [
+      ...footer(), ...heading({ h: 1.9, fontSize: 36 }),
+      ...optPos.flatMap(([x, y], i) => [
+        { rect: { x, y, w: optW, h: optH, fill: { color: C.surface }, line: { color: C.border, width: 0.75 }, rectRadius: 0.08 } },
+        { rect: { x: x + 0.3, y: y + (optH - 0.8) / 2, w: 0.8, h: 0.8, fill: { color: C.yellow }, line: { type: "none" } } },
+        { text: { text: "ABCD"[i], options: { x: x + 0.3, y: y + (optH - 0.8) / 2, w: 0.8, h: 0.8, fontFace: SANS, fontSize: 28, bold: true, color: C.ink, align: "center", valign: "middle", margin: 0 } } },
+        body(`option-${"abcd"[i]}`, `Opção ${"ABCD"[i]}`, { x: x + 1.4, y, w: optW - 1.7, h: optH, fontSize: 22, valign: "middle" }),
+      ]),
+    ],
+  });
+
+  // Three headline numbers.
+  pres.defineSlideMaster({
+    title: "FMUP Três números",
+    background: { color: C.bg },
+    slideNumber: slideNo,
+    objects: [
+      ...footer(), ...heading(),
+      ...[0, 1, 2].flatMap((i) => [
+        { rect: { x: cx(i), y: 1.9, w: cols3W, h: 3.9, fill: { color: C.surface }, line: { color: C.border, width: 0.75 }, rectRadius: 0.08 } },
+        tile(cx(i) + 0.35, 2.25, 0.3),
+        body(`stat${i + 1}`, "00%", { x: cx(i) + 0.35, y: 2.8, w: cols3W - 0.7, h: 1.5, fontSize: 60, bold: true, valign: "middle" }),
+        body(`stat${i + 1}-label`, "O que o número mede", { x: cx(i) + 0.35, y: 4.4, w: cols3W - 0.7, h: 1.2, fontSize: 20, color: C.muted }),
+      ]),
+    ],
+  });
+
+  // Timeline: four milestones on one line.
+  const tlW = CW / 4;
+  pres.defineSlideMaster({
+    title: "FMUP Linha temporal",
+    background: { color: C.bg },
+    slideNumber: slideNo,
+    objects: [
+      ...footer(), ...heading(),
+      { rect: { x: M, y: 3.7, w: CW, h: 0.03, fill: { color: C.ink }, line: { type: "none" } } },
+      ...[0, 1, 2, 3].flatMap((i) => [
+        tile(M + i * tlW, 3.57, 0.28),
+        body(`when${i + 1}`, "2026", { x: M + i * tlW, y: 2.85, w: tlW - 0.3, h: 0.6, fontSize: 28, bold: true, valign: "bottom" }),
+        body(`what${i + 1}`, "Marco do projeto", { x: M + i * tlW, y: 4.25, w: tlW - 0.3, h: 2.2, fontSize: 20 }),
+      ]),
+    ],
+  });
+
+  // Speaker: portrait, name, role, short bio.
+  pres.defineSlideMaster({
+    title: "FMUP Orador",
+    background: { color: C.bg },
+    slideNumber: slideNo,
+    objects: [
+      ...footer(),
+      pic("portrait", { x: M, y: 0.7, w: 4.2, h: 5.8 }),
+      tile(5.5, 0.9, 0.4),
+      title({ x: 6.2, y: 0.7, w: W - M - 6.2, h: 0.8, fontSize: 40, valign: "top" }),
+      body("role", "Cargo e afiliação", { x: 5.5, y: 1.7, w: W - M - 5.5, h: 0.7, fontSize: 20, color: C.muted }),
+      list("bio", "Percurso em poucas linhas", { x: 5.5, y: 2.7, w: W - M - 5.5, h: 3.0, fontSize: 20 }),
+      body("contact", "Contactos", { x: 5.5, y: 5.9, w: W - M - 5.5, h: 0.6, fontSize: 16, color: C.muted, valign: "bottom" }),
+    ],
+  });
+
+  // Key message on a dark page, for the one idea the audience must keep.
+  pres.defineSlideMaster({
+    title: "FMUP Mensagem-chave",
+    background: { color: C.ink },
+    slideNumber: slideNo,
+    objects: [
+      ...footer(true),
+      tile(M, 1.2, 0.6),
+      body("message", "A mensagem que a audiência deve levar", { y: 2.2, h: 3.0, w: 10.8, fontSize: 48, bold: true, color: "FFFFFF" }),
+      body("support", "Frase de apoio ou fonte", { y: 5.3, h: 0.9, w: 10.8, fontSize: 20, color: C.mutedOnDark }),
     ],
   });
 
@@ -432,66 +525,75 @@ async function postProcess(buf, { template }) {
 }
 
 // ---- Example deck ----
+// A short story, not a catalogue: titles state the conclusion, every slide has speaker notes.
 function exampleDeck(pres) {
   const L = (n) => `FMUP ${n}`;
-
-  let s = pres.addSlide({ masterName: L("Título") });
-  s.addText("Título da apresentação", { placeholder: "title" });
-  s.addText("Subtítulo com a mensagem principal", { placeholder: "subtitle" });
-  s.addText("Tiago Jacinto  |  2026-11-08", { placeholder: "author" });
-  s.addNotes("Diapositivo de título. O logótipo vai no espaço superior direito.");
-
-  s = pres.addSlide({ masterName: L("Título e conteúdo") });
-  s.addText("Agenda", { placeholder: "title" });
-  s.addText(
-    ["Contexto e objetivos", "Métodos", "Resultados", "Discussão", "Conclusões"].map((t, i, a) => ({
-      text: t, options: { bullet: true, breakLine: i < a.length - 1, paraSpaceAfter: 8 },
-    })),
-    { placeholder: "content" }
-  );
-
-  s = pres.addSlide({ masterName: L("Secção") });
-  s.addText("01", { placeholder: "number" });
-  s.addText("Contexto", { placeholder: "title" });
-  s.addText("Porque este tema importa agora", { placeholder: "lead" });
-
-  s = pres.addSlide({ masterName: L("Dois conteúdos") });
-  s.addText("Dois conteúdos lado a lado", { placeholder: "title" });
-  const bl = (arr) => arr.map((t, i, a) => ({ text: t, options: { bullet: true, breakLine: i < a.length - 1, paraSpaceAfter: 8 } }));
-  s.addText(bl(["Um ponto por linha", "Frases curtas", "Verbos ativos"]), { placeholder: "left" });
-  s.addText(bl(["Máximo de cinco linhas", "Um tema por diapositivo", "Texto com 20 pt ou mais"]), { placeholder: "right" });
-
+  const bl = (arr) => arr.map((t, i, a) => ({ text: t, options: { bullet: true, breakLine: i < a.length - 1 } }));
   // Stand-in for a photo: a flat panel. Real decks insert pictures through the layout placeholder.
   const panel = (sl, x, y, w, h, label) => {
     sl.addShape(pres.shapes.RECTANGLE, { x, y, w, h, fill: { color: C.surfaceStrong }, line: { type: "none" } });
     sl.addShape(pres.shapes.RECTANGLE, { x: x + 0.3, y: y + 0.3, w: 0.5, h: 0.5, fill: { color: C.yellow }, line: { type: "none" } });
     sl.addText(label, { x, y, w, h, align: "center", valign: "middle", fontFace: SANS, fontSize: 18, bold: true, color: C.muted, margin: 0 });
   };
+  const slide = (layout, notes) => {
+    const sl = pres.addSlide({ masterName: L(layout) });
+    sl.addNotes(notes);
+    return sl;
+  };
+  const t = (sl, text, ph) => sl.addText(text, { placeholder: ph });
 
-  s = pres.addSlide({ masterName: L("Conteúdo e imagem") });
-  s.addText("Texto e imagem", { placeholder: "title" });
-  s.addText(bl(["Imagem à direita", "Texto à esquerda", "Cortar a imagem no PowerPoint"]), { placeholder: "content" });
+  let s = slide("Título", "Abertura. Diga o tema numa frase. O logótipo e o bloco amarelo já estão no esquema.");
+  t(s, "Decidir com dados: a espirometria na consulta", "title");
+  t(s, "Exemplo de apresentação com o modelo FMUP", "subtitle");
+  t(s, "Tiago Jacinto  |  2026-11-08", "author");
+
+  s = slide("Orador", "Apresentação pessoal em dez segundos. Corte a fotografia no PowerPoint com Formatar > Cortar.");
+  panel(s, M, 0.7, 4.2, 5.8, "Fotografia");
+  t(s, "Tiago Jacinto", "title");
+  t(s, "Professor Auxiliar, MEDCIDS, Faculdade de Medicina da Universidade do Porto", "role");
+  t(s, bl(["Diretor do Mestrado em Informática da Saúde", "Investigação em saúde digital e função pulmonar", "Mais de 120 artigos indexados"]), "bio");
+  t(s, "tiagojct@med.up.pt", "contact");
+
+  s = slide("Pergunta", "Pergunta à audiência. Dê trinta segundos para votar. Mostre a resposta no slide seguinte.");
+  t(s, "Qual é o primeiro passo ao interpretar uma espirometria?", "title");
+  ["Verificar a qualidade do teste", "Comparar o FEV1 com o previsto", "Calcular a razão FEV1/FVC", "Classificar a gravidade"].forEach((o, i) => t(s, o, `option-${"abcd"[i]}`));
+
+  s = slide("Título e conteúdo", "Agenda. Cinco linhas no máximo. Um slide de agenda por apresentação.");
+  t(s, "O que vamos ver em vinte minutos", "title");
+  t(s, bl(["Contexto e objetivos", "Métodos", "Resultados", "Discussão", "Conclusões"]), "content");
+
+  s = slide("Secção", "Divisor. Pare, respire e anuncie a nova parte.");
+  t(s, "01", "number");
+  t(s, "Contexto", "title");
+  t(s, "Porque este tema importa agora", "lead");
+
+  s = slide("Número em destaque", "Um número por slide. Diga o que o número significa antes de o mostrar. Dados fictícios.");
+  t(s, "Sete em cada dez doentes tiveram alta em menos de 48 horas", "title");
+  t(s, "72%", "number");
+  t(s, "dos doentes do serviço, no último ano. Dados fictícios de exemplo.", "content");
+
+  s = slide("Três números", "Três indicadores no máximo. Alinhe sempre a unidade e o período. Dados fictícios.");
+  t(s, "Três indicadores resumem o desempenho do serviço", "title");
+  [["1 248", "espirometrias por ano"], ["94%", "testes com qualidade aceitável"], ["12 min", "duração média de cada teste"]].forEach(([n, l], i) => {
+    t(s, n, `stat${i + 1}`);
+    t(s, l, `stat${i + 1}-label`);
+  });
+
+  s = slide("Linha temporal", "Quatro marcos no máximo. Use anos ou meses, nunca ambos.");
+  t(s, "O projeto avançou em quatro marcos", "title");
+  [["2024", "Desenho do protocolo"], ["2025", "Piloto em dois centros"], ["2026", "Avaliação dos resultados"], ["2027", "Extensão a todos os centros"]].forEach(([w, x], i) => {
+    t(s, w, `when${i + 1}`);
+    t(s, x, `what${i + 1}`);
+  });
+
+  s = slide("Conteúdo e imagem", "Imagem à direita. Use uma fotografia real ou uma figura sua, nunca imagem de banco genérica.");
+  t(s, "A qualidade do teste vem antes do valor", "title");
+  t(s, bl(["Critérios de aceitabilidade", "Critérios de repetibilidade", "Registo do esforço do doente"]), "content");
   panel(s, 7.0, 0.7, W - M - 7.0, 5.7, "Imagem");
 
-  s = pres.addSlide({ masterName: L("Imagem total") });
-  panel(s, 0, 0, W, H, "Imagem de página inteira");
-  s.addText("Título sobre a imagem", { placeholder: "title" });
-
-  s = pres.addSlide({ masterName: L("Número em destaque") });
-  s.addText("Um número que fica na memória", { placeholder: "title" });
-  s.addText("72%", { placeholder: "number" });
-  s.addText("dos doentes tiveram alta em menos de 48 horas. Fonte: dados de exemplo.", { placeholder: "content" });
-
-  s = pres.addSlide({ masterName: L("Comparação") });
-  s.addText("Comparação de duas opções", { placeholder: "title" });
-  s.addText("Opção A", { placeholder: "left-head" });
-  s.addText(bl(["Mais rápida", "Custo inicial maior"]), { placeholder: "left" });
-  s.addText("Opção B", { placeholder: "right-head" });
-  s.addText(bl(["Mais lenta", "Custo inicial menor"]), { placeholder: "right" });
-
-  s = pres.addSlide({ masterName: L("Só título") });
-  s.addText("Tabela com o estilo FMUP", { placeholder: "title" });
-  const hdr = (t) => ({ text: t, options: { bold: true, color: C.yellow, fill: { color: C.ink } } });
+  s = slide("Só título", "Tabela com cabeçalho preto e texto amarelo. Destaque a linha que sustenta o título.");
+  t(s, "A DPOC reduz o FEV1 em 37 pontos face ao controlo", "title");
+  const hdr = (x) => ({ text: x, options: { bold: true, color: C.yellow, fill: { color: C.ink } } });
   s.addTable(
     [
       [hdr("Grupo"), hdr("n"), hdr("FEV1 (% previsto)")],
@@ -506,8 +608,8 @@ function exampleDeck(pres) {
     }
   );
 
-  s = pres.addSlide({ masterName: L("Só título") });
-  s.addText("Gráfico nativo com as cores FMUP", { placeholder: "title" });
+  s = slide("Só título", "Gráfico nativo: edite os dados com botão direito > Editar dados. Preto para a referência, amarelo para o que interessa.");
+  t(s, "O FEV1 melhora em todos os grupos depois da intervenção", "title");
   s.addChart(
     pres.charts.BAR,
     [
@@ -526,43 +628,60 @@ function exampleDeck(pres) {
     }
   );
 
-  s = pres.addSlide({ masterName: L("Código") });
-  s.addText("Código em Geist Mono", { placeholder: "title" });
-  s.addText(
-    ["def fev1_percent(medido, previsto):", "    return 100 * medido / previsto", "", "print(fev1_percent(2.8, 3.5))"]
-      .map((t, i, a) => ({ text: t, options: { breakLine: i < a.length - 1 } })),
-    { placeholder: "code" }
-  );
+  s = slide("Comparação", "Compare duas opções com os mesmos critérios nas duas colunas.");
+  t(s, "A opção B custa menos e demora mais", "title");
+  t(s, "Opção A", "left-head");
+  t(s, bl(["Mais rápida", "Custo inicial maior"]), "left");
+  t(s, "Opção B", "right-head");
+  t(s, bl(["Mais lenta", "Custo inicial menor"]), "right");
 
-  s = pres.addSlide({ masterName: L("Três colunas") });
-  s.addText("Três ideias em paralelo", { placeholder: "title" });
+  s = slide("Três colunas", "Três ideias em paralelo. Mantenha o mesmo número de linhas em cada cartão.");
+  t(s, "Problema, método e resultado numa página", "title");
   [["Problema", ["Falta de tempo", "Dados dispersos"]], ["Método", ["Revisão rápida", "Critérios claros"]], ["Resultado", ["Menos erros", "Decisão mais rápida"]]].forEach(([h, items], i) => {
-    s.addText(h, { placeholder: `col${i + 1}-head` });
-    s.addText(bl(items), { placeholder: `col${i + 1}` });
+    t(s, h, `col${i + 1}-head`);
+    t(s, bl(items), `col${i + 1}`);
   });
 
-  s = pres.addSlide({ masterName: L("Passos") });
-  s.addText("Como se faz em três passos", { placeholder: "title" });
-  [["Preparar", "Reúna os dados e defina a pergunta."], ["Analisar", "Aplique o método e registe os resultados."], ["Comunicar", "Escreva uma mensagem por diapositivo."]].forEach(([h, t], i) => {
-    s.addText(h, { placeholder: `step${i + 1}-head` });
-    s.addText(t, { placeholder: `step${i + 1}` });
+  s = slide("Passos", "Processo em três passos. Verbo no infinitivo em cada título de passo.");
+  t(s, "Três passos levam do dado à decisão", "title");
+  [["Preparar", "Reúna os dados e defina a pergunta."], ["Analisar", "Aplique o método e registe os resultados."], ["Comunicar", "Escreva uma mensagem por diapositivo."]].forEach(([h, x], i) => {
+    t(s, h, `step${i + 1}-head`);
+    t(s, x, `step${i + 1}`);
   });
 
-  s = pres.addSlide({ masterName: L("Referências") });
-  s.addText("Referências", { placeholder: "title" });
-  s.addText(
-    ["Bringhurst, R. (2004). The Elements of Typographic Style. Hartley & Marks.", "Tufte, E. R. (2001). The Visual Display of Quantitative Information. Graphics Press."]
-      .map((t, i, a) => ({ text: t, options: { breakLine: i < a.length - 1, paraSpaceAfter: 10 } })),
-    { placeholder: "refs" }
-  );
+  s = slide("Dois conteúdos", "Duas colunas de texto. Prefira Comparação quando as colunas forem alternativas.");
+  t(s, "Duas leituras do mesmo resultado", "title");
+  t(s, bl(["Leitura clínica", "Foco no doente", "Decisão individual"]), "left");
+  t(s, bl(["Leitura populacional", "Foco no serviço", "Decisão de política"]), "right");
 
-  s = pres.addSlide({ masterName: L("Frase em destaque") });
-  s.addText("Um diapositivo, uma ideia.", { placeholder: "quote" });
-  s.addText("Regra de ouro das apresentações", { placeholder: "source" });
+  s = slide("Código", "Código em Geist Mono. Dezoito pontos no mínimo: corte linhas em vez de reduzir a letra.");
+  t(s, "Uma função de três linhas calcula o FEV1 percentual", "title");
+  t(s, ["def fev1_percent(medido, previsto):", "    return 100 * medido / previsto", "", "print(fev1_percent(2.8, 3.5))"].map((x, i, a) => ({ text: x, options: { breakLine: i < a.length - 1 } })), "code");
 
-  s = pres.addSlide({ masterName: L("Final") });
-  s.addText("Obrigado", { placeholder: "title" });
-  s.addText("tiagojct@med.up.pt\nFaculdade de Medicina da Universidade do Porto", { placeholder: "contacts" });
+  s = slide("Imagem total", "Fotografia de página inteira. O título fica sobre a caixa preta, por isso lê-se em qualquer imagem.");
+  panel(s, 0, 0, W, H, "Imagem de página inteira");
+  t(s, "Uma imagem forte substitui um parágrafo", "title");
+
+  s = slide("Mensagem-chave", "A ideia que a audiência deve levar. Diga-a devagar e passe ao slide seguinte.");
+  t(s, "Sem um teste de boa qualidade, não há decisão clínica fiável.", "message");
+  t(s, "Mensagem principal desta apresentação", "support");
+
+  s = slide("Frase em destaque", "Citação ou regra de ouro, com a fonte por baixo.");
+  t(s, "Um diapositivo, uma ideia.", "quote");
+  t(s, "Regra de ouro das apresentações", "source");
+
+  s = slide("Referências", "Referências em tamanho pequeno. Uma por parágrafo.");
+  t(s, "Referências", "title");
+  t(s, ["Bringhurst, R. (2004). The Elements of Typographic Style. Hartley & Marks.", "Tufte, E. R. (2001). The Visual Display of Quantitative Information. Graphics Press."].map((x, i, a) => ({ text: x, options: { breakLine: i < a.length - 1, paraSpaceAfter: 10 } })), "refs");
+
+  s = slide("Final", "Agradeça, mostre os contactos e abra a discussão.");
+  t(s, "Obrigado", "title");
+  t(s, "tiagojct@med.up.pt\nFaculdade de Medicina da Universidade do Porto", "contacts");
+
+  s = slide("Título claro", "Variante clara do esquema de título. Use para documentos impressos e PDF.");
+  t(s, "Variante clara do título", "title");
+  t(s, "Para impressão e PDF", "subtitle");
+  t(s, "Tiago Jacinto  |  2026-11-08", "author");
 }
 
 // ---- Run ----
