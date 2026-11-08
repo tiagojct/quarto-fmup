@@ -300,6 +300,18 @@
     ]
   },
   {
+    "objectID": "formats/powerpoint.html#estrutura-visual",
+    "href": "formats/powerpoint.html#estrutura-visual",
+    "title": "Modelo PowerPoint",
+    "section": "Estrutura visual",
+    "text": "Estrutura visual\n\nCada esquema claro tem um bloco amarelo antes do título. É o mesmo bloco do tema fmup-revealjs.\nO rodapé segue o modelo oficial da FMUP: logótipo à esquerda, nome da faculdade e número do slide à direita. O número fica num bloco amarelo.\nO amarelo é só acento. Nenhum esquema usa o amarelo como fundo de página.\nO esquema Final mostra a morada e o sítio da faculdade.",
+    "crumbs": [
+      "Início",
+      "Formatos",
+      "Modelo PowerPoint"
+    ]
+  },
+  {
     "objectID": "formats/powerpoint.html#esquemas",
     "href": "formats/powerpoint.html#esquemas",
     "title": "Modelo PowerPoint",
