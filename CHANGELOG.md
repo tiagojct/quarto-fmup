@@ -7,6 +7,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-11-08
+
+### Changed
+
+- **PowerPoint footer band** after the official FMUP template: official logo on the left, faculty name and page number on the right. The page number sits on a yellow tile.
+- **PowerPoint headings**: a yellow tile before each title, as in `fmup-revealjs`.
+- Closing layout shows the faculty address and website.
+- Quote layout keeps the source line next to the quote.
+
 ## [1.5.0] - 2026-11-08
 
 ### Added
@@ -475,7 +484,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.
 ## [1.0.0] - 2025
 - Initial release: `fmup-html`, `fmup-revealjs`, `fmup-typst` formats.
 
-[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/tiagojct/quarto-fmup/compare/v1.5.1...HEAD
+[1.5.1]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.1
 [1.5.0]:  https://github.com/tiagojct/quarto-fmup/releases/tag/v1.5.0
 [1.0.14]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.14
 [1.0.13]: https://github.com/tiagojct/quarto-fmup/releases/tag/v1.0.13

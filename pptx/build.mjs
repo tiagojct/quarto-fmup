@@ -37,23 +37,45 @@ const LOGO_RATIO = 2419 / 1161; // official horizontal lockup
 const tile = (x, y, s = 0.42) => ({
   rect: { x, y, w: s, h: s, fill: { color: C.yellow }, line: { type: "none" } },
 });
-// Official lockup, bottom right. `dark` picks the white version for dark layouts.
-const footerLogo = (dark = false) => ({
-  image: {
-    path: LOGO(dark ? "logoFMUP_UP_branco.png" : "logoFMUP_UP.png"),
-    x: W - M - 0.64 * LOGO_RATIO, y: 6.67, w: 0.64 * LOGO_RATIO, h: 0.64, altText: LOGO_ALT,
-  },
-});
+// Footer band, after the FMUP template: logo left, institution name and page number right.
+// `dark` swaps to the white logo and a dark band. `fill` overrides the band colour.
+const BAND_Y = 6.95;
+const BAND_H = H - BAND_Y;
+const GERAL_RATIO = 1793 / 1158; // official vertical U.Porto + FMUP lockup
+const footer = (dark = false, fill) => {
+  const ink = dark ? "FFFFFF" : C.ink;
+  const sub = dark ? C.mutedOnDark : C.muted;
+  const tileW = 0.5;
+  const tileH = 0.36;
+  const logoH = 0.42;
+  return [
+    { rect: { x: 0, y: BAND_Y, w: W, h: BAND_H, fill: { color: fill ?? (dark ? C.dark2 : C.surface) }, line: { type: "none" } } },
+    {
+      image: {
+        path: LOGO(dark ? "logoFMUP_geral_branco.png" : "logoFMUP_geral.png"),
+        x: M, y: BAND_Y + (BAND_H - logoH) / 2, w: logoH * GERAL_RATIO, h: logoH, altText: LOGO_ALT,
+      },
+    },
+    ...[["FACULDADE DE MEDICINA", true, ink, -0.2], ["UNIVERSIDADE DO PORTO", false, sub, 0.0]].map(([t, bold, color, dy]) => ({
+      text: {
+        text: t,
+        options: {
+          x: W - M - tileW - 0.3 - 3.2, y: BAND_Y + BAND_H / 2 + dy, w: 3.2, h: 0.2,
+          fontFace: SANS, fontSize: 8, bold, color, charSpacing: 1, align: "right", valign: "middle", margin: 0,
+        },
+      },
+    })),
+    { rect: { x: W - M - tileW, y: BAND_Y + (BAND_H - tileH) / 2, w: tileW, h: tileH, fill: { color: C.yellow }, line: { type: "none" } } },
+  ];
+};
 // Official lockup, top left, on the dark opening and closing layouts.
 const headLogo = () => ({
   image: { path: LOGO("logoFMUP_UP_branco.png"), x: M, y: 0.6, w: 1.2 * LOGO_RATIO, h: 1.2, altText: LOGO_ALT },
 });
 const slideNo = {
-  x: M, y: 6.78, w: 0.5, h: 0.42,
+  x: W - M - 0.5, y: BAND_Y + (BAND_H - 0.36) / 2, w: 0.5, h: 0.36,
   fontFace: SANS, fontSize: 11, bold: true, color: C.ink, align: "center", valign: "middle",
 };
-// The yellow number tile is the motif that repeats on every content layout.
-const numberTile = () => tile(M, 6.78, 0.5).rect && { rect: { x: M, y: 6.78, w: 0.5, h: 0.42, fill: { color: C.yellow }, line: { type: "none" } } };
 
 const title = (o = {}) => ({
   placeholder: {
@@ -66,6 +88,11 @@ const title = (o = {}) => ({
     text: "Clique para editar o título",
   },
 });
+// Content-slide heading: yellow tile (as in fmup-revealjs) and a top-aligned title.
+const heading = (o = {}) => [
+  tile(M, (o.y ?? 0.5) + 0.1, 0.4),
+  title({ x: M + 0.7, w: CW - 0.7, h: 1.1, valign: "top", ...o }),
+];
 const body = (name, text, o = {}) => ({
   placeholder: {
     options: {
@@ -109,8 +136,7 @@ function defineMasters(pres) {
     background: { color: C.ink },
     slideNumber: slideNo,
     objects: [
-      numberTile(),
-      footerLogo(true),
+      ...footer(true),
       body("number", "01", { y: 1.6, h: 2.6, w: 6, fontSize: 150, bold: true, color: C.yellow, valign: "bottom" }),
       title({ y: 4.4, h: 1.3, w: 10.8, fontSize: 44, color: "FFFFFF", valign: "top" }),
       body("lead", "Descrição curta da secção", { y: 5.6, h: 0.9, w: 9, fontSize: 18, color: C.mutedOnDark }),
@@ -121,14 +147,14 @@ function defineMasters(pres) {
     title: "FMUP Título e conteúdo",
     background: { color: C.bg },
     slideNumber: slideNo,
-    objects: [numberTile(), footerLogo(), title(), list("content", "Clique para editar o texto")],
+    objects: [...footer(), ...heading(), list("content", "Clique para editar o texto")],
   });
 
   pres.defineSlideMaster({
     title: "FMUP Só título",
     background: { color: C.bg },
     slideNumber: slideNo,
-    objects: [numberTile(), footerLogo(), title()],
+    objects: [...footer(), ...heading()],
   });
 
   const colW = 5.8;
@@ -137,7 +163,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       list("left", "Coluna esquerda", { w: colW }),
       list("right", "Coluna direita", { x: W - M - colW, w: colW }),
     ],
@@ -148,8 +174,8 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(),
-      title({ y: 0.7, w: 5.8, h: 1.5, valign: "top" }),
+      ...footer(),
+      ...heading({ y: 0.7, w: 5.1, h: 1.5 }),
       list("content", "Clique para editar o texto", { y: 2.4, w: 5.6, h: 4.0 }),
       pic("picture", { x: 7.0, y: 0.7, w: W - M - 7.0, h: 5.7 }),
     ],
@@ -160,7 +186,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       { rect: { x: M, y: 1.9, w: 6.0, h: 3.6, fill: { color: C.yellow }, line: { type: "none" } } },
       body("number", "72%", { x: M + 0.3, y: 2.0, w: 5.4, h: 3.4, fontSize: 130, bold: true, valign: "middle", align: "left" }),
       body("content", "Explicação do número", { x: 7.3, y: 2.3, w: W - M - 7.3, h: 2.8, fontSize: 24, valign: "middle" }),
@@ -176,7 +202,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       card(M), card(W - M - cardW),
       body("left-head", "Opção A", { x: M + 0.4, y: 2.15, w: cardW - 0.8, h: 0.6, fontSize: 24, bold: true }),
       list("left", "Texto da opção A", { x: M + 0.4, y: 2.95, w: cardW - 0.8, h: 3.2, fontSize: 20 }),
@@ -190,7 +216,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       { rect: { x: M, y: 1.8, w: CW, h: 4.6, fill: { color: C.surfaceStrong }, line: { color: C.border, width: 0.75 }, rectRadius: 0.08 } },
       body("code", "Cole o código aqui", { x: M + 0.35, y: 2.05, w: CW - 0.7, h: 4.1, fontFace: MONO, fontSize: 18 }),
     ],
@@ -203,7 +229,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       ...[0, 1, 2].flatMap((i) => [
         { rect: { x: cx(i), y: 1.8, w: cols3W, h: 3.9, fill: { color: C.surface }, line: { color: C.border, width: 0.75 }, rectRadius: 0.08 } },
         body(`col${i + 1}-head`, `Título ${i + 1}`, { x: cx(i) + 0.35, y: 2.1, w: cols3W - 0.7, h: 0.6, fontSize: 22, bold: true }),
@@ -217,7 +243,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       ...[0, 1, 2].flatMap((i) => [
         { rect: { x: cx(i), y: 1.9, w: 0.75, h: 0.75, fill: { color: C.yellow }, line: { type: "none" } } },
         { text: { text: String(i + 1), options: { x: cx(i), y: 1.9, w: 0.75, h: 0.75, fontFace: SANS, fontSize: 28, bold: true, color: C.ink, align: "center", valign: "middle", margin: 0 } } },
@@ -232,7 +258,7 @@ function defineMasters(pres) {
     background: { color: C.bg },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(), title(),
+      ...footer(), ...heading(),
       body("refs", "Autor, A. (ano). Título. Revista, volume(número), páginas.", { y: 1.7, h: 4.8, fontSize: 14, color: C.ink }),
     ],
   });
@@ -242,10 +268,10 @@ function defineMasters(pres) {
     background: { color: C.surface },
     slideNumber: slideNo,
     objects: [
-      numberTile(), footerLogo(),
+      ...footer(false, "FFFFFF"),
       tile(1.2, 1.2, 0.5),
-      body("quote", "Frase ou mensagem principal", { x: 1.2, y: 2.0, w: 10.9, h: 2.6, fontSize: 44, bold: true, valign: "top" }),
-      body("source", "Fonte ou autor", { x: 1.2, y: 4.8, w: 10.9, h: 0.6, fontSize: 16, color: C.muted }),
+      body("quote", "Frase ou mensagem principal", { x: 1.2, y: 1.9, w: 10.9, h: 2.8, fontSize: 44, bold: true, valign: "bottom" }),
+      body("source", "Fonte ou autor", { x: 1.2, y: 4.95, w: 10.9, h: 0.6, fontSize: 16, color: C.muted }),
     ],
   });
 
@@ -275,6 +301,7 @@ function defineMasters(pres) {
       headLogo(),
       bleedTile(),
       title({ y: 2.3, h: 1.8, w: 10.8, fontSize: 66, color: "FFFFFF", valign: "bottom" }),
+      { text: { text: "Alameda Prof. Hernâni Monteiro, 4200-319 Porto  |  www.med.up.pt", options: { x: M, y: 6.75, w: 9.4, h: 0.4, fontFace: SANS, fontSize: 12, color: C.mutedOnDark, align: "left", valign: "middle", margin: 0 } } },
       body("contacts", "Contactos", { y: 4.5, h: 1.8, w: 9.4, fontSize: 20, color: C.mutedOnDark }),
     ],
   });
@@ -283,7 +310,7 @@ function defineMasters(pres) {
     title: "FMUP Em branco",
     background: { color: C.bg },
     slideNumber: slideNo,
-    objects: [numberTile(), footerLogo()],
+    objects: [...footer()],
   });
 }
 
